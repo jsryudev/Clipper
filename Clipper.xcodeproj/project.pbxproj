@@ -3,10 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F1121AB2548550200AB2C95 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3F1121AA2548550200AB2C95 /* RxSwift */; };
+		3F1121AD2548550200AB2C95 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3F1121AC2548550200AB2C95 /* RxCocoa */; };
+		3F1121AF2548550200AB2C95 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 3F1121AE2548550200AB2C95 /* RxRelay */; };
+		3F1121B32548567700AB2C95 /* ReactorKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3F1121B22548567700AB2C95 /* ReactorKit */; };
+		3F1121B7254856E800AB2C95 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3F1121B6254856E800AB2C95 /* SnapKit */; };
+		3F1121BB2548580C00AB2C95 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 3F1121BA2548580C00AB2C95 /* Moya */; };
+		3F1121BD2548580C00AB2C95 /* RxMoya in Frameworks */ = {isa = PBXBuildFile; productRef = 3F1121BC2548580C00AB2C95 /* RxMoya */; };
 		3F68F762254840DF0064C59A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F761254840DF0064C59A /* AppDelegate.swift */; };
 		3F68F766254840DF0064C59A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F765254840DF0064C59A /* ViewController.swift */; };
 		3F68F769254840DF0064C59A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F68F767254840DF0064C59A /* Main.storyboard */; };
@@ -29,6 +36,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F1121AF2548550200AB2C95 /* RxRelay in Frameworks */,
+				3F1121AD2548550200AB2C95 /* RxCocoa in Frameworks */,
+				3F1121BB2548580C00AB2C95 /* Moya in Frameworks */,
+				3F1121B32548567700AB2C95 /* ReactorKit in Frameworks */,
+				3F1121BD2548580C00AB2C95 /* RxMoya in Frameworks */,
+				3F1121AB2548550200AB2C95 /* RxSwift in Frameworks */,
+				3F1121B7254856E800AB2C95 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +118,15 @@
 			dependencies = (
 			);
 			name = Clipper;
+			packageProductDependencies = (
+				3F1121AA2548550200AB2C95 /* RxSwift */,
+				3F1121AC2548550200AB2C95 /* RxCocoa */,
+				3F1121AE2548550200AB2C95 /* RxRelay */,
+				3F1121B22548567700AB2C95 /* ReactorKit */,
+				3F1121B6254856E800AB2C95 /* SnapKit */,
+				3F1121BA2548580C00AB2C95 /* Moya */,
+				3F1121BC2548580C00AB2C95 /* RxMoya */,
+			);
 			productName = Clipper;
 			productReference = 3F68F75E254840DF0064C59A /* Clipper.app */;
 			productType = "com.apple.product-type.application";
@@ -131,6 +154,12 @@
 				Base,
 			);
 			mainGroup = 3F68F755254840DF0064C59A;
+			packageReferences = (
+				3F1121A92548550200AB2C95 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				3F1121B12548567700AB2C95 /* XCRemoteSwiftPackageReference "ReactorKit" */,
+				3F1121B5254856E800AB2C95 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				3F1121B92548580C00AB2C95 /* XCRemoteSwiftPackageReference "Moya" */,
+			);
 			productRefGroup = 3F68F75F254840DF0064C59A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -365,6 +394,79 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3F1121A92548550200AB2C95 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
+		3F1121B12548567700AB2C95 /* XCRemoteSwiftPackageReference "ReactorKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactorKit/ReactorKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
+		3F1121B5254856E800AB2C95 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+		3F1121B92548580C00AB2C95 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3F1121AA2548550200AB2C95 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F1121A92548550200AB2C95 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		3F1121AC2548550200AB2C95 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F1121A92548550200AB2C95 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		3F1121AE2548550200AB2C95 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F1121A92548550200AB2C95 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		3F1121B22548567700AB2C95 /* ReactorKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F1121B12548567700AB2C95 /* XCRemoteSwiftPackageReference "ReactorKit" */;
+			productName = ReactorKit;
+		};
+		3F1121B6254856E800AB2C95 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F1121B5254856E800AB2C95 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		3F1121BA2548580C00AB2C95 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F1121B92548580C00AB2C95 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		3F1121BC2548580C00AB2C95 /* RxMoya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F1121B92548580C00AB2C95 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = RxMoya;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3F68F756254840DF0064C59A /* Project object */;
 }
