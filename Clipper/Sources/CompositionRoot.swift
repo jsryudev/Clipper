@@ -17,6 +17,9 @@ final class CompositionRoot {
     let window = UIWindow(frame: UIScreen.main.bounds)
     window.makeKeyAndVisible()
 
+    let splashViewController = SplashViewController()
+    window.rootViewController = splashViewController
+
     return AppDependency(
       window: window,
       configureSDKs: self.configureSDKs
