@@ -7,7 +7,9 @@
 
 import UIKit
 
+import Lottie
 import ReactorKit
+import SnapKit
 
 class SplashViewController: BaseViewController, View {
   typealias Reactor = SplashViewReactor
@@ -15,11 +17,47 @@ class SplashViewController: BaseViewController, View {
   private let presentLoginScreen: () -> Void
   private let presentMainScreen: () -> Void
 
+  fileprivate let animationView: AnimationView = {
+    let view = AnimationView(name: "Splash")
+    view.loopMode = .loop
+    return view
+  }()
+
+  fileprivate let nameLabel: UILabel = {
+    let label = UILabel()
+    label.text = "Clipper"
+    label.textAlignment = .center
+    label.font = .systemFont(ofSize: 30, weight: .bold)
+    label.textColor = .black
+    return label
+  }()
+
   override func viewDidLoad() {
     super.viewDidLoad()
+
+    self.animationView.play()
   }
 
-  // MARK: Initializing
+  override func addSubViews() {
+    self.view.addSubview(animationView)
+    self.view.addSubview(nameLabel)
+  }
+
+  override func setupConstraints() {
+    self.animationView.snp.makeConstraints { make in
+      make.width.height.equalTo(view.frame.height / 5)
+      make.centerX.centerY.equalToSuperview()
+    }
+
+    self.nameLabel.snp.makeConstraints { make in
+      make.centerX.equalTo(animationView)
+      make.top.equalTo(animationView.snp.bottom).offset(15)
+      make.leading.equalToSuperview().offset(15)
+      make.trailing.equalToSuperview().offset(-15)
+    }
+  }
+
+  // MARK: Initialize
 
   init(
     reactor: Reactor,
