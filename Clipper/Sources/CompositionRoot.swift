@@ -17,7 +17,21 @@ final class CompositionRoot {
     let window = UIWindow(frame: UIScreen.main.bounds)
     window.makeKeyAndVisible()
 
-    let splashViewController = SplashViewController()
+    let splashViewReactor = SplashViewReactor()
+
+    let presentLoginScreen = {
+      window.rootViewController = UIViewController()
+    }
+
+    let presentMainScreen = {
+      window.rootViewController = UIViewController()
+    }
+
+    let splashViewController = SplashViewController(
+      reactor: splashViewReactor,
+      presentLoginScreen: presentLoginScreen,
+      presentMainScreen: presentMainScreen
+    )
     window.rootViewController = splashViewController
 
     return AppDependency(
