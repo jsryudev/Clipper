@@ -11,13 +11,15 @@ import RxSwift
 
 final class SplashViewReactor: Reactor {
   enum Action {
-    case checkIfAuthenticated
+    case checkAuthenticated
   }
 
   enum Mutation {
+    case setAuthenticated(Bool)
   }
 
   struct State {
+    var isAuthenticated: Bool?
   }
 
   let initialState = State()
@@ -26,9 +28,13 @@ final class SplashViewReactor: Reactor {
   }
 
   func mutate(action: Action) -> Observable<Mutation> {
-    return .empty()
+    switch action {
+    case .checkAuthenticated:
+      return .empty()
+    }
   }
 
   func reduce(state: State, mutation: Mutation) -> State {
+    return state
   }
 }

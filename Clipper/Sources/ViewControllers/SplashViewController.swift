@@ -9,6 +9,7 @@ import UIKit
 
 import Lottie
 import ReactorKit
+import RxViewController
 import SnapKit
 
 class SplashViewController: BaseViewController, View {
@@ -75,5 +76,21 @@ class SplashViewController: BaseViewController, View {
   }
 
   func bind(reactor: SplashViewReactor) {
+    self.rx.viewDidAppear
+      .map { _ in Reactor.Action.checkAuthenticated }
+      .bind(to: reactor.action)
+      .disposed(by: self.disposeBag)
+
+    reactor.state.compactMap { $0.isAuthenticated }
+      .distinctUntilChanged()
+      .subscribe(
+        onNext: { [weak self] isAuthenticated in
+          if isAuthenticated {
+            self?.presentMainScreen()
+          } else {
+            self?.presentLoginScreen()
+          }
+        })
+      .disposed(by: disposeBag)
   }
 }
