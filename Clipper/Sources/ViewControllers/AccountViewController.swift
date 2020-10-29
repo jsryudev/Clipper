@@ -17,6 +17,8 @@ import RxViewController
 class AccountViewController: BaseViewController, View {
   typealias Reactor = AccountViewReactor
 
+  private let presentMainScreen: () -> Void
+
   fileprivate let nameLabel: UILabel = {
     let label = UILabel()
     label.text = "Clipper"
@@ -53,6 +55,21 @@ class AccountViewController: BaseViewController, View {
       make.centerX.equalToSuperview()
       make.top.equalTo(nameLabel.snp.bottom).offset(30)
     }
+  }
+
+  // MARK: Initialize
+
+  init(
+    reactor: Reactor,
+    presentMainScreen: @escaping () -> Void
+  ) {
+    defer { self.reactor = reactor }
+    self.presentMainScreen = presentMainScreen
+    super.init()
+  }
+
+  required convenience init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
 
   func bind(reactor: AccountViewReactor) {

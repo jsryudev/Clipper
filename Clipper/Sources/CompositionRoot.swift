@@ -21,17 +21,6 @@ final class CompositionRoot {
 
     let splashViewReactor = SplashViewReactor()
 
-    let presentLoginScreen = {
-      UIView.transition(
-        with: window,
-        duration: 0.3,
-        options: .transitionFlipFromRight,
-        animations: {
-          window.rootViewController = AccountViewController()
-        }
-      )
-    }
-
     let presentMainScreen = {
       UIView.transition(
         with: window,
@@ -39,6 +28,22 @@ final class CompositionRoot {
         options: .transitionFlipFromLeft,
         animations: {
           window.rootViewController = UIViewController()
+        }
+      )
+    }
+
+    let presentLoginScreen = {
+      UIView.transition(
+        with: window,
+        duration: 0.3,
+        options: .transitionFlipFromRight,
+        animations: {
+          let accountViewReactor = AccountViewReactor()
+          let accountViewController = AccountViewController(
+            reactor: accountViewReactor,
+            presentMainScreen: presentMainScreen
+          )
+          window.rootViewController = accountViewController
         }
       )
     }
