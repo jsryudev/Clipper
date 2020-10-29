@@ -25,8 +25,9 @@ final class UserService: UserServiceType {
   func signIn(token: String) -> Single<Bool> {
     return self.provider.rx
       .request(.signIn(token))
+      .map(User.self)
       .do(
-        onSuccess: { result in
+        onSuccess: { user in
           // access token keychain 저장
       })
       .map { _ in true }
