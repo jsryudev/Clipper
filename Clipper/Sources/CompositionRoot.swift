@@ -7,6 +7,8 @@
 
 import UIKit
 
+import GoogleSignIn
+
 struct AppDependency {
   let window: UIWindow
   let configureSDKs: () -> Void
@@ -41,6 +43,7 @@ final class CompositionRoot {
   }
 
   static func configureSDKs() {
-    // do something
+    GIDSignIn.sharedInstance().clientID = "594526153431-20fhpqjscu9pb4n6sqgqgrbi2o1o8q4u.apps.googleusercontent.com"
   }
 }
+
