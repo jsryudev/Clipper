@@ -1,5 +1,5 @@
 //
-//  AccountViewReactor.swift
+//  SignInViewReactor.swift
 //  Clipper
 //
 //  Created by JunSang Ryu on 2020/10/29.
@@ -10,7 +10,7 @@ import UIKit
 import ReactorKit
 import Moya
 
-final class AccountViewReactor: Reactor {
+final class SignInViewReactor: Reactor {
   enum Action {
     case signIn(String)
   }

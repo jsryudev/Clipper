@@ -1,5 +1,5 @@
 //
-//  AccountViewController.swift
+//  SignInViewController.swift
 //  Clipper
 //
 //  Created by JunSang Ryu on 2020/10/29.
@@ -14,8 +14,8 @@ import RxSwift
 import RxCocoa
 import RxViewController
 
-class AccountViewController: BaseViewController, View {
-  typealias Reactor = AccountViewReactor
+class SignInViewController: BaseViewController, View {
+  typealias Reactor = SignInViewReactor
 
   private let presentMainScreen: () -> Void
 
@@ -72,7 +72,7 @@ class AccountViewController: BaseViewController, View {
     fatalError("init(coder:) has not been implemented")
   }
 
-  func bind(reactor: AccountViewReactor) {
+  func bind(reactor: SignInViewReactor) {
     self.rx.viewDidLoad
       .subscribe(
         onNext: { [weak self] in
@@ -95,7 +95,7 @@ class AccountViewController: BaseViewController, View {
   }
 }
 
-extension AccountViewController: GIDSignInDelegate {
+extension SignInViewController: GIDSignInDelegate {
     func initalizeGoogleSignIn() {
       GIDSignIn.sharedInstance().delegate = self
       GIDSignIn.sharedInstance().presentingViewController = self

@@ -43,12 +43,12 @@ final class CompositionRoot {
         duration: 0.3,
         options: .transitionFlipFromRight,
         animations: {
-          let accountViewReactor = AccountViewReactor(userService: userService)
-          let accountViewController = AccountViewController(
-            reactor: accountViewReactor,
+          let signInViewReactor = SignInViewReactor(userService: userService)
+          let signInViewController = SignInViewController(
+            reactor: signInViewReactor,
             presentMainScreen: presentMainScreen
           )
-          window.rootViewController = UINavigationController(rootViewController: accountViewController)
+          window.rootViewController = UINavigationController(rootViewController: signInViewController)
         }
       )
     }
