@@ -79,6 +79,19 @@ class AccountViewController: BaseViewController, View {
           self?.initalizeGoogleSignIn()
         })
       .disposed(by: disposeBag)
+
+    reactor.state.compactMap { $0.isSignIn }
+      .distinctUntilChanged()
+      .subscribe(
+        onNext: { [weak self] isSignIn in
+          if isSignIn {
+            self?.presentMainScreen()
+          } else {
+            // 가입 화면 이동
+          }
+        })
+      .disposed(by: disposeBag)
+
   }
 }
 
@@ -90,7 +103,9 @@ extension AccountViewController: GIDSignInDelegate {
     }
 
   func sign(_ signIn: GIDSignIn?, didSignInFor user: GIDGoogleUser?, withError error: Error?) {
-    guard let user = user else { return }
-    // idToken을 백엔드로 보내 인증을 진행
+    guard let authentication = user?.authentication else {
+      return
+    }
+    reactor?.action.onNext(.signIn(authentication.idToken))
   }
 }

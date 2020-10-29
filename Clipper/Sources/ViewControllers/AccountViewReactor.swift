@@ -8,12 +8,43 @@
 import UIKit
 
 import ReactorKit
+import Moya
 
 final class AccountViewReactor: Reactor {
-  typealias Action = NoAction
-
-  struct State {
+  enum Action {
+    case signIn(String)
   }
 
-  let initialState: State = State()
+  enum Mutation {
+    case setSignIn(Bool)
+  }
+
+  struct State {
+    var isSignIn: Bool?
+  }
+
+  let initialState = State()
+  let userService: UserServiceType
+
+  init(userService: UserServiceType) {
+    self.userService = userService
+  }
+
+  func mutate(action: Action) -> Observable<Mutation> {
+    switch action {
+    case .signIn(let token):
+      return userService.signIn(token: token)
+        .asObservable()
+        .map { .setSignIn($0) }
+    }
+  }
+
+  func reduce(state: State, mutation: Mutation) -> State {
+    var newState = state
+    switch mutation {
+    case .setSignIn(let isSignIn):
+      newState.isSignIn = isSignIn
+    }
+    return newState
+  }
 }

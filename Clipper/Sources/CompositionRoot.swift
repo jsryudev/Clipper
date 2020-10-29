@@ -7,6 +7,7 @@
 
 import UIKit
 
+import Moya
 import GoogleSignIn
 
 struct AppDependency {
@@ -19,6 +20,9 @@ final class CompositionRoot {
   static func resolve() -> AppDependency {
     let window = UIWindow(frame: UIScreen.main.bounds)
     window.makeKeyAndVisible()
+
+    let clipperProvider = MoyaProvider<ClipperAPI>()
+    let userService = UserService(provider: clipperProvider)
 
     let splashViewReactor = SplashViewReactor()
 
@@ -39,7 +43,7 @@ final class CompositionRoot {
         duration: 0.3,
         options: .transitionFlipFromRight,
         animations: {
-          let accountViewReactor = AccountViewReactor()
+          let accountViewReactor = AccountViewReactor(userService: userService)
           let accountViewController = AccountViewController(
             reactor: accountViewReactor,
             presentMainScreen: presentMainScreen
