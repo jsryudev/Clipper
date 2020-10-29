@@ -12,6 +12,7 @@ import GoogleSignIn
 struct AppDependency {
   let window: UIWindow
   let configureSDKs: () -> Void
+  let configureAppearance: () -> Void
 }
 
 final class CompositionRoot {
@@ -43,7 +44,7 @@ final class CompositionRoot {
             reactor: accountViewReactor,
             presentMainScreen: presentMainScreen
           )
-          window.rootViewController = accountViewController
+          window.rootViewController = UINavigationController(rootViewController: accountViewController)
         }
       )
     }
@@ -58,12 +59,19 @@ final class CompositionRoot {
 
     return AppDependency(
       window: window,
-      configureSDKs: self.configureSDKs
+      configureSDKs: self.configureSDKs,
+      configureAppearance: self.configureAppearance
     )
   }
 
   static func configureSDKs() {
     GIDSignIn.sharedInstance().clientID = "594526153431-20fhpqjscu9pb4n6sqgqgrbi2o1o8q4u.apps.googleusercontent.com"
+  }
+
+  static func configureAppearance() {
+    UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+    UINavigationBar.appearance().shadowImage = UIImage()
+    UINavigationBar.appearance().tintColor = .clear
   }
 }
 

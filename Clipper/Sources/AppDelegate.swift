@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   ) -> Bool {
     self.dependency = self.dependency ?? CompositionRoot.resolve()
     self.dependency.configureSDKs()
+    self.dependency.configureAppearance()
     self.window = self.dependency.window
     return true
   }
