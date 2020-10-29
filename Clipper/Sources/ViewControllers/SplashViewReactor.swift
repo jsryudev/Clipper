@@ -30,7 +30,8 @@ final class SplashViewReactor: Reactor {
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .checkAuthenticated:
-      return .just(.setAuthenticated(false))
+      return Observable.just(.setAuthenticated(false))
+        .delay(.seconds(3), scheduler: MainScheduler.instance)
     }
   }
 
