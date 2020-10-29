@@ -20,7 +20,7 @@ final class CompositionRoot {
     let splashViewReactor = SplashViewReactor()
 
     let presentLoginScreen = {
-      window.rootViewController = UIViewController()
+      window.rootViewController = AccountViewController()
     }
 
     let presentMainScreen = {

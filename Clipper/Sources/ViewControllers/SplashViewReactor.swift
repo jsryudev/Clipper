@@ -30,11 +30,16 @@ final class SplashViewReactor: Reactor {
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .checkAuthenticated:
-      return .empty()
+      return .just(.setAuthenticated(false))
     }
   }
 
   func reduce(state: State, mutation: Mutation) -> State {
-    return state
+    var newState = state
+    switch mutation {
+    case .setAuthenticated(let isAuthenticated):
+      newState.isAuthenticated = isAuthenticated
+    }
+    return newState
   }
 }
