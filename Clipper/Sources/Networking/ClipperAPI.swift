@@ -9,8 +9,8 @@ import Foundation
 import Moya
 
 enum ClipperAPI {
+  case signIn(String)
   case signUp
-  case me
 }
 
 extension ClipperAPI: TargetType {
@@ -20,9 +20,9 @@ extension ClipperAPI: TargetType {
 
   var path: String {
     switch self {
+    case .signIn:
+      return "/user/google-login"
     case .signUp:
-      return "/users"
-    case .me:
       return "/user"
     }
   }
@@ -30,9 +30,9 @@ extension ClipperAPI: TargetType {
   var method: Moya.Method {
     switch self {
     case .signUp:
-      return .post
-    case .me:
       return .get
+    case .signIn:
+      return .post
     }
   }
 
@@ -41,7 +41,12 @@ extension ClipperAPI: TargetType {
   }
 
   var task: Task {
-    return .requestPlain
+    switch self {
+    case .signIn(let token):
+      return .requestJSONEncodable(["token": token])
+    default:
+      return .requestPlain
+    }
   }
 
   var headers: [String : String]? {
