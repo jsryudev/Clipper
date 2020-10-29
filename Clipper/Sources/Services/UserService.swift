@@ -12,7 +12,7 @@ import RxMoya
 import RxSwift
 
 protocol UserServiceType {
-  func signIn(token: String) -> Single<Bool>
+  func signIn(token: String) -> Single<User>
 }
 
 final class UserService: UserServiceType {
@@ -22,15 +22,9 @@ final class UserService: UserServiceType {
     self.provider = provider
   }
 
-  func signIn(token: String) -> Single<Bool> {
+  func signIn(token: String) -> Single<User> {
     return self.provider.rx
       .request(.signIn(token))
       .map(User.self)
-      .do(
-        onSuccess: { user in
-          // access token keychain 저장
-      })
-      .map { _ in true }
-      .catchErrorJustReturn(false)
     }
 }

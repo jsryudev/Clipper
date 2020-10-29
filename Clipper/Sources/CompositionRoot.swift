@@ -23,8 +23,7 @@ final class CompositionRoot {
 
     let clipperProvider = MoyaProvider<ClipperAPI>()
     let userService = UserService(provider: clipperProvider)
-
-    let splashViewReactor = SplashViewReactor()
+    let authService = AuthService()
 
     let presentMainScreen = {
       UIView.transition(
@@ -33,6 +32,7 @@ final class CompositionRoot {
         options: .transitionFlipFromLeft,
         animations: {
           window.rootViewController = UIViewController()
+          authService.signOut()
         }
       )
     }
@@ -43,7 +43,10 @@ final class CompositionRoot {
         duration: 0.3,
         options: .transitionFlipFromRight,
         animations: {
-          let signInViewReactor = SignInViewReactor(userService: userService)
+          let signInViewReactor = SignInViewReactor(
+            userService: userService,
+            authService: authService
+          )
           let signInViewController = SignInViewController(
             reactor: signInViewReactor,
             presentMainScreen: presentMainScreen
@@ -53,6 +56,7 @@ final class CompositionRoot {
       )
     }
 
+    let splashViewReactor = SplashViewReactor(authService: authService)
     let splashViewController = SplashViewController(
       reactor: splashViewReactor,
       presentLoginScreen: presentLoginScreen,

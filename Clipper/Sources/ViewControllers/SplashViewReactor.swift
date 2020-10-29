@@ -23,15 +23,18 @@ final class SplashViewReactor: Reactor {
   }
 
   let initialState = State()
+  let authService: AuthServiceType
 
-  init() {
+  init(authService: AuthServiceType) {
+    self.authService = authService
   }
 
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .checkAuthenticated:
-      return Observable.just(.setAuthenticated(false))
-        .delay(.seconds(3), scheduler: MainScheduler.instance)
+      return Observable
+        .just(Mutation.setAuthenticated(authService.accessToken != nil))
+        .delay(.seconds(2), scheduler: MainScheduler.instance)
     }
   }
 

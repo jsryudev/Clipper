@@ -25,16 +25,24 @@ final class SignInViewReactor: Reactor {
 
   let initialState = State()
   let userService: UserServiceType
+  let authService: AuthServiceType
 
-  init(userService: UserServiceType) {
+  init(userService: UserServiceType, authService: AuthServiceType) {
     self.userService = userService
+    self.authService = authService
   }
 
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .signIn(let token):
       return userService.signIn(token: token)
+        .do(
+          onSuccess: { [weak self] user in
+            self?.authService.save(token: user.accessToken)
+        })
         .asObservable()
+        .map { _ in true }
+        .catchErrorJustReturn(false)
         .map { .setSignIn($0) }
     }
   }
