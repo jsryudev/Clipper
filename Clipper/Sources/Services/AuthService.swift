@@ -8,6 +8,7 @@
 import Foundation
 
 import KeychainAccess
+import GoogleSignIn
 
 protocol AuthServiceType {
   var accessToken: String? { get set }
@@ -36,6 +37,7 @@ final class AuthService: AuthServiceType {
 
   func signOut() {
     self.accessToken = nil
+    GIDSignIn.sharedInstance().signOut()
     delete()
   }
 
