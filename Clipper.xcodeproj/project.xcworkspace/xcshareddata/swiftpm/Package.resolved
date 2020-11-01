@@ -56,6 +56,15 @@
         }
       },
       {
+        "package": "NMapsMap",
+        "repositoryURL": "https://github.com/stleamist/NMapsMap-SwiftPM.git",
+        "state": {
+          "branch": null,
+          "revision": "bef0415254996c69caa2fcb094d2bec38cad04f2",
+          "version": "3.10.0+run33"
+        }
+      },
+      {
         "package": "ReactiveSwift",
         "repositoryURL": "https://github.com/Moya/ReactiveSwift.git",
         "state": {
