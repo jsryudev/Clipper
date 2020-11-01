@@ -9,9 +9,13 @@ import RxCocoa
 import RxSwift
 import ReactorKit
 
-struct TrackedValue<T> {
+struct TrackedValue<T: Equatable>: Equatable {
   var tracker: Int
   var value: T
+
+  static func == (lhs: TrackedValue<T>, rhs: TrackedValue<T>) -> Bool {
+    return lhs.tracker == rhs.tracker && lhs.value == rhs.value
+  }
 }
 
 extension ObservableType {
