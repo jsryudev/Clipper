@@ -8,6 +8,7 @@
 import UIKit
 
 import GoogleSignIn
+import Hero
 import Moya
 import NMapsMap
 
@@ -52,12 +53,15 @@ final class CompositionRoot {
           userService: userService,
           authService: authService
         )
-        return SignUpViewController(
+        let viewController = SignUpViewController(
           reactor: reactor,
           presentMainScreen: presentMainScreen
         )
+        viewController.hero.isEnabled = true
+        return viewController
       }
     )
+    signInViewController.hero.isEnabled = true
 
     let presentLoginScreen = {
       UIView.transition(
@@ -65,7 +69,7 @@ final class CompositionRoot {
         duration: 0.3,
         options: .transitionFlipFromRight,
         animations: {
-          window.rootViewController = UINavigationController(rootViewController: signInViewController)
+          window.rootViewController = BaseNavigationController(rootViewController: signInViewController)
         }
       )
     }
