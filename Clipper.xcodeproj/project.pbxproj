@@ -42,6 +42,7 @@
 		3FB849E9254F397400C40CF6 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 3FB849E8254F397400C40CF6 /* FloatingPanel */; };
 		3FB849EC254F39E300C40CF6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB849EB254F39E300C40CF6 /* MainViewController.swift */; };
 		3FB849F4254F3F3E00C40CF6 /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 3FB849F3254F3F3E00C40CF6 /* NMapsMap */; };
+		3FB849F7254F46EC00C40CF6 /* MainViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB849F6254F46EC00C40CF6 /* MainViewReactor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		3F68F76D254840E20064C59A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F68F76F254840E20064C59A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FB849EB254F39E300C40CF6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3FB849F6254F46EC00C40CF6 /* MainViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewReactor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 				3F2986B1254AE5F0003F112F /* SignInViewController.swift */,
 				3F2986CB254B0849003F112F /* SignInViewReactor.swift */,
 				3FB849EB254F39E300C40CF6 /* MainViewController.swift */,
+				3FB849F6254F46EC00C40CF6 /* MainViewReactor.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				3F2986E7254B3C58003F112F /* AuthService.swift in Sources */,
 				3F2986D4254B13CC003F112F /* ClipperAPI.swift in Sources */,
 				3F1121C125485AC500AB2C95 /* CompositionRoot.swift in Sources */,
+				3FB849F7254F46EC00C40CF6 /* MainViewReactor.swift in Sources */,
 				3F68F762254840DF0064C59A /* AppDelegate.swift in Sources */,
 				3F2986DF254B3A45003F112F /* User.swift in Sources */,
 				3F2986CC254B0849003F112F /* SignInViewReactor.swift in Sources */,

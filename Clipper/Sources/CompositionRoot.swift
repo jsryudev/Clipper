@@ -26,17 +26,28 @@ final class CompositionRoot {
     let userService = UserService(provider: clipperProvider)
     let authService = AuthService()
 
+    let mainViewReactor = MainViewReactor()
+    let mainViewController = MainViewController(reactor: mainViewReactor)
+
     let presentMainScreen = {
       UIView.transition(
         with: window,
         duration: 0.3,
         options: .transitionFlipFromLeft,
         animations: {
-          window.rootViewController = UIViewController()
-          authService.signOut()
+          window.rootViewController = mainViewController
         }
       )
     }
+
+    let signInViewReactor = SignInViewReactor(
+      userService: userService,
+      authService: authService
+    )
+    let signInViewController = SignInViewController(
+      reactor: signInViewReactor,
+      presentMainScreen: presentMainScreen
+    )
 
     let presentLoginScreen = {
       UIView.transition(
@@ -44,14 +55,6 @@ final class CompositionRoot {
         duration: 0.3,
         options: .transitionFlipFromRight,
         animations: {
-          let signInViewReactor = SignInViewReactor(
-            userService: userService,
-            authService: authService
-          )
-          let signInViewController = SignInViewController(
-            reactor: signInViewReactor,
-            presentMainScreen: presentMainScreen
-          )
           window.rootViewController = UINavigationController(rootViewController: signInViewController)
         }
       )
