@@ -9,7 +9,7 @@ import Foundation
 import Moya
 
 enum ClipperAPI {
-  case signIn(String)
+  case authenticate(String)
   case signUp
 }
 
@@ -20,7 +20,7 @@ extension ClipperAPI: TargetType {
 
   var path: String {
     switch self {
-    case .signIn:
+    case .authenticate:
       return "/user/google-login"
     case .signUp:
       return "/user"
@@ -31,7 +31,7 @@ extension ClipperAPI: TargetType {
     switch self {
     case .signUp:
       return .get
-    case .signIn:
+    case .authenticate:
       return .post
     }
   }
@@ -42,7 +42,7 @@ extension ClipperAPI: TargetType {
 
   var task: Task {
     switch self {
-    case .signIn(let token):
+    case .authenticate(let token):
       return .requestJSONEncodable(["token": token])
     default:
       return .requestPlain

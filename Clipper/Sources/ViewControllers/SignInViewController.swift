@@ -105,6 +105,6 @@ extension SignInViewController: GIDSignInDelegate {
     guard let authentication = user?.authentication else {
       return
     }
-    reactor?.action.onNext(.signIn(authentication.idToken))
+    reactor?.action.onNext(.authenticate(authentication.idToken))
   }
 }

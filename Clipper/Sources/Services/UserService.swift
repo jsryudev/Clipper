@@ -11,8 +11,10 @@ import Moya
 import RxMoya
 import RxSwift
 
+typealias JSON = [String: String]
+
 protocol UserServiceType {
-  func signIn(token: String) -> Single<User>
+  func authenticate(token: String) -> Single<Any>
 }
 
 final class UserService: UserServiceType {
@@ -22,9 +24,9 @@ final class UserService: UserServiceType {
     self.provider = provider
   }
 
-  func signIn(token: String) -> Single<User> {
+  func authenticate(token: String) -> Single<Any> {
     return self.provider.rx
-      .request(.signIn(token))
-      .map(User.self)
+      .request(.authenticate(token))
+      .mapJSON()
     }
 }
