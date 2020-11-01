@@ -20,7 +20,7 @@ final class SignInViewReactor: Reactor {
   }
 
   struct State {
-    var isSignIn: Bool?
+    var isSuccess: Bool?
   }
 
   let initialState = State()
@@ -50,8 +50,8 @@ final class SignInViewReactor: Reactor {
   func reduce(state: State, mutation: Mutation) -> State {
     var newState = state
     switch mutation {
-    case .setSignIn(let isSignIn):
-      newState.isSignIn = isSignIn
+    case .setSignIn(let isSuccess):
+      newState.isSuccess = isSuccess
     }
     return newState
   }

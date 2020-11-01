@@ -80,11 +80,11 @@ class SignInViewController: BaseViewController, View {
         })
       .disposed(by: disposeBag)
 
-    reactor.state.compactMap { $0.isSignIn }
+    reactor.state.compactMap { $0.isSuccess }
       .distinctUntilChanged()
       .subscribe(
-        onNext: { [weak self] isSignIn in
-          if isSignIn {
+        onNext: { [weak self] isSuccess in
+          if isSuccess {
             self?.presentMainScreen()
           } else {
             // 가입 화면 이동
@@ -99,7 +99,6 @@ extension SignInViewController: GIDSignInDelegate {
     func initalizeGoogleSignIn() {
       GIDSignIn.sharedInstance().delegate = self
       GIDSignIn.sharedInstance().presentingViewController = self
-      GIDSignIn.sharedInstance().restorePreviousSignIn()
     }
 
   func sign(_ signIn: GIDSignIn?, didSignInFor user: GIDGoogleUser?, withError error: Error?) {
