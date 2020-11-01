@@ -55,6 +55,20 @@ class MainViewController: BaseViewController, View {
   }
 
   func bind(reactor: MainViewReactor) {
+    self.rx.viewDidLoad
+      .map { Reactor.Action.fetchMe }
+      .bind(to: reactor.action)
+      .disposed(by: disposeBag)
 
+    reactor.state.compactMap { $0.user }
+      .distinctUntilChanged()
+      .subscribe(
+        onNext: { user in
+          print(user)
+        },
+        onError: { error in
+          print(error)
+        })
+      .disposed(by: disposeBag)
   }
 }

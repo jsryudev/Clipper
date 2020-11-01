@@ -23,15 +23,25 @@ final class MainViewReactor: Reactor {
   }
 
   let initialState = State()
+  let userService: UserServiceType
 
-  init() {
+  init(userService: UserServiceType) {
+    self.userService = userService
   }
 
   func mutate(action: Action) -> Observable<Mutation> {
-    return .empty()
+    return userService.fetchMe()
+      .asObservable()
+      .map { .setMe($0) }
+      .debug()
   }
 
   func reduce(state: State, mutation: Mutation) -> State {
-    return state
+    var newState = state
+    switch mutation {
+    case .setMe(let user):
+      newState.user = user
+    }
+    return newState
   }
 }

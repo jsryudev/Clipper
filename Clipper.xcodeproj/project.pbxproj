@@ -37,6 +37,7 @@
 		3F2986E7254B3C58003F112F /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2986E6254B3C58003F112F /* AuthService.swift */; };
 		3F3D382B254F5460005F35BC /* ReactorKit+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D382A254F5460005F35BC /* ReactorKit+Extension.swift */; };
 		3F3D382F254F5CAA005F35BC /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D382E254F5CAA005F35BC /* BaseNavigationController.swift */; };
+		3F3D3835254F7216005F35BC /* AuthPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D3834254F7216005F35BC /* AuthPlugin.swift */; };
 		3F68F762254840DF0064C59A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F761254840DF0064C59A /* AppDelegate.swift */; };
 		3F68F766254840DF0064C59A /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F765254840DF0064C59A /* SplashViewController.swift */; };
 		3F68F76B254840E20064C59A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F68F76A254840E20064C59A /* Assets.xcassets */; };
@@ -69,6 +70,7 @@
 		3F2986E6254B3C58003F112F /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		3F3D382A254F5460005F35BC /* ReactorKit+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReactorKit+Extension.swift"; sourceTree = "<group>"; };
 		3F3D382E254F5CAA005F35BC /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		3F3D3834254F7216005F35BC /* AuthPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPlugin.swift; sourceTree = "<group>"; };
 		3F68F75E254840DF0064C59A /* Clipper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clipper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F68F761254840DF0064C59A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F68F765254840DF0064C59A /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 		3F2986D6254B1C16003F112F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				3F3D3833254F7209005F35BC /* Plugins */,
 				3F2986D7254B1C27003F112F /* UserService.swift */,
 				3F2986E6254B3C58003F112F /* AuthService.swift */,
 			);
@@ -188,6 +191,14 @@
 				3F3D382A254F5460005F35BC /* ReactorKit+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3F3D3833254F7209005F35BC /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				3F3D3834254F7216005F35BC /* AuthPlugin.swift */,
+			);
+			path = Plugins;
 			sourceTree = "<group>";
 		};
 		3F68F755254840DF0064C59A = {
@@ -350,6 +361,7 @@
 			files = (
 				3F68F766254840DF0064C59A /* SplashViewController.swift in Sources */,
 				3F1121C72548628400AB2C95 /* BaseViewController.swift in Sources */,
+				3F3D3835254F7216005F35BC /* AuthPlugin.swift in Sources */,
 				3F2986D8254B1C27003F112F /* UserService.swift in Sources */,
 				3FB849EC254F39E300C40CF6 /* MainViewController.swift in Sources */,
 				3F2986B2254AE5F0003F112F /* SignInViewController.swift in Sources */,

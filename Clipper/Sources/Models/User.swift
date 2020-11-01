@@ -7,16 +7,16 @@
 
 import Foundation
 
-enum UserType: String, Codable {
+enum UserType: String, Codable, Equatable {
   case apple
   case google
 }
 
-struct User: Codable {
+struct User: Codable, Equatable {
   let type: UserType
   let id: String
   let name: String
-  let accessToken: String
+  let accessToken: String?
 
   enum CodingKeys: String, CodingKey {
     case type

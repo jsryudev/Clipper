@@ -16,6 +16,7 @@ typealias JSON = [String: String]
 protocol UserServiceType {
   func signUp(token: String, name: String, type: UserType) -> Single<User>
   func authenticate(token: String) -> Single<Any>
+  func fetchMe() -> Single<User>
 }
 
 final class UserService: UserServiceType {
@@ -36,4 +37,10 @@ final class UserService: UserServiceType {
       .request(.authenticate(token))
       .mapJSON()
     }
+
+  func fetchMe() -> Single<User> {
+    return self.provider.rx
+      .request(.fetchMe)
+      .map(User.self)
+  }
 }

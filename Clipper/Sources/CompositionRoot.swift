@@ -23,12 +23,14 @@ final class CompositionRoot {
     let window = UIWindow(frame: UIScreen.main.bounds)
     window.makeKeyAndVisible()
 
-    let clipperProvider = MoyaProvider<ClipperAPI>()
-    let userService = UserService(provider: clipperProvider)
     let authService = AuthService()
 
-    authService.signOut()
-    let mainViewReactor = MainViewReactor()
+    let authPlugin = AuthPlugin(authService: authService)
+    let clipperProvider = MoyaProvider<ClipperAPI>(plugins: [authPlugin])
+
+    let userService = UserService(provider: clipperProvider)
+
+    let mainViewReactor = MainViewReactor(userService: userService)
     let mainViewController = MainViewController(reactor: mainViewReactor)
 
     let presentMainScreen = {
