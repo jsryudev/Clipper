@@ -39,8 +39,8 @@ class SignUpViewController: BaseViewController, View {
 
   override func setupConstraints() {
     self.nameLabel.snp.makeConstraints { make in
-      make.centerY.equalToSuperview()
-      make.top.equalToSuperview().offset(50)
+      make.centerX.equalToSuperview()
+      make.edges.top.equalToSuperview()
     }
   }
 
