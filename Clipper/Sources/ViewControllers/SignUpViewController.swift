@@ -20,6 +20,21 @@ class SignUpViewController: BaseViewController, View {
 
   private let presentMainScreen: () -> Void
 
+  fileprivate let doneButton: UIBarButtonItem = {
+    let button = UIBarButtonItem()
+    button.title = "확인"
+    return button
+  }()
+
+  fileprivate let nameTextField: UITextField = {
+    let field = UITextField()
+    field.borderStyle = .line
+    field.textAlignment = .center
+    field.font = .systemFont(ofSize: 18)
+    field.placeholder = "사용할 닉네임"
+    return field
+  }()
+
   fileprivate let nameLabel: UILabel = {
     let label = UILabel()
     label.text = "Clipper"
@@ -34,13 +49,21 @@ class SignUpViewController: BaseViewController, View {
   }
 
   override func addSubViews() {
+    self.navigationItem.rightBarButtonItem = doneButton
+    self.view.addSubview(nameTextField)
     self.view.addSubview(nameLabel)
   }
 
   override func setupConstraints() {
+    self.nameTextField.snp.makeConstraints { make in
+      make.center.equalToSuperview()
+      make.leading.equalToSuperview().offset(30)
+      make.trailing.equalToSuperview().offset(-30)
+    }
+
     self.nameLabel.snp.makeConstraints { make in
       make.centerX.equalToSuperview()
-      make.edges.top.equalToSuperview()
+      make.bottom.equalTo(nameTextField.snp.top).offset(-30)
     }
   }
 
