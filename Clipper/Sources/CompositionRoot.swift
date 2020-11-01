@@ -27,6 +27,7 @@ final class CompositionRoot {
     let userService = UserService(provider: clipperProvider)
     let authService = AuthService()
 
+    authService.signOut()
     let mainViewReactor = MainViewReactor()
     let mainViewController = MainViewController(reactor: mainViewReactor)
 
@@ -51,7 +52,8 @@ final class CompositionRoot {
       signUpViewControllerFactory: { token in
         let reactor = SignUpViewReactor(
           userService: userService,
-          authService: authService
+          authService: authService,
+          token: token
         )
         let viewController = SignUpViewController(
           reactor: reactor,

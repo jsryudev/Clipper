@@ -14,6 +14,7 @@ import RxSwift
 typealias JSON = [String: String]
 
 protocol UserServiceType {
+  func signUp(token: String, name: String, type: UserType) -> Single<User>
   func authenticate(token: String) -> Single<Any>
 }
 
@@ -22,6 +23,12 @@ final class UserService: UserServiceType {
 
   init(provider: MoyaProvider<ClipperAPI>) {
     self.provider = provider
+  }
+
+  func signUp(token: String, name: String, type: UserType = .google) -> Single<User> {
+    return self.provider.rx
+      .request(.signUp(token, name, type))
+      .map(User.self)
   }
 
   func authenticate(token: String) -> Single<Any> {

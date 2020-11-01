@@ -83,5 +83,28 @@ class SignUpViewController: BaseViewController, View {
   }
 
   func bind(reactor: SignUpViewReactor) {
+    self.nameTextField.rx.text
+      .distinctUntilChanged()
+      .compactMap{ $0 }
+      .map { Reactor.Action.typeName($0) }
+      .bind(to: reactor.action)
+      .disposed(by: disposeBag)
+
+    self.doneButton.rx.tap
+      .map { Reactor.Action.signUp }
+      .bind(to: reactor.action)
+      .disposed(by: disposeBag)
+
+    reactor.state.compactMap { $0.isSuccess }
+      .distinctUntilChanged()
+      .subscribe(
+        onNext: { [weak self] isSuccess in
+          if isSuccess.value {
+            self?.presentMainScreen()
+          } else {
+            // handle error
+          }
+        })
+      .disposed(by: disposeBag)
   }
 }
