@@ -43,6 +43,8 @@
 		3FB849EC254F39E300C40CF6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB849EB254F39E300C40CF6 /* MainViewController.swift */; };
 		3FB849F4254F3F3E00C40CF6 /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 3FB849F3254F3F3E00C40CF6 /* NMapsMap */; };
 		3FB849F7254F46EC00C40CF6 /* MainViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB849F6254F46EC00C40CF6 /* MainViewReactor.swift */; };
+		3FB849FA254F48F700C40CF6 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB849F9254F48F700C40CF6 /* SignUpViewController.swift */; };
+		3FB849FE254F491500C40CF6 /* SignUpViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB849FD254F491500C40CF6 /* SignUpViewReactor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,8 @@
 		3F68F76F254840E20064C59A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FB849EB254F39E300C40CF6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3FB849F6254F46EC00C40CF6 /* MainViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewReactor.swift; sourceTree = "<group>"; };
+		3FB849F9254F48F700C40CF6 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		3FB849FD254F491500C40CF6 /* SignUpViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewReactor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,8 @@
 				3F1121C92548632C00AB2C95 /* SplashViewReactor.swift */,
 				3F2986B1254AE5F0003F112F /* SignInViewController.swift */,
 				3F2986CB254B0849003F112F /* SignInViewReactor.swift */,
+				3FB849F9254F48F700C40CF6 /* SignUpViewController.swift */,
+				3FB849FD254F491500C40CF6 /* SignUpViewReactor.swift */,
 				3FB849EB254F39E300C40CF6 /* MainViewController.swift */,
 				3FB849F6254F46EC00C40CF6 /* MainViewReactor.swift */,
 			);
@@ -336,6 +342,8 @@
 				3F1121CA2548632C00AB2C95 /* SplashViewReactor.swift in Sources */,
 				3F2986E7254B3C58003F112F /* AuthService.swift in Sources */,
 				3F2986D4254B13CC003F112F /* ClipperAPI.swift in Sources */,
+				3FB849FA254F48F700C40CF6 /* SignUpViewController.swift in Sources */,
+				3FB849FE254F491500C40CF6 /* SignUpViewReactor.swift in Sources */,
 				3F1121C125485AC500AB2C95 /* CompositionRoot.swift in Sources */,
 				3FB849F7254F46EC00C40CF6 /* MainViewReactor.swift in Sources */,
 				3F68F762254840DF0064C59A /* AppDelegate.swift in Sources */,
