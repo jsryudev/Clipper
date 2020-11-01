@@ -48,7 +48,6 @@ final class SignInViewReactor: Reactor {
         })
         .asObservable()
         .map { _ in true }
-
         .catchErrorJustReturn(false)
         .map { .setSuccess($0) }
     }
