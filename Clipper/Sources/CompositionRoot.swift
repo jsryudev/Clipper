@@ -84,7 +84,7 @@ final class CompositionRoot {
   static func configureAppearance() {
     UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
     UINavigationBar.appearance().shadowImage = UIImage()
-    UINavigationBar.appearance().tintColor = .clear
+    UINavigationBar.appearance().tintColor = .black
   }
 }
 
