@@ -18,6 +18,7 @@ class SignInViewController: BaseViewController, View {
   typealias Reactor = SignInViewReactor
 
   private let presentMainScreen: () -> Void
+  private let signUpViewControllerFactory: (String) -> SignUpViewController
 
   fileprivate let nameLabel: UILabel = {
     let label = UILabel()
@@ -61,10 +62,12 @@ class SignInViewController: BaseViewController, View {
 
   init(
     reactor: Reactor,
-    presentMainScreen: @escaping () -> Void
+    presentMainScreen: @escaping () -> Void,
+    signUpViewControllerFactory: @escaping (String) -> SignUpViewController
   ) {
     defer { self.reactor = reactor }
     self.presentMainScreen = presentMainScreen
+    self.signUpViewControllerFactory = signUpViewControllerFactory
     super.init()
   }
 
@@ -84,14 +87,19 @@ class SignInViewController: BaseViewController, View {
       .distinctUntilChanged()
       .subscribe(
         onNext: { [weak self] isSuccess in
-          if isSuccess {
+          if isSuccess.value {
             self?.presentMainScreen()
           } else {
-            // 가입 화면 이동
+            guard let idToken = reactor.currentState.idToken,
+                  let viewController = self?.signUpViewControllerFactory(idToken)
+            else {
+              // handle error
+              return
+            }
+            self?.navigationController?.pushViewController(viewController, animated: true)
           }
         })
       .disposed(by: disposeBag)
-
   }
 }
 

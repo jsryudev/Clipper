@@ -46,7 +46,17 @@ final class CompositionRoot {
     )
     let signInViewController = SignInViewController(
       reactor: signInViewReactor,
-      presentMainScreen: presentMainScreen
+      presentMainScreen: presentMainScreen,
+      signUpViewControllerFactory: { token in
+        let reactor = SignUpViewReactor(
+          userService: userService,
+          authService: authService
+        )
+        return SignUpViewController(
+          reactor: reactor,
+          presentMainScreen: presentMainScreen
+        )
+      }
     )
 
     let presentLoginScreen = {
