@@ -7,8 +7,9 @@
 
 import UIKit
 
-import Moya
 import GoogleSignIn
+import Moya
+import NMapsMap
 
 struct AppDependency {
   let window: UIWindow
@@ -73,6 +74,7 @@ final class CompositionRoot {
   }
 
   static func configureSDKs() {
+    NMFAuthManager.shared().clientId = "mk865lle23"
     GIDSignIn.sharedInstance().clientID = "594526153431-20fhpqjscu9pb4n6sqgqgrbi2o1o8q4u.apps.googleusercontent.com"
   }
 
