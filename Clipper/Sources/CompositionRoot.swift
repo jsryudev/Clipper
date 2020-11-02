@@ -31,7 +31,12 @@ final class CompositionRoot {
     let userService = UserService(provider: clipperProvider)
 
     let mainViewReactor = MainViewReactor(userService: userService)
-    let mainViewController = MainViewController(reactor: mainViewReactor)
+    let mainViewController = MainViewController(
+      reactor: mainViewReactor,
+      welcomeViewControllerFactory: { user in
+        let reactor = WelcomeViewReactor(user: user)
+        return WelcomeViewController(reactor: reactor)
+      })
 
     let presentMainScreen = {
       UIView.transition(

@@ -18,18 +18,39 @@ import SnapKit
 class MainViewController: BaseViewController, View {
   typealias Reactor = MainViewReactor
 
+  private let welcomViewControllerFactory: (User) -> WelcomeViewController
+
   fileprivate let mapView: NMFMapView = {
     let view = NMFMapView()
+    view.logoAlign = .leftTop
     return view
   }()
 
   fileprivate let floatingPanel: FloatingPanelController = {
     let controller = FloatingPanelController()
+    let appearance = SurfaceAppearance()
+    let shadow = SurfaceAppearance.Shadow()
+    shadow.color = UIColor.black
+    shadow.offset = CGSize(width: 0, height: 16)
+    shadow.radius = 20
+    shadow.spread = 8
+    appearance.shadows = [shadow]
+    appearance.cornerRadius = 16
+    appearance.backgroundColor = UIColor(
+      cgColor: CGColor(
+        red: 255,
+        green: 255,
+        blue: 255,
+        alpha: 0.95
+      )
+    )
+    controller.surfaceView.appearance = appearance
     return controller
   }()
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.floatingPanel.move(to: .tip, animated: false)
   }
 
   override func addSubViews() {
@@ -45,8 +66,12 @@ class MainViewController: BaseViewController, View {
 
   // MARK: Initialize
 
-  init(reactor: Reactor) {
+  init(
+    reactor: Reactor,
+    welcomeViewControllerFactory: @escaping (User) -> WelcomeViewController
+  ) {
     defer { self.reactor = reactor }
+    self.welcomViewControllerFactory = welcomeViewControllerFactory
     super.init()
   }
 
@@ -60,14 +85,16 @@ class MainViewController: BaseViewController, View {
       .bind(to: reactor.action)
       .disposed(by: disposeBag)
 
-    reactor.state.compactMap { $0.user }
+    reactor.state.map { $0.user }
       .distinctUntilChanged()
       .subscribe(
-        onNext: { user in
-          print(user)
-        },
-        onError: { error in
-          print(error)
+        onNext: { [weak self] user in
+          if let user = user {
+            let viewController = self?.welcomViewControllerFactory(user)
+            self?.floatingPanel.set(contentViewController: viewController)
+          } else {
+            // handle error
+          }
         })
       .disposed(by: disposeBag)
   }
