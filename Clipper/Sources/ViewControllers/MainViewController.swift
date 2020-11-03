@@ -32,7 +32,7 @@ class MainViewController: BaseViewController, View {
     let shadow = SurfaceAppearance.Shadow()
     shadow.color = UIColor.black
     shadow.offset = CGSize(width: 0, height: 16)
-    shadow.radius = 20
+    shadow.radius = 16
     shadow.spread = 8
     appearance.shadows = [shadow]
     appearance.cornerRadius = 16
