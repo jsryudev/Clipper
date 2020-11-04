@@ -33,7 +33,6 @@ final class MainViewReactor: Reactor {
     return userService.fetchMe()
       .asObservable()
       .map { .setMe($0) }
-      .debug()
   }
 
   func reduce(state: State, mutation: Mutation) -> State {

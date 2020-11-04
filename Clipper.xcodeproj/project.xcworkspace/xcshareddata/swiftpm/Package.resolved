@@ -83,6 +83,15 @@
         }
       },
       {
+        "package": "RxCoreLocation",
+        "repositoryURL": "https://github.com/RxSwiftCommunity/RxCoreLocation.git",
+        "state": {
+          "branch": null,
+          "revision": "880b660916f6718d26d5d07e6b042562175ee582",
+          "version": "1.5.0"
+        }
+      },
+      {
         "package": "RxExpect",
         "repositoryURL": "https://github.com/devxoul/RxExpect.git",
         "state": {
