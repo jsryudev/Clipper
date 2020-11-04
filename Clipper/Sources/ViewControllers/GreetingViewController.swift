@@ -29,6 +29,12 @@ class GreetingViewController: BaseViewController, View {
     return label
   }()
 
+  let containerView: UIView = {
+    let view = UIView()
+    view.backgroundColor = .lightGray
+    return view
+  }()
+
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.backgroundColor = .clear
@@ -37,6 +43,7 @@ class GreetingViewController: BaseViewController, View {
   override func addSubViews() {
     self.view.addSubview(greetingLabel)
     self.view.addSubview(userNameLabel)
+    self.view.addSubview(containerView)
   }
 
   override func setupConstraints() {
@@ -47,6 +54,11 @@ class GreetingViewController: BaseViewController, View {
     userNameLabel.snp.makeConstraints { make in
       make.bottom.equalTo(greetingLabel.snp.bottom)
       make.leading.equalTo(greetingLabel.snp.trailing).offset(15)
+    }
+
+    containerView.snp.makeConstraints { make in
+      make.top.equalTo(greetingLabel.snp.bottom)
+      make.leading.trailing.bottom.equalToSuperview()
     }
   }
 
@@ -63,5 +75,22 @@ class GreetingViewController: BaseViewController, View {
 
   func bind(reactor: GreetingViewReactor) {
     self.userNameLabel.text = "\(reactor.currentState.name) 님"
+  }
+}
+
+extension GreetingViewController {
+  func transition(to vc: UIViewController) {
+    guard let from = self.children.first else { return }
+    from.willMove(toParent: nil)
+    self.addChild(vc)
+    transition(
+      from: from,
+      to: vc,
+      duration: 0,
+      animations: nil
+    ) { _ in
+      from.removeFromParent()
+      vc.didMove(toParent: self)
+    }
   }
 }
