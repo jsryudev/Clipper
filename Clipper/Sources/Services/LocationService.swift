@@ -11,8 +11,16 @@ import RxSwift
 import CoreLocation
 import RxCoreLocation
 
+enum AuthorizationType: Int32 {
+  case notDetermined = 0
+  case denied = 2
+  case authorized = 4
+}
+
 protocol LocationServiceType {
-  func checkAuthorization() -> Observable<Bool>
+  func currentAuthorization() -> Observable<AuthorizationType>
+  func requestAuthorization()
+  func didChangeAuthorization() -> Observable<AuthorizationType>
 }
 
 class LocationService: LocationServiceType {
@@ -22,14 +30,19 @@ class LocationService: LocationServiceType {
     self.manager = CLLocationManager()
   }
 
-  func requestPermission() {
+  func requestAuthorization() {
     self.manager.requestWhenInUseAuthorization()
   }
 
-  func checkAuthorization() -> Observable<Bool> {
+  func currentAuthorization() -> Observable<AuthorizationType> {
+    return self.manager.rx
+      .status
+      .compactMap { AuthorizationType(rawValue: $0.rawValue) }
+  }
+
+  func didChangeAuthorization() -> Observable<AuthorizationType> {
     return self.manager.rx
       .didChangeAuthorization
-      .map { $0.status == .authorizedWhenInUse }
-      .catchErrorJustReturn(false)
+      .compactMap { AuthorizationType(rawValue: $0.status.rawValue) }
   }
 }

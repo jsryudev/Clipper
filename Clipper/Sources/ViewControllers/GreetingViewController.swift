@@ -13,6 +13,7 @@ import RxSwift
 import RxViewController
 import SnapKit
 
+
 class GreetingViewController: BaseViewController, View {
   typealias Reactor = GreetingViewReactor
 
@@ -29,9 +30,10 @@ class GreetingViewController: BaseViewController, View {
     return label
   }()
 
+  fileprivate let locationAuthorizationViewController = LocationAuthorizationViewController()
+
   let containerView: UIView = {
     let view = UIView()
-    view.backgroundColor = .lightGray
     return view
   }()
 
@@ -44,6 +46,11 @@ class GreetingViewController: BaseViewController, View {
     self.view.addSubview(greetingLabel)
     self.view.addSubview(userNameLabel)
     self.view.addSubview(containerView)
+
+    self.addChild(locationAuthorizationViewController)
+    self.locationAuthorizationViewController.view.frame = self.containerView.frame
+    self.containerView.addSubview(self.locationAuthorizationViewController.view)
+    self.locationAuthorizationViewController.didMove(toParent: self)
   }
 
   override func setupConstraints() {
@@ -74,7 +81,32 @@ class GreetingViewController: BaseViewController, View {
   }
 
   func bind(reactor: GreetingViewReactor) {
-    self.userNameLabel.text = "\(reactor.currentState.name) 님"
+    self.userNameLabel.text = "\(reactor.currentState.user.name) 님"
+
+    self.rx.viewDidLoad
+      .map { _ in Reactor.Action.checkCurrentAuthorization }
+      .bind(to: reactor.action)
+      .disposed(by: disposeBag)
+
+    self.locationAuthorizationViewController.rx
+      .requestButtonTap
+      .map { Reactor.Action.requestAuthorization }
+      .bind(to: reactor.action)
+      .disposed(by: disposeBag)
+
+    reactor.state.compactMap { $0.currentAuthorization }
+      .subscribe(
+        onNext: { currentAuthorization in
+
+        })
+      .disposed(by: disposeBag)
+
+    reactor.state.compactMap { $0.changedAuthorization }
+      .subscribe(
+        onNext: { changedAuthorization in
+
+        })
+      .disposed(by: disposeBag)
   }
 }
 

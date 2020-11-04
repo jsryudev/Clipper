@@ -29,12 +29,16 @@ final class CompositionRoot {
     let clipperProvider = MoyaProvider<ClipperAPI>(plugins: [authPlugin])
 
     let userService = UserService(provider: clipperProvider)
+    let locationServce = LocationService()
 
     let mainViewReactor = MainViewReactor(userService: userService)
     let mainViewController = MainViewController(
       reactor: mainViewReactor,
       greetingViewControllerFactory: { user in
-        let reactor = GreetingViewReactor(user: user)
+        let reactor = GreetingViewReactor(
+          user: user,
+          locationService: locationServce
+        )
         return GreetingViewController(reactor: reactor)
       })
 
