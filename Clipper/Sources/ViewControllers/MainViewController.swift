@@ -26,6 +26,19 @@ class MainViewController: BaseViewController, View {
     return view
   }()
 
+  fileprivate let mapAccessoriesView: MapAccessoriesView = {
+    let view = MapAccessoriesView()
+    view.backgroundColor = UIColor(
+      cgColor: CGColor(
+        red: 255,
+        green: 255,
+        blue: 255,
+        alpha: 0.95
+      )
+    )
+    return view
+  }()
+
   fileprivate let floatingPanel: FloatingPanelController = {
     let controller = FloatingPanelController()
     let appearance = SurfaceAppearance()
@@ -55,12 +68,20 @@ class MainViewController: BaseViewController, View {
 
   override func addSubViews() {
     self.view.addSubview(mapView)
+    self.view.addSubview(mapAccessoriesView)
     floatingPanel.addPanel(toParent: self)
   }
 
   override func setupConstraints() {
     self.mapView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
+    }
+
+    self.mapAccessoriesView.snp.makeConstraints { make in
+      make.width.equalTo(40)
+      make.height.equalTo(80)
+      make.top.equalToSuperview().offset(40)
+      make.trailing.equalToSuperview().offset(-15)
     }
   }
 
@@ -83,6 +104,22 @@ class MainViewController: BaseViewController, View {
     self.rx.viewDidLoad
       .map { Reactor.Action.fetchMe }
       .bind(to: reactor.action)
+      .disposed(by: disposeBag)
+
+    self.mapAccessoriesView.rx
+      .addButtonTap
+      .subscribe(
+        onNext: {
+          // do something
+        })
+      .disposed(by: disposeBag)
+
+    self.mapAccessoriesView.rx
+      .currentLocationButtonTap
+      .subscribe(
+        onNext: {
+          // do something
+        })
       .disposed(by: disposeBag)
 
     reactor.state.map { $0.user }
