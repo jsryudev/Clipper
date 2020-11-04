@@ -33,9 +33,9 @@ final class CompositionRoot {
     let mainViewReactor = MainViewReactor(userService: userService)
     let mainViewController = MainViewController(
       reactor: mainViewReactor,
-      welcomeViewControllerFactory: { user in
-        let reactor = WelcomeViewReactor(user: user)
-        return WelcomeViewController(reactor: reactor)
+      greetingViewControllerFactory: { user in
+        let reactor = GreetingViewReactor(user: user)
+        return GreetingViewController(reactor: reactor)
       })
 
     let presentMainScreen = {

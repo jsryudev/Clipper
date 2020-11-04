@@ -1,5 +1,5 @@
 //
-//  WelcomeViewController.swift
+//  GreetingViewController.swift
 //  Clipper
 //
 //  Created by JunSang Ryu on 2020/11/02.
@@ -13,10 +13,10 @@ import RxSwift
 import RxViewController
 import SnapKit
 
-class WelcomeViewController: BaseViewController, View {
-  typealias Reactor = WelcomeViewReactor
+class GreetingViewController: BaseViewController, View {
+  typealias Reactor = GreetingViewReactor
 
-  fileprivate let welcomeLabel: UILabel = {
+  fileprivate let greetingLabel: UILabel = {
     let label = UILabel()
     label.text = "반갑습니다!"
     label.font = .systemFont(ofSize: 30, weight: .bold)
@@ -35,18 +35,18 @@ class WelcomeViewController: BaseViewController, View {
   }
 
   override func addSubViews() {
-    self.view.addSubview(welcomeLabel)
+    self.view.addSubview(greetingLabel)
     self.view.addSubview(userNameLabel)
   }
 
   override func setupConstraints() {
-    welcomeLabel.snp.makeConstraints { make in
+    greetingLabel.snp.makeConstraints { make in
       make.top.leading.equalToSuperview().offset(15)
     }
 
     userNameLabel.snp.makeConstraints { make in
-      make.bottom.equalTo(welcomeLabel.snp.bottom)
-      make.leading.equalTo(welcomeLabel.snp.trailing).offset(15)
+      make.bottom.equalTo(greetingLabel.snp.bottom)
+      make.leading.equalTo(greetingLabel.snp.trailing).offset(15)
     }
   }
 
@@ -61,7 +61,7 @@ class WelcomeViewController: BaseViewController, View {
     fatalError("init(coder:) has not been implemented")
   }
 
-  func bind(reactor: WelcomeViewReactor) {
+  func bind(reactor: GreetingViewReactor) {
     self.userNameLabel.text = "\(reactor.currentState.name) 님"
   }
 }

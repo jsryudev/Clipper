@@ -18,7 +18,7 @@ import SnapKit
 class MainViewController: BaseViewController, View {
   typealias Reactor = MainViewReactor
 
-  private let welcomViewControllerFactory: (User) -> WelcomeViewController
+  private let greetingViewControllerFactory: (User) -> GreetingViewController
 
   fileprivate let mapView: NMFMapView = {
     let view = NMFMapView()
@@ -89,10 +89,10 @@ class MainViewController: BaseViewController, View {
 
   init(
     reactor: Reactor,
-    welcomeViewControllerFactory: @escaping (User) -> WelcomeViewController
+    greetingViewControllerFactory: @escaping (User) -> GreetingViewController
   ) {
     defer { self.reactor = reactor }
-    self.welcomViewControllerFactory = welcomeViewControllerFactory
+    self.greetingViewControllerFactory = greetingViewControllerFactory
     super.init()
   }
 
@@ -127,7 +127,7 @@ class MainViewController: BaseViewController, View {
       .subscribe(
         onNext: { [weak self] user in
           if let user = user {
-            let viewController = self?.welcomViewControllerFactory(user)
+            let viewController = self?.greetingViewControllerFactory(user)
             self?.floatingPanel.set(contentViewController: viewController)
           } else {
             // handle error
