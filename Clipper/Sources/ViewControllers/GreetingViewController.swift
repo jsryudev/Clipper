@@ -30,7 +30,6 @@ class GreetingViewController: BaseViewController, View {
     return label
   }()
 
-  fileprivate let locationAuthorizationViewController = LocationAuthorizationViewController()
 
   let containerView: UIView = {
     let view = UIView()
@@ -46,11 +45,6 @@ class GreetingViewController: BaseViewController, View {
     self.view.addSubview(greetingLabel)
     self.view.addSubview(userNameLabel)
     self.view.addSubview(containerView)
-
-    self.addChild(locationAuthorizationViewController)
-    self.locationAuthorizationViewController.view.frame = self.containerView.frame
-    self.containerView.addSubview(self.locationAuthorizationViewController.view)
-    self.locationAuthorizationViewController.didMove(toParent: self)
   }
 
   override func setupConstraints() {
@@ -88,12 +82,6 @@ class GreetingViewController: BaseViewController, View {
       .bind(to: reactor.action)
       .disposed(by: disposeBag)
 
-    self.locationAuthorizationViewController.rx
-      .requestButtonTap
-      .map { Reactor.Action.requestAuthorization }
-      .bind(to: reactor.action)
-      .disposed(by: disposeBag)
-
     reactor.state.compactMap { $0.currentAuthorization }
       .subscribe(
         onNext: { currentAuthorization in
@@ -107,22 +95,5 @@ class GreetingViewController: BaseViewController, View {
 
         })
       .disposed(by: disposeBag)
-  }
-}
-
-extension GreetingViewController {
-  func transition(to vc: UIViewController) {
-    guard let from = self.children.first else { return }
-    from.willMove(toParent: nil)
-    self.addChild(vc)
-    transition(
-      from: from,
-      to: vc,
-      duration: 0,
-      animations: nil
-    ) { _ in
-      from.removeFromParent()
-      vc.didMove(toParent: self)
-    }
   }
 }
