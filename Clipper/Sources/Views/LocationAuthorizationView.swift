@@ -67,14 +67,14 @@ class LocationAuthorizationView: UIView {
 
     descriptionLabel.snp.makeConstraints { make in
       make.top.equalTo(titleLabel.snp.bottom).offset(15)
-      make.leading.equalToSuperview().offset(15)
-      make.trailing.equalToSuperview().offset(-15)
+      make.leading.equalToSuperview()
+      make.trailing.equalToSuperview()
     }
 
     actionButton.snp.makeConstraints { make in
       make.top.equalTo(descriptionLabel.snp.bottom).offset(15)
-      make.leading.equalToSuperview().offset(15)
-      make.trailing.equalToSuperview().offset(-15)
+      make.leading.equalToSuperview()
+      make.trailing.equalToSuperview()
     }
   }
 
