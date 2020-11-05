@@ -78,8 +78,7 @@ class MainViewController: BaseViewController, View {
     }
 
     self.mapAccessoriesView.snp.makeConstraints { make in
-      make.width.equalTo(40)
-      make.height.equalTo(80)
+      make.width.height.equalTo(40)
       make.top.equalToSuperview().offset(40)
       make.trailing.equalToSuperview().offset(-15)
     }
@@ -109,8 +108,8 @@ class MainViewController: BaseViewController, View {
     self.mapAccessoriesView.rx
       .currentLocationButtonTap
       .subscribe(
-        onNext: {
-          // do something
+        onNext: { [weak self] in
+          self?.mapView.positionMode = .compass
         })
       .disposed(by: disposeBag)
 
@@ -131,7 +130,9 @@ class MainViewController: BaseViewController, View {
       .distinctUntilChanged()
       .subscribe(
         onNext: { [weak self] hasAuthorized in
-          if !hasAuthorized {
+          if hasAuthorized {
+            self?.mapView.positionMode = .compass
+          } else {
             self?.floatingPanel.move(to: .half, animated: false)
           }
         })
