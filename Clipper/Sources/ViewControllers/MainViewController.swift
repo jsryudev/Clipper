@@ -134,5 +134,18 @@ class MainViewController: BaseViewController, View {
           }
         })
       .disposed(by: disposeBag)
+
+    reactor.state.compactMap { $0.hasAuthorized }
+      .observeOn(MainScheduler.asyncInstance)
+      .distinctUntilChanged()
+      .subscribe(
+        onNext: { [weak self] hasAuthorized in
+          if !hasAuthorized {
+            self?.floatingPanel.move(to: .half, animated: false)
+          } else {
+            self?.floatingPanel.move(to: .tip, animated: true)
+          }
+        })
+      .disposed(by: disposeBag)
   }
 }
