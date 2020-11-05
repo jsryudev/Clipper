@@ -44,6 +44,7 @@
 		3F3D38472552CA02005F35BC /* RxCoreLocation in Frameworks */ = {isa = PBXBuildFile; productRef = 3F3D38462552CA02005F35BC /* RxCoreLocation */; };
 		3F3D384A2552CA80005F35BC /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D38492552CA80005F35BC /* LocationService.swift */; };
 		3F3D385625530467005F35BC /* LocationAuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D385525530467005F35BC /* LocationAuthorizationView.swift */; };
+		3F3D388C2554261D005F35BC /* Clip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D388B2554261D005F35BC /* Clip.swift */; };
 		3F68F762254840DF0064C59A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F761254840DF0064C59A /* AppDelegate.swift */; };
 		3F68F766254840DF0064C59A /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F765254840DF0064C59A /* SplashViewController.swift */; };
 		3F68F76B254840E20064C59A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F68F76A254840E20064C59A /* Assets.xcassets */; };
@@ -94,6 +95,7 @@
 		3F3D383F2552B86B005F35BC /* MapAccessoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAccessoriesView.swift; sourceTree = "<group>"; };
 		3F3D38492552CA80005F35BC /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		3F3D385525530467005F35BC /* LocationAuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAuthorizationView.swift; sourceTree = "<group>"; };
+		3F3D388B2554261D005F35BC /* Clip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clip.swift; sourceTree = "<group>"; };
 		3F68F75E254840DF0064C59A /* Clipper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clipper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F68F761254840DF0064C59A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F68F765254840DF0064C59A /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				3F2986DE254B3A45003F112F /* User.swift */,
+				3F3D388B2554261D005F35BC /* Clip.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -433,6 +436,7 @@
 				3F2986E7254B3C58003F112F /* AuthService.swift in Sources */,
 				3F2986D4254B13CC003F112F /* ClipperAPI.swift in Sources */,
 				3F3D383C254F77F5005F35BC /* GreetingViewReactor.swift in Sources */,
+				3F3D388C2554261D005F35BC /* Clip.swift in Sources */,
 				3F3D385625530467005F35BC /* LocationAuthorizationView.swift in Sources */,
 				3FB849FA254F48F700C40CF6 /* SignUpViewController.swift in Sources */,
 				3FB849FE254F491500C40CF6 /* SignUpViewReactor.swift in Sources */,
