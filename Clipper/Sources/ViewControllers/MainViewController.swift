@@ -107,14 +107,6 @@ class MainViewController: BaseViewController, View {
       .disposed(by: disposeBag)
 
     self.mapAccessoriesView.rx
-      .addButtonTap
-      .subscribe(
-        onNext: {
-          // do something
-        })
-      .disposed(by: disposeBag)
-
-    self.mapAccessoriesView.rx
       .currentLocationButtonTap
       .subscribe(
         onNext: {

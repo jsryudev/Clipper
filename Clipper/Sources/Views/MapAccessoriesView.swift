@@ -12,13 +12,6 @@ import RxCocoa
 import RxSwift
 
 class MapAccessoriesView: UIView {
-  fileprivate let addButton: UIButton = {
-    let button = UIButton()
-    button.setTitleColor(.black, for: .normal)
-    button.setTitle("추가", for: .normal)
-    return button
-  }()
-
   fileprivate let currentLocationButton: UIButton = {
     let button = UIButton()
     button.setTitleColor(.black, for: .normal)
@@ -28,7 +21,6 @@ class MapAccessoriesView: UIView {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    self.addSubview(self.addButton)
     self.addSubview(self.currentLocationButton)
     self.setConstraints()
     self.setLayer()
@@ -39,29 +31,18 @@ class MapAccessoriesView: UIView {
   }
 
   func setConstraints() {
-    self.addButton.snp.makeConstraints { make in
-      make.height.width.equalTo(self.snp.width)
-      make.top.leading.trailing.equalToSuperview()
-    }
-
     self.currentLocationButton.snp.makeConstraints { make in
       make.height.width.equalTo(self.snp.width)
-      make.top.equalTo(self.addButton.snp.bottom)
-      make.leading.trailing.equalToSuperview()
+      make.edges.equalToSuperview()
     }
   }
 
   func setLayer() {
-    self.layer.cornerRadius = 8
+    self.layer.cornerRadius = 4
   }
 }
 
 extension Reactive where Base: MapAccessoriesView {
-  var addButtonTap: ControlEvent<Void> {
-    let source = base.addButton.rx.tap
-    return ControlEvent(events: source)
-  }
-
   var currentLocationButtonTap: ControlEvent<Void> {
     let source = base.currentLocationButton.rx.tap
     return ControlEvent(events: source)
