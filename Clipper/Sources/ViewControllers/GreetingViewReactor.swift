@@ -11,18 +11,16 @@ import CoreLocation
 final class GreetingViewReactor: Reactor {
   enum Action {
     case checkCurrentAuthorization
-    case requestAuthorization
+    case authorizationAction(AuthorizationType)
   }
 
   enum Mutation {
-    case setCurrentAuthorization(AuthorizationType)
-    case setChangedAuthorization(AuthorizationType)
+    case setAuthorization(AuthorizationType)
   }
 
   struct State {
     let user: User
-    var currentAuthorization: AuthorizationType?
-    var changedAuthorization: AuthorizationType?
+    var authorization: AuthorizationType?
   }
 
   let initialState: State
@@ -41,23 +39,24 @@ final class GreetingViewReactor: Reactor {
     case .checkCurrentAuthorization:
       return self.locationService
         .currentAuthorization()
-        .map { Mutation.setCurrentAuthorization($0) }
-        .debug()
-    case .requestAuthorization:
-      self.locationService.requestAuthorization()
-      return self.locationService
-        .didChangeAuthorization()
-        .map { Mutation.setChangedAuthorization($0) }
+        .map { Mutation.setAuthorization($0) }
+    case .authorizationAction(let type):
+      if case .notDetermined = type {
+        self.locationService.requestAuthorization()
+        return self.locationService
+          .didChangeAuthorization()
+          .map { Mutation.setAuthorization($0) }
+      } else {
+        return .empty()
+      }
     }
   }
 
   func reduce(state: State, mutation: Mutation) -> State {
     var newState = state
     switch mutation {
-    case .setCurrentAuthorization(let currentAuthorization):
-      newState.currentAuthorization = currentAuthorization
-    case .setChangedAuthorization(let changedAuthorization):
-      newState.changedAuthorization = changedAuthorization
+    case .setAuthorization(let authorization):
+      newState.authorization = authorization
     }
     return newState
   }

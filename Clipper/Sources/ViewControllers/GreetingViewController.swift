@@ -30,9 +30,8 @@ class GreetingViewController: BaseViewController, View {
     return label
   }()
 
-
-  let containerView: UIView = {
-    let view = UIView()
+  fileprivate let locationAuthorizationView: LocationAuthorizationView = {
+    let view = LocationAuthorizationView()
     return view
   }()
 
@@ -44,7 +43,7 @@ class GreetingViewController: BaseViewController, View {
   override func addSubViews() {
     self.view.addSubview(greetingLabel)
     self.view.addSubview(userNameLabel)
-    self.view.addSubview(containerView)
+    self.view.addSubview(locationAuthorizationView)
   }
 
   override func setupConstraints() {
@@ -57,7 +56,7 @@ class GreetingViewController: BaseViewController, View {
       make.leading.equalTo(greetingLabel.snp.trailing).offset(15)
     }
 
-    containerView.snp.makeConstraints { make in
+    locationAuthorizationView.snp.makeConstraints { make in
       make.top.equalTo(greetingLabel.snp.bottom)
       make.leading.trailing.bottom.equalToSuperview()
     }
@@ -82,17 +81,17 @@ class GreetingViewController: BaseViewController, View {
       .bind(to: reactor.action)
       .disposed(by: disposeBag)
 
-    reactor.state.compactMap { $0.currentAuthorization }
-      .subscribe(
-        onNext: { currentAuthorization in
-
-        })
+    self.locationAuthorizationView.rx
+      .actionButtonTap
+      .map { Reactor.Action.authorizationAction($0) }
+      .bind(to: reactor.action)
       .disposed(by: disposeBag)
 
-    reactor.state.compactMap { $0.changedAuthorization }
+    reactor.state.compactMap { $0.authorization }
+      .distinctUntilChanged()
       .subscribe(
-        onNext: { changedAuthorization in
-
+        onNext: { [weak self] authorization in
+          self?.locationAuthorizationView.set(authorization: authorization)
         })
       .disposed(by: disposeBag)
   }
