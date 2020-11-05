@@ -18,6 +18,8 @@ enum AuthorizationType: Int32 {
 }
 
 protocol LocationServiceType {
+  var authorization: Observable<AuthorizationType?> { get }
+
   func currentAuthorization() -> Observable<AuthorizationType>
   func requestAuthorization()
   func didChangeAuthorization() -> Observable<AuthorizationType>
@@ -30,6 +32,11 @@ class LocationService: LocationServiceType {
     self.manager = CLLocationManager()
   }
 
+  fileprivate let authorizationSubject = ReplaySubject<AuthorizationType?>.create(bufferSize: 1)
+  lazy var authorization: Observable<AuthorizationType?> = self.authorizationSubject.asObservable()
+      .startWith(nil)
+      .share(replay: 1)
+
   func requestAuthorization() {
     self.manager.requestWhenInUseAuthorization()
   }
@@ -38,11 +45,19 @@ class LocationService: LocationServiceType {
     return self.manager.rx
       .status
       .compactMap { AuthorizationType(rawValue: $0.rawValue) }
+      .do(
+        onNext: { [weak self] authorization in
+          self?.authorizationSubject.onNext(authorization)
+        })
   }
 
   func didChangeAuthorization() -> Observable<AuthorizationType> {
     return self.manager.rx
       .didChangeAuthorization
       .compactMap { AuthorizationType(rawValue: $0.status.rawValue) }
+      .do(
+        onNext: { [weak self] authorization in
+          self?.authorizationSubject.onNext(authorization)
+        })
   }
 }
