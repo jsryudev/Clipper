@@ -12,25 +12,34 @@ import RxSwift
 final class MainViewReactor: Reactor {
   enum Action {
     case fetchMe
+    case fetchNearbyClips(Double, Double)
   }
 
   enum Mutation {
     case setMe(User)
     case setHasAuthorized(Bool)
+    case setClips([Clip])
   }
 
   struct State {
     var user: User?
     var hasAuthorized: Bool?
+    var clips: [Clip]
   }
 
-  let initialState = State()
+  let initialState = State(clips: [])
   let userService: UserServiceType
   let locationService: LocationServiceType
+  let clipService: ClipServiceType
 
-  init(userService: UserServiceType, locationService: LocationService) {
+  init(
+    userService: UserServiceType,
+    locationService: LocationServiceType,
+    clipService: ClipServiceType
+  ) {
     self.userService = userService
     self.locationService = locationService
+    self.clipService = clipService
   }
 
   func mutate(action: Action) -> Observable<Mutation> {
@@ -39,6 +48,11 @@ final class MainViewReactor: Reactor {
       return userService.fetchMe()
         .asObservable()
         .map { .setMe($0) }
+    case .fetchNearbyClips(let lat, let lng):
+      return clipService
+        .fetchNearby(latitude: lat, longitude: lng)
+        .asObservable()
+        .map { .setClips($0) }
     }
   }
 
@@ -60,6 +74,8 @@ final class MainViewReactor: Reactor {
       newState.user = user
     case .setHasAuthorized(let hasAuthorized):
       newState.hasAuthorized = hasAuthorized
+    case .setClips(let clips):
+      newState.clips = clips
     }
     return newState
   }

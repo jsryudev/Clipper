@@ -30,10 +30,12 @@ final class CompositionRoot {
 
     let userService = UserService(provider: clipperProvider)
     let locationService = LocationService()
+    let clipService = ClipService(provider: clipperProvider)
 
     let mainViewReactor = MainViewReactor(
       userService: userService,
-      locationService: locationService
+      locationService: locationService,
+      clipService: clipService
     )
     let mainViewController = MainViewController(
       reactor: mainViewReactor,
