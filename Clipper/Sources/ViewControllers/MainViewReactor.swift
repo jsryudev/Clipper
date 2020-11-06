@@ -12,7 +12,6 @@ import RxSwift
 final class MainViewReactor: Reactor {
   enum Action {
     case fetchMe
-    case checkIfAuthorized
   }
 
   enum Mutation {
@@ -35,9 +34,12 @@ final class MainViewReactor: Reactor {
   }
 
   func mutate(action: Action) -> Observable<Mutation> {
-    return userService.fetchMe()
-      .asObservable()
-      .map { .setMe($0) }
+    switch action {
+    case .fetchMe:
+      return userService.fetchMe()
+        .asObservable()
+        .map { .setMe($0) }
+    }
   }
 
   func transform(mutation: Observable<Mutation>) -> Observable<Mutation> {
