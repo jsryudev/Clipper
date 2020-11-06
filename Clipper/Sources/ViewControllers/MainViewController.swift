@@ -64,6 +64,7 @@ class MainViewController: BaseViewController, View {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.floatingPanel.move(to: .tip, animated: false)
+    self.initalizeNMapsMap()
   }
 
   override func addSubViews() {
@@ -137,5 +138,14 @@ class MainViewController: BaseViewController, View {
           }
         })
       .disposed(by: disposeBag)
+  }
+}
+
+extension MainViewController: NMFMapViewCameraDelegate {
+  func initalizeNMapsMap() {
+    self.mapView.addCameraDelegate(delegate: self)
+  }
+
+  func mapViewCameraIdle(_ mapView: NMFMapView) {
   }
 }
