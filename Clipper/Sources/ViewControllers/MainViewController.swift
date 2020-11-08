@@ -138,6 +138,13 @@ class MainViewController: BaseViewController, View {
           }
         })
       .disposed(by: disposeBag)
+
+    reactor.state.map { $0.clips }
+      .subscribe(
+        onNext: { [weak self] clips in
+          print(clips)
+        })
+      .disposed(by: disposeBag)
   }
 }
 
@@ -147,5 +154,11 @@ extension MainViewController: NMFMapViewCameraDelegate {
   }
 
   func mapViewCameraIdle(_ mapView: NMFMapView) {
+    reactor?.action.onNext(
+      .fetchNearbyClips(
+        mapView.latitude,
+        mapView.longitude
+      )
+    )
   }
 }
