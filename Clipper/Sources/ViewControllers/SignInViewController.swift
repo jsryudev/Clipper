@@ -104,10 +104,10 @@ class SignInViewController: BaseViewController, View {
 }
 
 extension SignInViewController: GIDSignInDelegate {
-    func initalizeGoogleSignIn() {
-      GIDSignIn.sharedInstance().delegate = self
-      GIDSignIn.sharedInstance().presentingViewController = self
-    }
+  func initalizeGoogleSignIn() {
+    GIDSignIn.sharedInstance().delegate = self
+    GIDSignIn.sharedInstance().presentingViewController = self
+  }
 
   func sign(_ signIn: GIDSignIn?, didSignInFor user: GIDGoogleUser?, withError error: Error?) {
     guard let authentication = user?.authentication else {
