@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct Coordinate: Codable {
+struct Coordinate: Codable, Equatable {
   let longitude: Double
   let latitude: Double
 }
 
-struct Clip: Codable {
+struct Clip: Codable, Equatable {
   let id: String
   let coordinate: Coordinate
   let location: String

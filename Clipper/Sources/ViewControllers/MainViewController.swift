@@ -140,6 +140,7 @@ class MainViewController: BaseViewController, View {
       .disposed(by: disposeBag)
 
     reactor.state.map { $0.clips }
+      .distinctUntilChanged()
       .map { clips in
         clips.map { clip -> NMFMarker in
           let marker = NMFMarker(
