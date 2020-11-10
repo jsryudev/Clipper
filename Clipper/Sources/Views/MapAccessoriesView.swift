@@ -14,8 +14,7 @@ import RxSwift
 class MapAccessoriesView: UIView {
   fileprivate let currentLocationButton: UIButton = {
     let button = UIButton()
-    button.setTitleColor(.black, for: .normal)
-    button.setTitle("위치", for: .normal)
+    button.setImage(UIImage(systemName: "location.fill"), for: .normal)
     return button
   }()
 

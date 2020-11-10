@@ -27,7 +27,6 @@ class LocationAuthorizationView: UIView {
     label.text = Text.title
     label.textAlignment = .center
     label.font = .systemFont(ofSize: 30, weight: .bold)
-    label.textColor = .black
     return label
   }()
 
@@ -36,13 +35,11 @@ class LocationAuthorizationView: UIView {
     label.text = Text.notDetermined
     label.numberOfLines = 0
     label.textAlignment = .center
-    label.textColor = .black
     return label
   }()
 
   fileprivate let actionButton: UIButton = {
     let button = UIButton()
-    button.setTitleColor(.black, for: .normal)
     button.setTitle(Text.notDeterminedAction, for: .normal)
     return button
   }()

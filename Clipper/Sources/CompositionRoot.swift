@@ -117,6 +117,11 @@ final class CompositionRoot {
     UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
     UINavigationBar.appearance().shadowImage = UIImage()
     UINavigationBar.appearance().tintColor = .black
+
+    UILabel.appearance().textColor = .black
+    UIButton.appearance().tintColor = .black
+
+    UIButton.appearance().setTitleColor(.black, for: .normal)
   }
 }
 

@@ -40,7 +40,6 @@ class SignUpViewController: BaseViewController, View {
     label.text = "Clipper"
     label.textAlignment = .center
     label.font = .systemFont(ofSize: 30, weight: .bold)
-    label.textColor = .black
     return label
   }()
 
