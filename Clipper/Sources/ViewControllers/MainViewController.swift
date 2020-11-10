@@ -140,9 +140,28 @@ class MainViewController: BaseViewController, View {
       .disposed(by: disposeBag)
 
     reactor.state.map { $0.clips }
+      .map { clips in
+        clips.map { clip -> NMFMarker in
+          let marker = NMFMarker(
+            position: .init(
+              lat: clip.coordinate.latitude,
+              lng: clip.coordinate.longitude
+            )
+          )
+          marker.touchHandler = { [weak self] _ -> Bool in
+            self?.floatingPanel.set(contentViewController: UIViewController())
+            self?.floatingPanel.move(to: .half, animated: true)
+            return true
+          }
+          return marker
+        }
+      }
+      .subscribeOn(MainScheduler.instance)
       .subscribe(
-        onNext: { [weak self] clips in
-          print(clips)
+        onNext: { [weak self] markers in
+          markers.forEach { marker in
+            marker.mapView = self?.mapView
+          }
         })
       .disposed(by: disposeBag)
   }
