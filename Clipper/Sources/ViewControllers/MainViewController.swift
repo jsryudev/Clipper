@@ -110,7 +110,19 @@ class MainViewController: BaseViewController, View {
       .currentLocationButtonTap
       .subscribe(
         onNext: { [weak self] in
-          self?.mapView.positionMode = .compass
+          self?.setCurrentPosition()
+        })
+      .disposed(by: disposeBag)
+
+    reactor.state.compactMap { $0.hasAuthorized }
+      .distinctUntilChanged()
+      .subscribe(
+        onNext: { [weak self] hasAuthorized in
+          if hasAuthorized {
+            self?.setCurrentPosition()
+          } else {
+            self?.floatingPanel.move(to: .half, animated: false)
+          }
         })
       .disposed(by: disposeBag)
 
@@ -123,18 +135,6 @@ class MainViewController: BaseViewController, View {
             self?.floatingPanel.set(contentViewController: viewController)
           } else {
             // handle error
-          }
-        })
-      .disposed(by: disposeBag)
-
-    reactor.state.compactMap { $0.hasAuthorized }
-      .distinctUntilChanged()
-      .subscribe(
-        onNext: { [weak self] hasAuthorized in
-          if hasAuthorized {
-            self?.mapView.positionMode = .compass
-          } else {
-            self?.floatingPanel.move(to: .half, animated: false)
           }
         })
       .disposed(by: disposeBag)
@@ -171,6 +171,10 @@ class MainViewController: BaseViewController, View {
 extension MainViewController: NMFMapViewCameraDelegate {
   func initalizeNMapsMap() {
     self.mapView.addCameraDelegate(delegate: self)
+  }
+
+  func setCurrentPosition() {
+    self.mapView.positionMode = .compass
   }
 
   func mapViewCameraIdle(_ mapView: NMFMapView) {
