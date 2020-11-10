@@ -13,7 +13,6 @@ import RxSwift
 import RxViewController
 import SnapKit
 
-
 class GreetingViewController: BaseViewController, View {
   typealias Reactor = GreetingViewReactor
 
