@@ -83,12 +83,30 @@
         }
       },
       {
+        "package": "ReusableKit",
+        "repositoryURL": "https://github.com/devxoul/ReusableKit.git",
+        "state": {
+          "branch": null,
+          "revision": "9a5756ba41f7a864ff0738c21876d52b9e67eec7",
+          "version": "3.0.0"
+        }
+      },
+      {
         "package": "RxCoreLocation",
         "repositoryURL": "https://github.com/RxSwiftCommunity/RxCoreLocation.git",
         "state": {
           "branch": null,
           "revision": "880b660916f6718d26d5d07e6b042562175ee582",
           "version": "1.5.0"
+        }
+      },
+      {
+        "package": "RxDataSources",
+        "repositoryURL": "https://github.com/RxSwiftCommunity/RxDataSources.git",
+        "state": {
+          "branch": null,
+          "revision": "a18cee01c9ee55f04d0c7eb15c77a96c3648c88e",
+          "version": "4.0.1"
         }
       },
       {
