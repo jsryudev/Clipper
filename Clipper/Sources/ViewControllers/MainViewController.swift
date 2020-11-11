@@ -19,7 +19,7 @@ class MainViewController: BaseViewController, View {
   typealias Reactor = MainViewReactor
 
   private let greetingViewControllerFactory: (User) -> GreetingViewController
-  private let clipViewControllerFactory: (Coordinate) -> ClipViewController
+  private let clipViewControllerFactory: (String?, Coordinate) -> ClipViewController
 
   fileprivate let mapView: NMFMapView = {
     let view = NMFMapView()
@@ -91,7 +91,7 @@ class MainViewController: BaseViewController, View {
   init(
     reactor: Reactor,
     greetingViewControllerFactory: @escaping (User) -> GreetingViewController,
-    clipViewControllerFactory: @escaping (Coordinate) -> ClipViewController
+    clipViewControllerFactory: @escaping (String?, Coordinate) -> ClipViewController
   ) {
     defer { self.reactor = reactor }
     self.greetingViewControllerFactory = greetingViewControllerFactory
@@ -153,7 +153,7 @@ class MainViewController: BaseViewController, View {
             )
           )
           mapMarker.touchHandler = { [weak self] _ -> Bool in
-            let vc = self?.clipViewControllerFactory(marker.coordinate)
+            let vc = self?.clipViewControllerFactory(marker.id, marker.coordinate)
             self?.floatingPanel.set(contentViewController: vc)
             self?.floatingPanel.track(scrollView: vc!.tableView)
             self?.floatingPanel.move(to: .half, animated: true)

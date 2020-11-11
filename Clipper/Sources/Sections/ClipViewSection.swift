@@ -42,5 +42,5 @@ extension ClipViewSection: SectionModelType {
 enum ClipViewSectionItem {
   case action
   case location(ClipViewLocationCellReactor)
-  case clip
+  case clip(ClipViewItemCellReactor)
 }

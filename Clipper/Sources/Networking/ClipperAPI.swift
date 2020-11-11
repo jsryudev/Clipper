@@ -14,6 +14,7 @@ enum ClipperAPI {
   case fetchMe
 
   case fetchNearbyMarkers(Double, Double)
+  case fetchClips(String, Int, Int)
 }
 
 extension ClipperAPI: TargetType {
@@ -29,6 +30,8 @@ extension ClipperAPI: TargetType {
       return "/user/google-login"
     case .fetchNearbyMarkers:
       return "/markers/nearby"
+    case .fetchClips(let id, _, _):
+      return "/markers/\(id)/clips"
     }
   }
 
@@ -36,7 +39,7 @@ extension ClipperAPI: TargetType {
     switch self {
     case .signUp, .authenticate:
       return .post
-    case .fetchMe, .fetchNearbyMarkers:
+    case .fetchMe, .fetchNearbyMarkers, .fetchClips:
       return .get
     }
   }
@@ -66,6 +69,14 @@ extension ClipperAPI: TargetType {
         parameters: [
           "lat": lat,
           "lng": lng
+        ],
+        encoding: URLEncoding.queryString
+      )
+    case .fetchClips(_, let page, let limit):
+      return .requestParameters(
+        parameters: [
+          "page": page,
+          "limit": limit
         ],
         encoding: URLEncoding.queryString
       )

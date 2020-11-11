@@ -17,6 +17,7 @@ class ClipViewController: BaseViewController, View {
   fileprivate struct Reusable {
     static let actionCell = ReusableCell<ClipViewActionCell>()
     static let locationCell = ReusableCell<ClipViewLocationCell>()
+    static let itemCell = ReusableCell<ClipViewItemCell>()
   }
 
   fileprivate let dataSource: RxTableViewSectionedReloadDataSource<ClipViewSection>
@@ -26,6 +27,7 @@ class ClipViewController: BaseViewController, View {
     view.backgroundColor = .clear
     view.register(Reusable.actionCell)
     view.register(Reusable.locationCell)
+    view.register(Reusable.itemCell)
     return view
   }()
 
@@ -53,7 +55,10 @@ class ClipViewController: BaseViewController, View {
           let locationCell = tableView.dequeue(Reusable.locationCell, for: indexPath)
           locationCell.reactor = reactor
           cell = locationCell
-        default: cell = UITableViewCell()
+        case .clip(let reactor):
+          let itemCell = tableView.dequeue(Reusable.itemCell, for: indexPath)
+          itemCell.reactor = reactor
+          cell = itemCell
         }
         return cell
       },
@@ -79,6 +84,11 @@ class ClipViewController: BaseViewController, View {
   }
 
   func bind(reactor: ClipViewReactor) {
+    self.rx.viewDidLoad
+      .map { Reactor.Action.refresh }
+      .bind(to: reactor.action)
+      .disposed(by: disposeBag)
+
     reactor.state.map { $0.sections }
       .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
       .disposed(by: self.disposeBag)
