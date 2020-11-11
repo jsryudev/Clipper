@@ -8,9 +8,8 @@
 import UIKit
 
 import SnapKit
-import ReactorKit
 
-final class ClipViewActionCell: BaseTableViewCell{
+final class ClipViewActionCell: BaseTableViewCell {
 
   fileprivate let actionButton: UIButton = {
     let button = UIButton()
