@@ -45,6 +45,10 @@ final class CompositionRoot {
           locationService: locationService
         )
         return GreetingViewController(reactor: reactor)
+      },
+      clipViewControllerFactory: { coordinate in
+        let reactor = ClipViewReactor(coordinate: coordinate)
+        return ClipViewController(reactor: reactor)
       })
 
     let presentMainScreen = {
