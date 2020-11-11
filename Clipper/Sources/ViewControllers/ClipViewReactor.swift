@@ -16,10 +16,17 @@ final class ClipViewReactor: Reactor {
   }
 
   struct State {
+    var sections: [ClipViewSection] = []
+
+    init(sections: [ClipViewSection]) {
+      self.sections = sections
+    }
   }
 
-  let initialState = State()
+  let initialState: State
 
   init() {
+    let actionSection = ClipViewSection.action("Clip", [.action])
+    self.initialState = State(sections: [actionSection])
   }
 }
