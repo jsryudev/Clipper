@@ -12,7 +12,7 @@ import RxMoya
 import RxSwift
 
 protocol ClipServiceType {
-  func fetchNearby(latitude: Double, longitude: Double) -> Single<[Clip]>
+  func fetchNearby(latitude: Double, longitude: Double) -> Single<[Marker]>
 }
 
 final class ClipService: ClipServiceType {
@@ -22,9 +22,9 @@ final class ClipService: ClipServiceType {
     self.provider = provider
   }
 
-  func fetchNearby(latitude: Double, longitude: Double) -> Single<[Clip]> {
+  func fetchNearby(latitude: Double, longitude: Double) -> Single<[Marker]> {
     return self.provider.rx
-      .request(.fetchNearbyClips(latitude, longitude))
-      .map([Clip].self)
+      .request(.fetchNearbyMarkers(latitude, longitude))
+      .map([Marker].self)
   }
 }

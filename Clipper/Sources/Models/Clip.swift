@@ -7,24 +7,19 @@
 
 import Foundation
 
-struct Coordinate: Codable, Equatable {
-  let longitude: Double
-  let latitude: Double
-}
-
 struct Clip: Codable, Equatable {
   let id: String
-  let coordinate: Coordinate
+  let parentId: String
   let location: String
   let title: String
   let content: String
 
   enum CodingKeys: String, CodingKey {
     case id = "_id"
-    case coordinate
+    case parentId
     case location
     case title
-    case content = "note"
+    case content
   }
 }
 

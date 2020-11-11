@@ -18,16 +18,16 @@ final class MainViewReactor: Reactor {
   enum Mutation {
     case setMe(User)
     case setHasAuthorized(Bool)
-    case setClips([Clip])
+    case setMarkers([Marker])
   }
 
   struct State {
     var user: User?
     var hasAuthorized: Bool?
-    var clips: [Clip]
+    var markers: [Marker]
   }
 
-  let initialState = State(clips: [])
+  let initialState = State(markers: [])
   let userService: UserServiceType
   let locationService: LocationServiceType
   let clipService: ClipServiceType
@@ -52,7 +52,7 @@ final class MainViewReactor: Reactor {
       return clipService
         .fetchNearby(latitude: lat, longitude: lng)
         .asObservable()
-        .map { .setClips($0) }
+        .map { .setMarkers($0) }
     }
   }
 
@@ -74,8 +74,8 @@ final class MainViewReactor: Reactor {
       newState.user = user
     case .setHasAuthorized(let hasAuthorized):
       newState.hasAuthorized = hasAuthorized
-    case .setClips(let clips):
-      newState.clips = clips
+    case .setMarkers(let markers):
+      newState.markers = markers
     }
     return newState
   }
