@@ -54,6 +54,7 @@
 		3F6480D1255BA7B200B5BF6A /* RxReusableKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3F6480D0255BA7B200B5BF6A /* RxReusableKit */; };
 		3F6480D4255BA93000B5BF6A /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = 3F6480D3255BA93000B5BF6A /* Differentiator */; };
 		3F6480D6255BA93000B5BF6A /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 3F6480D5255BA93000B5BF6A /* RxDataSources */; };
+		3F6480D9255BAAA100B5BF6A /* ClipViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480D8255BAAA100B5BF6A /* ClipViewSection.swift */; };
 		3F68F762254840DF0064C59A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F761254840DF0064C59A /* AppDelegate.swift */; };
 		3F68F766254840DF0064C59A /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F765254840DF0064C59A /* SplashViewController.swift */; };
 		3F68F76B254840E20064C59A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F68F76A254840E20064C59A /* Assets.xcassets */; };
@@ -110,6 +111,7 @@
 		3F6480C5255A40FD00B5BF6A /* AddClipViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClipViewReactor.swift; sourceTree = "<group>"; };
 		3F6480C9255BA4A300B5BF6A /* ClipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipViewController.swift; sourceTree = "<group>"; };
 		3F6480CB255BA59300B5BF6A /* ClipViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipViewReactor.swift; sourceTree = "<group>"; };
+		3F6480D8255BAAA100B5BF6A /* ClipViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipViewSection.swift; sourceTree = "<group>"; };
 		3F68F75E254840DF0064C59A /* Clipper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clipper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F68F761254840DF0064C59A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F68F765254840DF0064C59A /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -263,6 +265,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		3F6480D7255BAA1B00B5BF6A /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				3F6480D8255BAAA100B5BF6A /* ClipViewSection.swift */,
+			);
+			path = Sections;
+			sourceTree = "<group>";
+		};
 		3F68F755254840DF0064C59A = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +316,7 @@
 				3F3D3829254F544B005F35BC /* Extensions */,
 				3F2986DD254B3A3B003F112F /* Models */,
 				3F2986D6254B1C16003F112F /* Services */,
+				3F6480D7255BAA1B00B5BF6A /* Sections */,
 				3F2986D2254B1392003F112F /* Networking */,
 				3F1121BF25485A7D00AB2C95 /* ViewControllers */,
 				3F3D383E2552B82A005F35BC /* Views */,
@@ -476,6 +487,7 @@
 				3F1121C125485AC500AB2C95 /* CompositionRoot.swift in Sources */,
 				3FB849F7254F46EC00C40CF6 /* MainViewReactor.swift in Sources */,
 				3F68F762254840DF0064C59A /* AppDelegate.swift in Sources */,
+				3F6480D9255BAAA100B5BF6A /* ClipViewSection.swift in Sources */,
 				3F3D382F254F5CAA005F35BC /* BaseNavigationController.swift in Sources */,
 				3F6480C4255A40EF00B5BF6A /* AddClipViewController.swift in Sources */,
 				3F2986DF254B3A45003F112F /* User.swift in Sources */,
