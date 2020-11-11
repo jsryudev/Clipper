@@ -26,7 +26,8 @@ final class ClipViewReactor: Reactor {
   let initialState: State
 
   init() {
-    let actionSection = ClipViewSection.action("Clip", [.action])
-    self.initialState = State(sections: [actionSection])
+    let actionSection = ClipViewSection.action("기능", [.action])
+    let locationSection = ClipViewSection.location("위치", [.location(ClipViewLocationCellReactor(title: "현재 위치"))])
+    self.initialState = State(sections: [actionSection, locationSection])
   }
 }

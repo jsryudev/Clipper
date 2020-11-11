@@ -13,10 +13,10 @@ import RxDataSources
 
 class ClipViewController: BaseViewController, View {
   typealias Reactor = ClipViewReactor
-  
 
   fileprivate struct Reusable {
     static let actionCell = ReusableCell<ClipViewActionCell>()
+    static let locationCell = ReusableCell<ClipViewLocationCell>()
   }
 
   fileprivate let dataSource: RxTableViewSectionedReloadDataSource<ClipViewSection>
@@ -25,6 +25,7 @@ class ClipViewController: BaseViewController, View {
     let view = UITableView(frame: .zero, style: .grouped)
     view.backgroundColor = .clear
     view.register(Reusable.actionCell)
+    view.register(Reusable.locationCell)
     return view
   }()
 
@@ -48,8 +49,11 @@ class ClipViewController: BaseViewController, View {
         case .action:
           let actionCell = tableView.dequeue(Reusable.actionCell, for: indexPath)
           cell = actionCell
-        default:
-          cell = UITableViewCell()
+        case .location(let reactor):
+          let locationCell = tableView.dequeue(Reusable.locationCell, for: indexPath)
+          locationCell.reactor = reactor
+          cell = locationCell
+        default: cell = UITableViewCell()
         }
         return cell
       },
