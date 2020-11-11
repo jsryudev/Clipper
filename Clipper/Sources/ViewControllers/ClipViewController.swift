@@ -22,6 +22,7 @@ class ClipViewController: BaseViewController, View {
   }
 
   override func addSubViews() {
+    self.view.addSubview(tableView)
   }
 
   override func setupConstraints() {
