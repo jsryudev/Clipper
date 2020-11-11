@@ -8,7 +8,7 @@
 import RxDataSources
 
 enum ClipViewSection {
-  case action
+  case action(String, [ClipViewSectionItem])
   case location
   case list
 }
@@ -16,15 +16,22 @@ enum ClipViewSection {
 extension ClipViewSection: SectionModelType {
   var items: [ClipViewSectionItem] {
     switch self {
-    case .action: return []
+    case .action(_, let items): return items
     case .location: return []
     case .list: return []
     }
   }
 
+  var title: String {
+    switch self {
+    case .action(let title, _): return title
+    default: return ""
+    }
+  }
+
   init(original: ClipViewSection, items: [ClipViewSectionItem]) {
     switch original {
-    case .action: self = .action
+    case .action: self = .action(original.title, items)
     case .location: self = .location
     case .list: self = .list
     }
