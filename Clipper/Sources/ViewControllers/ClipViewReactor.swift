@@ -53,14 +53,12 @@ final class ClipViewReactor: Reactor {
     switch action {
     case .refresh:
       guard let marker = currentState.markerId else {
-        print("nil!")
         return .empty()
       }
 
       return clipService.fetchClips(marker: marker, page: 1, limit: 5)
         .asObservable()
         .map { clip -> Mutation in
-          print(clip)
           return .appendClips(clip.items)
         }
 
@@ -87,7 +85,7 @@ final class ClipViewReactor: Reactor {
     case .appendSections(let section):
       newState.sections.append(section)
     case .appendClips(let clips):
-      let sectionItems =  self.clipViewSectionItems(with: clips)
+      let sectionItems = self.clipViewSectionItems(with: clips)
       
       newState.sections = [
         state.sections[0],
