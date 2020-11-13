@@ -10,6 +10,7 @@ import ReactorKit
 final class ClipViewReactor: Reactor {
 
   enum Action {
+    case configure
     case refresh
     case loadMore
   }
@@ -51,6 +52,7 @@ final class ClipViewReactor: Reactor {
 
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
+    case .configure:
     case .refresh:
       guard let marker = currentState.markerId else {
         return .empty()

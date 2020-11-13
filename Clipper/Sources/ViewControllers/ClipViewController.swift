@@ -85,7 +85,7 @@ class ClipViewController: BaseViewController, View {
 
   func bind(reactor: ClipViewReactor) {
     self.rx.viewDidLoad
-      .map { Reactor.Action.refresh }
+      .map { Reactor.Action.configure }
       .bind(to: reactor.action)
       .disposed(by: disposeBag)
 
