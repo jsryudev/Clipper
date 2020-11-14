@@ -34,7 +34,6 @@ class SplashViewController: BaseViewController, View {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-
     self.animationView.play()
   }
 
