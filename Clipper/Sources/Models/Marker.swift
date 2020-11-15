@@ -13,7 +13,7 @@ struct Coordinate: Codable, Equatable {
 }
 
 struct Marker: Codable, Equatable {
-  let id: String
+  let id: String?
   let coordinate: Coordinate
 
   enum CodingKeys: String, CodingKey {

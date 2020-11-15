@@ -46,10 +46,9 @@ final class CompositionRoot {
         )
         return GreetingViewController(reactor: reactor)
       },
-      clipViewControllerFactory: { markerId, coordinate in
+      clipViewControllerFactory: { marker in
         let reactor = ClipViewReactor(
-          marker: markerId,
-          coordinate: coordinate,
+          marker: marker,
           clipService: clipService,
           clipViewItemCellReactorFactory: ClipViewItemCellReactor.init
         )

@@ -21,14 +21,12 @@ final class ClipViewReactor: Reactor {
   }
 
   struct State {
-    let markerId: String?
-    let coordinate: Coordinate
+    let marker: Marker
     var sections: [ClipViewSection] = []
     var page = 1
 
-    init(marker id: String?, coordinate: Coordinate, sections: [ClipViewSection]) {
-      self.markerId = id
-      self.coordinate = coordinate
+    init(marker: Marker, sections: [ClipViewSection]) {
+      self.marker = marker
       self.sections = sections
     }
   }
@@ -38,23 +36,24 @@ final class ClipViewReactor: Reactor {
   let clipViewItemCellReactorFactory: (ClipItem) -> ClipViewItemCellReactor
 
   init(
-    marker id: String? = nil,
-    coordinate: Coordinate,
+    marker: Marker,
     clipService: ClipServiceType,
     clipViewItemCellReactorFactory: @escaping (ClipItem) -> ClipViewItemCellReactor
   ) {
-    let actionSection = ClipViewSection.action("기능", [.action])
-    let locationSection = ClipViewSection.location("위치", [.location(ClipViewLocationCellReactor(title: "현재 위치"))])
     self.clipService = clipService
     self.clipViewItemCellReactorFactory = clipViewItemCellReactorFactory
-    self.initialState = State(marker: id, coordinate: coordinate, sections: [actionSection, locationSection])
+    let defalutSection = ClipViewSection.action("기능", [.action])
+    self.initialState = State(marker: marker, sections: [defalutSection])
   }
 
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .configure:
+      print(currentState.marker.id)
+      return .empty()
+
     case .refresh:
-      guard let marker = currentState.markerId else {
+      guard let marker = currentState.marker.id else {
         return .empty()
       }
 
@@ -65,7 +64,7 @@ final class ClipViewReactor: Reactor {
         }
 
     case .loadMore:
-      guard let marker = currentState.markerId else {
+      guard let marker = currentState.marker.id else {
         return .empty()
       }
 
