@@ -30,16 +30,16 @@ final class MainViewReactor: Reactor {
   let initialState = State(markers: [])
   let userService: UserServiceType
   let locationService: LocationServiceType
-  let clipService: ClipServiceType
+  let markerService: MarkerServiceType
 
   init(
     userService: UserServiceType,
     locationService: LocationServiceType,
-    clipService: ClipServiceType
+    markerService: MarkerServiceType
   ) {
     self.userService = userService
     self.locationService = locationService
-    self.clipService = clipService
+    self.markerService = markerService
   }
 
   func mutate(action: Action) -> Observable<Mutation> {
@@ -49,7 +49,7 @@ final class MainViewReactor: Reactor {
         .asObservable()
         .map { .setMe($0) }
     case .fetchNearbyClips(let lat, let lng):
-      return clipService
+      return markerService
         .fetchNearby(latitude: lat, longitude: lng)
         .asObservable()
         .map { .setMarkers($0) }

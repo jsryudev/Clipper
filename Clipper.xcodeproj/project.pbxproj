@@ -20,6 +20,7 @@
 		3F1121D02548673B00AB2C95 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 3F1121CF2548673B00AB2C95 /* Lottie */; };
 		3F1121D4254868E100AB2C95 /* Splash.json in Resources */ = {isa = PBXBuildFile; fileRef = 3F1121D3254868E100AB2C95 /* Splash.json */; };
 		3F1121D9254875BE00AB2C95 /* RxViewController in Frameworks */ = {isa = PBXBuildFile; productRef = 3F1121D8254875BE00AB2C95 /* RxViewController */; };
+		3F226BD42562C6A1007BCDD0 /* MarkerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F226BD32562C6A1007BCDD0 /* MarkerService.swift */; };
 		3F2986B2254AE5F0003F112F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2986B1254AE5F0003F112F /* SignInViewController.swift */; };
 		3F2986BC254AF76E003F112F /* GoogleSignIn.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3F2986B9254AF76E003F112F /* GoogleSignIn.bundle */; };
 		3F2986BD254AF76E003F112F /* GoogleSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F2986BA254AF76E003F112F /* GoogleSignIn.framework */; };
@@ -91,6 +92,7 @@
 		3F1121C62548628400AB2C95 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		3F1121C92548632C00AB2C95 /* SplashViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewReactor.swift; sourceTree = "<group>"; };
 		3F1121D3254868E100AB2C95 /* Splash.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Splash.json; sourceTree = "<group>"; };
+		3F226BD32562C6A1007BCDD0 /* MarkerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerService.swift; sourceTree = "<group>"; };
 		3F2986B1254AE5F0003F112F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		3F2986B9254AF76E003F112F /* GoogleSignIn.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GoogleSignIn.bundle; sourceTree = "<group>"; };
 		3F2986BA254AF76E003F112F /* GoogleSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleSignIn.framework; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				3F2986E6254B3C58003F112F /* AuthService.swift */,
 				3F3D38492552CA80005F35BC /* LocationService.swift */,
 				3F3D388D255428C3005F35BC /* ClipService.swift */,
+				3F226BD32562C6A1007BCDD0 /* MarkerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				3F1121CA2548632C00AB2C95 /* SplashViewReactor.swift in Sources */,
 				3F6480E9255C167000B5BF6A /* ClipViewItemCellReactor.swift in Sources */,
 				3F3D38402552B86B005F35BC /* MapAccessoriesView.swift in Sources */,
+				3F226BD42562C6A1007BCDD0 /* MarkerService.swift in Sources */,
 				3F2986E7254B3C58003F112F /* AuthService.swift in Sources */,
 				3F2986D4254B13CC003F112F /* ClipperAPI.swift in Sources */,
 				3F6480CC255BA59300B5BF6A /* ClipViewReactor.swift in Sources */,
