@@ -1,5 +1,5 @@
 //
-//  ClipViewReactor.swift
+//  MarkerViewReactor.swift
 //  Clipper
 //
 //  Created by JunSang Ryu on 2020/11/11.
