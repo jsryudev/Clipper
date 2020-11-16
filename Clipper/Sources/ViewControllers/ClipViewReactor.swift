@@ -14,7 +14,7 @@ final class ClipViewReactor: Reactor {
   }
 
   enum Mutation {
-    case appendSections([ClipViewSection])
+    case configureSections([ClipViewSection])
   }
 
   struct State {
@@ -52,7 +52,7 @@ final class ClipViewReactor: Reactor {
   func reduce(state: State, mutation: Mutation) -> State {
     var newState = state
     switch mutation {
-    case .appendSections(let sections):
+    case .configureSections(let sections):
       _ = sections
     }
     return newState
