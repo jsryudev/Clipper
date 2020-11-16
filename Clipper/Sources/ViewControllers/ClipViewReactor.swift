@@ -49,7 +49,6 @@ final class ClipViewReactor: Reactor {
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .configure:
-      print(currentState.marker.id)
       return .empty()
 
     case .refresh:
@@ -72,7 +71,6 @@ final class ClipViewReactor: Reactor {
         .fetchClips(marker: marker, page: currentState.page, limit: 5)
         .asObservable()
         .map { clip -> Mutation in
-
           return .appendClips(clip.items)
         }
 
