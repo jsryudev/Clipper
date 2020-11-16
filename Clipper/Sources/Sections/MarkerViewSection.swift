@@ -1,5 +1,5 @@
 //
-//  ClipViewSection.swift
+//  MarkerViewSection.swift
 //  Clipper
 //
 //  Created by JunSang Ryu on 2020/11/11.
@@ -7,14 +7,14 @@
 
 import RxDataSources
 
-enum ClipViewSection {
-  case action(String, [ClipViewSectionItem])
-  case location(String, [ClipViewSectionItem])
-  case clipList(String, [ClipViewSectionItem])
+enum MarkerViewSection {
+  case action(String, [MarkerViewSectionItem])
+  case location(String, [MarkerViewSectionItem])
+  case clipList(String, [MarkerViewSectionItem])
 }
 
-extension ClipViewSection: SectionModelType {
-  var items: [ClipViewSectionItem] {
+extension MarkerViewSection: SectionModelType {
+  var items: [MarkerViewSectionItem] {
     switch self {
     case .action(_, let items): return items
     case .location(_, let items): return items
@@ -30,7 +30,7 @@ extension ClipViewSection: SectionModelType {
     }
   }
 
-  init(original: ClipViewSection, items: [ClipViewSectionItem]) {
+  init(original: MarkerViewSection, items: [MarkerViewSectionItem]) {
     switch original {
     case .action: self = .action(original.title, items)
     case .location: self = .location(original.title, items)
@@ -39,8 +39,8 @@ extension ClipViewSection: SectionModelType {
   }
 }
 
-enum ClipViewSectionItem {
+enum MarkerViewSectionItem {
   case action
-  case location(ClipViewLocationCellReactor)
-  case clip(ClipViewItemCellReactor)
+  case location(MarkerViewLocationCellReactor)
+  case clip(MarkerViewItemCellReactor)
 }

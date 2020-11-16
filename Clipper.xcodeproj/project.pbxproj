@@ -55,14 +55,14 @@
 		3F6480D1255BA7B200B5BF6A /* RxReusableKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3F6480D0255BA7B200B5BF6A /* RxReusableKit */; };
 		3F6480D4255BA93000B5BF6A /* Differentiator in Frameworks */ = {isa = PBXBuildFile; productRef = 3F6480D3255BA93000B5BF6A /* Differentiator */; };
 		3F6480D6255BA93000B5BF6A /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = 3F6480D5255BA93000B5BF6A /* RxDataSources */; };
-		3F6480D9255BAAA100B5BF6A /* ClipViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480D8255BAAA100B5BF6A /* ClipViewSection.swift */; };
-		3F6480DB255BAE3A00B5BF6A /* ClipViewActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480DA255BAE3A00B5BF6A /* ClipViewActionCell.swift */; };
+		3F6480D9255BAAA100B5BF6A /* MarkerViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480D8255BAAA100B5BF6A /* MarkerViewSection.swift */; };
+		3F6480DB255BAE3A00B5BF6A /* MarkerViewActionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480DA255BAE3A00B5BF6A /* MarkerViewActionCell.swift */; };
 		3F6480DD255BAE6900B5BF6A /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480DC255BAE6900B5BF6A /* BaseTableViewCell.swift */; };
-		3F6480E1255BCC4C00B5BF6A /* ClipViewLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480E0255BCC4C00B5BF6A /* ClipViewLocationCell.swift */; };
-		3F6480E3255BCD0D00B5BF6A /* ClipViewLoactionCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480E2255BCD0D00B5BF6A /* ClipViewLoactionCellReactor.swift */; };
+		3F6480E1255BCC4C00B5BF6A /* MarkerViewLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480E0255BCC4C00B5BF6A /* MarkerViewLocationCell.swift */; };
+		3F6480E3255BCD0D00B5BF6A /* MarkerViewLoactionCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480E2255BCD0D00B5BF6A /* MarkerViewLoactionCellReactor.swift */; };
 		3F6480E5255C0F2400B5BF6A /* Marker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480E4255C0F2400B5BF6A /* Marker.swift */; };
-		3F6480E7255C165000B5BF6A /* ClipViewItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480E6255C165000B5BF6A /* ClipViewItemCell.swift */; };
-		3F6480E9255C167000B5BF6A /* ClipViewItemCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480E8255C167000B5BF6A /* ClipViewItemCellReactor.swift */; };
+		3F6480E7255C165000B5BF6A /* MarkerViewItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480E6255C165000B5BF6A /* MarkerViewItemCell.swift */; };
+		3F6480E9255C167000B5BF6A /* MarkerViewItemCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480E8255C167000B5BF6A /* MarkerViewItemCellReactor.swift */; };
 		3F68F762254840DF0064C59A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F761254840DF0064C59A /* AppDelegate.swift */; };
 		3F68F766254840DF0064C59A /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F765254840DF0064C59A /* SplashViewController.swift */; };
 		3F68F76B254840E20064C59A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F68F76A254840E20064C59A /* Assets.xcassets */; };
@@ -120,14 +120,14 @@
 		3F6480C5255A40FD00B5BF6A /* AddClipViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClipViewReactor.swift; sourceTree = "<group>"; };
 		3F6480C9255BA4A300B5BF6A /* MarkerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerViewController.swift; sourceTree = "<group>"; };
 		3F6480CB255BA59300B5BF6A /* MarkerViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerViewReactor.swift; sourceTree = "<group>"; };
-		3F6480D8255BAAA100B5BF6A /* ClipViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipViewSection.swift; sourceTree = "<group>"; };
-		3F6480DA255BAE3A00B5BF6A /* ClipViewActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipViewActionCell.swift; sourceTree = "<group>"; };
+		3F6480D8255BAAA100B5BF6A /* MarkerViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerViewSection.swift; sourceTree = "<group>"; };
+		3F6480DA255BAE3A00B5BF6A /* MarkerViewActionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerViewActionCell.swift; sourceTree = "<group>"; };
 		3F6480DC255BAE6900B5BF6A /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
-		3F6480E0255BCC4C00B5BF6A /* ClipViewLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipViewLocationCell.swift; sourceTree = "<group>"; };
-		3F6480E2255BCD0D00B5BF6A /* ClipViewLoactionCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipViewLoactionCellReactor.swift; sourceTree = "<group>"; };
+		3F6480E0255BCC4C00B5BF6A /* MarkerViewLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerViewLocationCell.swift; sourceTree = "<group>"; };
+		3F6480E2255BCD0D00B5BF6A /* MarkerViewLoactionCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerViewLoactionCellReactor.swift; sourceTree = "<group>"; };
 		3F6480E4255C0F2400B5BF6A /* Marker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Marker.swift; sourceTree = "<group>"; };
-		3F6480E6255C165000B5BF6A /* ClipViewItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipViewItemCell.swift; sourceTree = "<group>"; };
-		3F6480E8255C167000B5BF6A /* ClipViewItemCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipViewItemCellReactor.swift; sourceTree = "<group>"; };
+		3F6480E6255C165000B5BF6A /* MarkerViewItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerViewItemCell.swift; sourceTree = "<group>"; };
+		3F6480E8255C167000B5BF6A /* MarkerViewItemCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerViewItemCellReactor.swift; sourceTree = "<group>"; };
 		3F68F75E254840DF0064C59A /* Clipper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clipper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F68F761254840DF0064C59A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F68F765254840DF0064C59A /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
@@ -280,11 +280,11 @@
 				3F6480DC255BAE6900B5BF6A /* BaseTableViewCell.swift */,
 				3F3D383F2552B86B005F35BC /* MapAccessoriesView.swift */,
 				3F3D385525530467005F35BC /* LocationAuthorizationView.swift */,
-				3F6480DA255BAE3A00B5BF6A /* ClipViewActionCell.swift */,
-				3F6480E0255BCC4C00B5BF6A /* ClipViewLocationCell.swift */,
-				3F6480E2255BCD0D00B5BF6A /* ClipViewLoactionCellReactor.swift */,
-				3F6480E6255C165000B5BF6A /* ClipViewItemCell.swift */,
-				3F6480E8255C167000B5BF6A /* ClipViewItemCellReactor.swift */,
+				3F6480DA255BAE3A00B5BF6A /* MarkerViewActionCell.swift */,
+				3F6480E0255BCC4C00B5BF6A /* MarkerViewLocationCell.swift */,
+				3F6480E2255BCD0D00B5BF6A /* MarkerViewLoactionCellReactor.swift */,
+				3F6480E6255C165000B5BF6A /* MarkerViewItemCell.swift */,
+				3F6480E8255C167000B5BF6A /* MarkerViewItemCellReactor.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -292,7 +292,7 @@
 		3F6480D7255BAA1B00B5BF6A /* Sections */ = {
 			isa = PBXGroup;
 			children = (
-				3F6480D8255BAAA100B5BF6A /* ClipViewSection.swift */,
+				3F6480D8255BAAA100B5BF6A /* MarkerViewSection.swift */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -487,10 +487,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F6480E1255BCC4C00B5BF6A /* ClipViewLocationCell.swift in Sources */,
+				3F6480E1255BCC4C00B5BF6A /* MarkerViewLocationCell.swift in Sources */,
 				3F68F766254840DF0064C59A /* SplashViewController.swift in Sources */,
 				3F1121C72548628400AB2C95 /* BaseViewController.swift in Sources */,
-				3F6480E7255C165000B5BF6A /* ClipViewItemCell.swift in Sources */,
+				3F6480E7255C165000B5BF6A /* MarkerViewItemCell.swift in Sources */,
 				3F3D3835254F7216005F35BC /* AuthPlugin.swift in Sources */,
 				3F2986D8254B1C27003F112F /* UserService.swift in Sources */,
 				3FB849EC254F39E300C40CF6 /* MainViewController.swift in Sources */,
@@ -498,13 +498,13 @@
 				3F3D384A2552CA80005F35BC /* LocationService.swift in Sources */,
 				3F3D382B254F5460005F35BC /* ReactorKit+Extension.swift in Sources */,
 				3F1121CA2548632C00AB2C95 /* SplashViewReactor.swift in Sources */,
-				3F6480E9255C167000B5BF6A /* ClipViewItemCellReactor.swift in Sources */,
+				3F6480E9255C167000B5BF6A /* MarkerViewItemCellReactor.swift in Sources */,
 				3F3D38402552B86B005F35BC /* MapAccessoriesView.swift in Sources */,
 				3F226BD42562C6A1007BCDD0 /* MarkerService.swift in Sources */,
 				3F2986E7254B3C58003F112F /* AuthService.swift in Sources */,
 				3F2986D4254B13CC003F112F /* ClipperAPI.swift in Sources */,
 				3F6480CC255BA59300B5BF6A /* MarkerViewReactor.swift in Sources */,
-				3F6480E3255BCD0D00B5BF6A /* ClipViewLoactionCellReactor.swift in Sources */,
+				3F6480E3255BCD0D00B5BF6A /* MarkerViewLoactionCellReactor.swift in Sources */,
 				3F3D383C254F77F5005F35BC /* GreetingViewReactor.swift in Sources */,
 				3F3D388C2554261D005F35BC /* Clip.swift in Sources */,
 				3F6480CA255BA4A300B5BF6A /* MarkerViewController.swift in Sources */,
@@ -513,12 +513,12 @@
 				3FB849FA254F48F700C40CF6 /* SignUpViewController.swift in Sources */,
 				3F6480C6255A40FD00B5BF6A /* AddClipViewReactor.swift in Sources */,
 				3FB849FE254F491500C40CF6 /* SignUpViewReactor.swift in Sources */,
-				3F6480DB255BAE3A00B5BF6A /* ClipViewActionCell.swift in Sources */,
+				3F6480DB255BAE3A00B5BF6A /* MarkerViewActionCell.swift in Sources */,
 				3F3D388E255428C3005F35BC /* ClipService.swift in Sources */,
 				3F1121C125485AC500AB2C95 /* CompositionRoot.swift in Sources */,
 				3FB849F7254F46EC00C40CF6 /* MainViewReactor.swift in Sources */,
 				3F68F762254840DF0064C59A /* AppDelegate.swift in Sources */,
-				3F6480D9255BAAA100B5BF6A /* ClipViewSection.swift in Sources */,
+				3F6480D9255BAAA100B5BF6A /* MarkerViewSection.swift in Sources */,
 				3F3D382F254F5CAA005F35BC /* BaseNavigationController.swift in Sources */,
 				3F6480C4255A40EF00B5BF6A /* AddClipViewController.swift in Sources */,
 				3F2986DF254B3A45003F112F /* User.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  ClipViewItemCellReactor.swift
+//  MarkerViewItemCellReactor.swift
 //  Clipper
 //
 //  Created by JunSang Ryu on 2020/11/11.
@@ -7,7 +7,7 @@
 
 import ReactorKit
 
-final class ClipViewItemCellReactor: Reactor {
+final class MarkerViewItemCellReactor: Reactor {
   typealias Action = NoAction
 
   let initialState: ClipItem

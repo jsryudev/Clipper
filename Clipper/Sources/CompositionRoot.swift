@@ -51,7 +51,7 @@ final class CompositionRoot {
         let reactor = MarkerViewReactor(
           marker: marker,
           clipService: clipService,
-          clipViewItemCellReactorFactory: ClipViewItemCellReactor.init
+          markerViewItemCellReactorFactory: MarkerViewItemCellReactor.init
         )
         return MarkerViewController(reactor: reactor)
       })

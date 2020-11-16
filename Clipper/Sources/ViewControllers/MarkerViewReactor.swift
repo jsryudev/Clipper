@@ -14,14 +14,14 @@ final class MarkerViewReactor: Reactor {
   }
 
   enum Mutation {
-    case configureSections([ClipViewSection])
+    case configureSections([MarkerViewSection])
   }
 
   struct State {
     let marker: Marker
-    var sections: [ClipViewSection] = []
+    var sections: [MarkerViewSection] = []
 
-    init(marker: Marker, sections: [ClipViewSection]) {
+    init(marker: Marker, sections: [MarkerViewSection]) {
       self.marker = marker
       self.sections = sections
     }
@@ -29,16 +29,16 @@ final class MarkerViewReactor: Reactor {
 
   let initialState: State
   let clipService: ClipServiceType
-  let clipViewItemCellReactorFactory: (ClipItem) -> ClipViewItemCellReactor
+  let markerViewItemCellReactorFactory: (ClipItem) -> MarkerViewItemCellReactor
 
   init(
     marker: Marker,
     clipService: ClipServiceType,
-    clipViewItemCellReactorFactory: @escaping (ClipItem) -> ClipViewItemCellReactor
+    markerViewItemCellReactorFactory: @escaping (ClipItem) -> MarkerViewItemCellReactor
   ) {
     self.clipService = clipService
-    self.clipViewItemCellReactorFactory = clipViewItemCellReactorFactory
-    let defalutSection = ClipViewSection.action("기능", [.action])
+    self.markerViewItemCellReactorFactory = markerViewItemCellReactorFactory
+    let defalutSection = MarkerViewSection.action("기능", [.action])
     self.initialState = State(marker: marker, sections: [defalutSection])
   }
 
@@ -58,9 +58,9 @@ final class MarkerViewReactor: Reactor {
     return newState
   }
 
-  private func clipViewSectionItems(with clips: [ClipItem]) -> [ClipViewSectionItem] {
+  private func markerViewSectionItems(with clips: [ClipItem]) -> [MarkerViewSectionItem] {
     return clips
-      .map(self.clipViewItemCellReactorFactory)
-      .map(ClipViewSectionItem.clip)
+      .map(self.markerViewItemCellReactorFactory)
+      .map(MarkerViewSectionItem.clip)
   }
 }

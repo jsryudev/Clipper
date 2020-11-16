@@ -15,12 +15,12 @@ class MarkerViewController: BaseViewController, View {
   typealias Reactor = MarkerViewReactor
 
   fileprivate struct Reusable {
-    static let actionCell = ReusableCell<ClipViewActionCell>()
-    static let locationCell = ReusableCell<ClipViewLocationCell>()
-    static let itemCell = ReusableCell<ClipViewItemCell>()
+    static let actionCell = ReusableCell<MarkerViewActionCell>()
+    static let locationCell = ReusableCell<MarkerViewLocationCell>()
+    static let itemCell = ReusableCell<MarkerViewItemCell>()
   }
 
-  fileprivate let dataSource: RxTableViewSectionedReloadDataSource<ClipViewSection>
+  fileprivate let dataSource: RxTableViewSectionedReloadDataSource<MarkerViewSection>
 
   let tableView: UITableView = {
     let view = UITableView(frame: .zero, style: .grouped)
@@ -43,7 +43,7 @@ class MarkerViewController: BaseViewController, View {
     fatalError("init(coder:) has not been implemented")
   }
 
-  private static func dataSourceFactory() -> RxTableViewSectionedReloadDataSource<ClipViewSection> {
+  private static func dataSourceFactory() -> RxTableViewSectionedReloadDataSource<MarkerViewSection> {
     return .init(
       configureCell: { dataSource, tableView, indexPath, sectionItem in
         let cell: UITableViewCell

@@ -1,5 +1,5 @@
 //
-//  ClipViewActionCell.swift
+//  MarkerViewActionCell.swift
 //  Clipper
 //
 //  Created by JunSang Ryu on 2020/11/11.
@@ -9,7 +9,7 @@ import UIKit
 
 import SnapKit
 
-final class ClipViewActionCell: BaseTableViewCell {
+final class MarkerViewActionCell: BaseTableViewCell {
 
   fileprivate let actionButton: UIButton = {
     let button = UIButton()

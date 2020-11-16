@@ -1,5 +1,5 @@
 //
-//  ClipViewLocationCell.swift
+//  MarkerViewLocationCell.swift
 //  Clipper
 //
 //  Created by JunSang Ryu on 2020/11/11.
@@ -10,8 +10,8 @@ import UIKit
 import SnapKit
 import ReactorKit
 
-final class ClipViewLocationCell: BaseTableViewCell, View {
-  typealias Reactor = ClipViewLocationCellReactor
+final class MarkerViewLocationCell: BaseTableViewCell, View {
+  typealias Reactor = MarkerViewLocationCellReactor
 
   fileprivate let locationLabel: UILabel = {
     let label = UILabel()
@@ -33,7 +33,7 @@ final class ClipViewLocationCell: BaseTableViewCell, View {
     }
   }
 
-  func bind(reactor: ClipViewLocationCellReactor) {
+  func bind(reactor: MarkerViewLocationCellReactor) {
     locationLabel.text = reactor.currentState
   }
 }
