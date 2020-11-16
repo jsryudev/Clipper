@@ -7,7 +7,7 @@
 
 import ReactorKit
 
-final class ClipViewReactor: Reactor {
+final class MarkerViewReactor: Reactor {
 
   enum Action {
     case configure

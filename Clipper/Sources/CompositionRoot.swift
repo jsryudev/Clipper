@@ -47,13 +47,13 @@ final class CompositionRoot {
         )
         return GreetingViewController(reactor: reactor)
       },
-      clipViewControllerFactory: { marker in
-        let reactor = ClipViewReactor(
+      markerViewControllerFactory: { marker in
+        let reactor = MarkerViewReactor(
           marker: marker,
           clipService: clipService,
           clipViewItemCellReactorFactory: ClipViewItemCellReactor.init
         )
-        return ClipViewController(reactor: reactor)
+        return MarkerViewController(reactor: reactor)
       })
 
     let presentMainScreen = {

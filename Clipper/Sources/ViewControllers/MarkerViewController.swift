@@ -11,8 +11,8 @@ import ReactorKit
 import ReusableKit
 import RxDataSources
 
-class ClipViewController: BaseViewController, View {
-  typealias Reactor = ClipViewReactor
+class MarkerViewController: BaseViewController, View {
+  typealias Reactor = MarkerViewReactor
 
   fileprivate struct Reusable {
     static let actionCell = ReusableCell<ClipViewActionCell>()
@@ -83,7 +83,7 @@ class ClipViewController: BaseViewController, View {
     }
   }
 
-  func bind(reactor: ClipViewReactor) {
+  func bind(reactor: MarkerViewReactor) {
     self.rx.viewDidLoad
       .map { Reactor.Action.configure }
       .bind(to: reactor.action)
