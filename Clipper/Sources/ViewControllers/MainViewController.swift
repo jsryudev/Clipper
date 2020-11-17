@@ -23,6 +23,7 @@ class MainViewController: BaseViewController, View {
 
   fileprivate let mapView: NMFMapView = {
     let view = NMFMapView()
+    view.positionMode = .compass
     view.logoAlign = .leftTop
     return view
   }()
@@ -148,8 +149,8 @@ class MainViewController: BaseViewController, View {
         markers.map { marker -> NMFMarker in
           let mapMarker = NMFMarker(
             position: .init(
-              lat: marker.coordinate.latitude,
-              lng: marker.coordinate.longitude
+              lat: marker.location.latitude,
+              lng: marker.location.longitude
             )
           )
           mapMarker.touchHandler = { [weak self] _ -> Bool in

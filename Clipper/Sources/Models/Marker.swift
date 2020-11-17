@@ -7,17 +7,26 @@
 
 import Foundation
 
-struct Coordinate: Codable, Equatable {
-  let longitude: Double
-  let latitude: Double
+struct Location: Codable, Equatable {
+  let coordinates: [Double]
+
+  var longitude: Double {
+    return self.coordinates[0]
+  }
+
+  var latitude: Double {
+    return self.coordinates[1]
+  }
 }
 
 struct Marker: Codable, Equatable {
   let id: String?
-  let coordinate: Coordinate
+  let location: Location
+  let clips: [ClipItem]?
 
   enum CodingKeys: String, CodingKey {
     case id = "_id"
-    case coordinate
+    case location
+    case clips
   }
 }

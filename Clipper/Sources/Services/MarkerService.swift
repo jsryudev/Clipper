@@ -24,7 +24,7 @@ final class MarkerService: MarkerServiceType {
 
   func fetchNearby(latitude: Double, longitude: Double) -> Single<[Marker]> {
     return self.provider.rx
-      .request(.fetchNearbyMarkers(latitude, longitude))
+      .request(.fetchNearMarkers(latitude, longitude))
       .map([Marker].self)
   }
 }

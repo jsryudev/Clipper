@@ -9,15 +9,11 @@ import Foundation
 
 struct ClipItem: Codable, Equatable {
   let id: String
-  let parentId: String
-  let location: String
   let title: String
   let content: String
 
   enum CodingKeys: String, CodingKey {
     case id = "_id"
-    case parentId
-    case location
     case title
     case content
   }
@@ -36,4 +32,3 @@ struct Clip: Codable, Equatable {
     case page
   }
 }
-
