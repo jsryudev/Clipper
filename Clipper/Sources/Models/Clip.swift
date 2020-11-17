@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ClipItem: Codable, Equatable {
+struct Clip: Codable, Equatable {
   let id: String
   let title: String
   let content: String
@@ -19,8 +19,8 @@ struct ClipItem: Codable, Equatable {
   }
 }
 
-struct Clip: Codable, Equatable {
-  let items: [ClipItem]
+struct ClipPage: Codable, Equatable {
+  let items: [Clip]
   let totalCount: Int
   let totalPages: Int
   let page: Int

@@ -22,7 +22,7 @@ struct Location: Codable, Equatable {
 struct Marker: Codable, Equatable {
   let id: String?
   let location: Location
-  let clips: [ClipItem]?
+  let clips: [Clip]?
 
   enum CodingKeys: String, CodingKey {
     case id = "_id"

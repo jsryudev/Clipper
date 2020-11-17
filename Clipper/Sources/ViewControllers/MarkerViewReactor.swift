@@ -30,13 +30,13 @@ final class MarkerViewReactor: Reactor {
   let initialState: State
   let clipService: ClipServiceType
   let markerViewLocaionCellReactorFactory: (String) -> MarkerViewLocationCellReactor
-  let markerViewItemCellReactorFactory: (ClipItem) -> MarkerViewItemCellReactor
+  let markerViewItemCellReactorFactory: (Clip) -> MarkerViewItemCellReactor
 
   init(
     marker: Marker,
     clipService: ClipServiceType,
     markerViewLocaionCellReactorFactory: @escaping (String) -> MarkerViewLocationCellReactor,
-    markerViewItemCellReactorFactory: @escaping (ClipItem) -> MarkerViewItemCellReactor
+    markerViewItemCellReactorFactory: @escaping (Clip) -> MarkerViewItemCellReactor
   ) {
     self.clipService = clipService
     self.markerViewLocaionCellReactorFactory = markerViewLocaionCellReactorFactory
@@ -75,7 +75,7 @@ final class MarkerViewReactor: Reactor {
     return [.location(self.markerViewLocaionCellReactorFactory(location))]
   }
 
-  private func markerViewClipsSectionItems(with clips: [ClipItem]) -> [MarkerViewSectionItem] {
+  private func markerViewClipsSectionItems(with clips: [Clip]) -> [MarkerViewSectionItem] {
     var items = clips
       .map(self.markerViewItemCellReactorFactory)
       .map(MarkerViewSectionItem.clip)
