@@ -18,17 +18,3 @@ struct Clip: Codable, Equatable {
     case content
   }
 }
-
-struct ClipPage: Codable, Equatable {
-  let items: [Clip]
-  let totalCount: Int
-  let totalPages: Int
-  let page: Int
-
-  enum CodingKeys: String, CodingKey {
-    case items = "docs"
-    case totalCount = "totalDocs"
-    case totalPages
-    case page
-  }
-}
