@@ -18,7 +18,6 @@ final class MarkerViewItemCell: BaseTableViewCell, View {
   }
 
   func bind(reactor: MarkerViewItemCellReactor) {
-    print(reactor)
     self.textLabel?.text = reactor.currentState.title
     self.detailTextLabel?.text  = reactor.currentState.content
   }
