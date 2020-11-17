@@ -29,14 +29,17 @@ final class MarkerViewReactor: Reactor {
 
   let initialState: State
   let clipService: ClipServiceType
+  let markerViewLocaionCellReactorFactory: (String) -> MarkerViewLocationCellReactor
   let markerViewItemCellReactorFactory: (ClipItem) -> MarkerViewItemCellReactor
 
   init(
     marker: Marker,
     clipService: ClipServiceType,
+    markerViewLocaionCellReactorFactory: @escaping (String) -> MarkerViewLocationCellReactor,
     markerViewItemCellReactorFactory: @escaping (ClipItem) -> MarkerViewItemCellReactor
   ) {
     self.clipService = clipService
+    self.markerViewLocaionCellReactorFactory = markerViewLocaionCellReactorFactory
     self.markerViewItemCellReactorFactory = markerViewItemCellReactorFactory
     let defalutSection = MarkerViewSection.action("기능", [.action])
     self.initialState = State(marker: marker, sections: [defalutSection])
@@ -45,7 +48,17 @@ final class MarkerViewReactor: Reactor {
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .configure:
-      return .empty()
+      let marker = self.currentState.marker
+
+      let locationItems = self.markerViewLocationSectionItems(with: "\(marker.location.latitude), \(marker.location.longitude)")
+      var sections: [MarkerViewSection] = [.location("위치", locationItems)]
+
+      if let clips = currentState.marker.clips, !clips.isEmpty {
+        let clipItems = self.markerViewClipsSectionItems(with: clips)
+        sections.append(MarkerViewSection.clips("클립", clipItems))
+      }
+
+      return .just(.configureSections(sections))
     }
   }
 
@@ -53,12 +66,16 @@ final class MarkerViewReactor: Reactor {
     var newState = state
     switch mutation {
     case .configureSections(let sections):
-      _ = sections
+      newState.sections.append(contentsOf: sections)
     }
     return newState
   }
 
-  private func markerViewSectionItems(with clips: [ClipItem]) -> [MarkerViewSectionItem] {
+  private func markerViewLocationSectionItems(with location: String) -> [MarkerViewSectionItem] {
+    return [.location(self.markerViewLocaionCellReactorFactory(location))]
+  }
+
+  private func markerViewClipsSectionItems(with clips: [ClipItem]) -> [MarkerViewSectionItem] {
     return clips
       .map(self.markerViewItemCellReactorFactory)
       .map(MarkerViewSectionItem.clip)
