@@ -41,6 +41,9 @@ extension MarkerViewSection: SectionModelType {
 
 enum MarkerViewSectionItem {
   case action
+
   case location(MarkerViewLocationCellReactor)
+
   case clip(MarkerViewItemCellReactor)
+  case more
 }

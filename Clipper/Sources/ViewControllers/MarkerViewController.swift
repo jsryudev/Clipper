@@ -15,9 +15,10 @@ class MarkerViewController: BaseViewController, View {
   typealias Reactor = MarkerViewReactor
 
   fileprivate struct Reusable {
-    static let actionCell = ReusableCell<MarkerViewActionCell>()
+    static let addActionCell = ReusableCell<MarkerViewAddCell>()
     static let locationCell = ReusableCell<MarkerViewLocationCell>()
     static let itemCell = ReusableCell<MarkerViewItemCell>()
+    static let moreActionCell = ReusableCell<MarkerViewMoreCell>()
   }
 
   fileprivate let dataSource: RxTableViewSectionedReloadDataSource<MarkerViewSection>
@@ -25,9 +26,11 @@ class MarkerViewController: BaseViewController, View {
   let tableView: UITableView = {
     let view = UITableView(frame: .zero, style: .grouped)
     view.backgroundColor = .clear
-    view.register(Reusable.actionCell)
+    view.separatorStyle = .none
+    view.register(Reusable.addActionCell)
     view.register(Reusable.locationCell)
     view.register(Reusable.itemCell)
+    view.register(Reusable.moreActionCell)
     return view
   }()
 
@@ -49,7 +52,7 @@ class MarkerViewController: BaseViewController, View {
         let cell: UITableViewCell
         switch sectionItem {
         case .action:
-          let actionCell = tableView.dequeue(Reusable.actionCell, for: indexPath)
+          let actionCell = tableView.dequeue(Reusable.addActionCell, for: indexPath)
           cell = actionCell
         case .location(let reactor):
           let locationCell = tableView.dequeue(Reusable.locationCell, for: indexPath)
@@ -59,6 +62,9 @@ class MarkerViewController: BaseViewController, View {
           let itemCell = tableView.dequeue(Reusable.itemCell, for: indexPath)
           itemCell.reactor = reactor
           cell = itemCell
+        case .more:
+          let actionCell = tableView.dequeue(Reusable.moreActionCell, for: indexPath)
+          cell = actionCell
         }
         return cell
       },

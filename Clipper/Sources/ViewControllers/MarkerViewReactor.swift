@@ -55,7 +55,7 @@ final class MarkerViewReactor: Reactor {
 
       if let clips = currentState.marker.clips, !clips.isEmpty {
         let clipItems = self.markerViewClipsSectionItems(with: clips)
-        sections.append(MarkerViewSection.clips("클립", clipItems))
+        sections.append(MarkerViewSection.clips("클립 (5건)", clipItems))
       }
 
       return .just(.configureSections(sections))
@@ -76,8 +76,10 @@ final class MarkerViewReactor: Reactor {
   }
 
   private func markerViewClipsSectionItems(with clips: [ClipItem]) -> [MarkerViewSectionItem] {
-    return clips
+    var items = clips
       .map(self.markerViewItemCellReactorFactory)
       .map(MarkerViewSectionItem.clip)
+    items.append(.more)
+    return items
   }
 }
