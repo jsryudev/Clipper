@@ -23,6 +23,7 @@ final class CompositionRoot {
     let window = UIWindow(frame: UIScreen.main.bounds)
     window.makeKeyAndVisible()
 
+    let navigator = Navigator(window: window)
     let authService = AuthService()
 
     let authPlugin = AuthPlugin(authService: authService)
@@ -63,7 +64,7 @@ final class CompositionRoot {
         duration: 0.3,
         options: .transitionFlipFromLeft,
         animations: {
-          window.rootViewController = mainViewController
+          navigator.root(mainViewController)
         }
       )
     }
@@ -97,7 +98,8 @@ final class CompositionRoot {
         duration: 0.3,
         options: .transitionFlipFromRight,
         animations: {
-          window.rootViewController = BaseNavigationController(rootViewController: signInViewController)
+          let signInViewController = BaseNavigationController(rootViewController: signInViewController)
+          navigator.root(signInViewController)
         }
       )
     }
