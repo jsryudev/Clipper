@@ -68,6 +68,7 @@
 		3F68F766254840DF0064C59A /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F68F765254840DF0064C59A /* SplashViewController.swift */; };
 		3F68F76B254840E20064C59A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F68F76A254840E20064C59A /* Assets.xcassets */; };
 		3F68F76E254840E20064C59A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F68F76C254840E20064C59A /* LaunchScreen.storyboard */; };
+		3F7D2C622565655F00270714 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7D2C612565655F00270714 /* Navigator.swift */; };
 		3FB849E9254F397400C40CF6 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 3FB849E8254F397400C40CF6 /* FloatingPanel */; };
 		3FB849EC254F39E300C40CF6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB849EB254F39E300C40CF6 /* MainViewController.swift */; };
 		3FB849F4254F3F3E00C40CF6 /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 3FB849F3254F3F3E00C40CF6 /* NMapsMap */; };
@@ -136,6 +137,7 @@
 		3F68F76A254840E20064C59A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F68F76D254840E20064C59A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F68F76F254840E20064C59A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F7D2C612565655F00270714 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		3FB849EB254F39E300C40CF6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3FB849F6254F46EC00C40CF6 /* MainViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewReactor.swift; sourceTree = "<group>"; };
 		3FB849F9254F48F700C40CF6 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				3F3D383E2552B82A005F35BC /* Views */,
 				3F68F761254840DF0064C59A /* AppDelegate.swift */,
 				3F1121C025485AC500AB2C95 /* CompositionRoot.swift */,
+				3F7D2C612565655F00270714 /* Navigator.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				3F6480E3255BCD0D00B5BF6A /* MarkerViewLoactionCellReactor.swift in Sources */,
 				3F3D383C254F77F5005F35BC /* GreetingViewReactor.swift in Sources */,
 				3F3D388C2554261D005F35BC /* Clip.swift in Sources */,
+				3F7D2C622565655F00270714 /* Navigator.swift in Sources */,
 				3F6480CA255BA4A300B5BF6A /* MarkerViewController.swift in Sources */,
 				3F6480DD255BAE6900B5BF6A /* BaseTableViewCell.swift in Sources */,
 				3F3D385625530467005F35BC /* LocationAuthorizationView.swift in Sources */,
