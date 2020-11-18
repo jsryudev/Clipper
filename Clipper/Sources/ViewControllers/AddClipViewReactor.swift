@@ -17,12 +17,12 @@ final class AddClipViewReactor: Reactor {
   }
 
   struct State {
-    let location: Location
+    let marker: Marker
   }
 
   let initialState: State
 
-  init(location: Location) {
-    self.initialState = State(location: location)
+  init(marker: Marker) {
+    self.initialState = State(marker: marker)
   }
 }

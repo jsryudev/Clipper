@@ -59,7 +59,7 @@ final class CompositionRoot {
           navigator: navigator,
           marker: marker,
           addClipViewControllerFactory: { marker in
-            let reactor = AddClipViewReactor(location: marker.location)
+            let reactor = AddClipViewReactor(marker: marker)
             return AddClipViewController(reactor: reactor)
           }
         )
