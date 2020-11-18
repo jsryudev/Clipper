@@ -55,7 +55,18 @@ final class CompositionRoot {
           markerViewLocaionCellReactorFactory: MarkerViewLocationCellReactor.init,
           markerViewItemCellReactorFactory: MarkerViewItemCellReactor.init
         )
-        return MarkerViewController(reactor: reactor)
+        let markerViewAddCellDependency = MarkerViewAddCell.Dependency(
+          navigator: navigator,
+          marker: marker,
+          addClipViewControllerFactory: { marker in
+            let reactor = AddClipViewReactor(location: marker.location)
+            return AddClipViewController(reactor: reactor)
+          }
+        )
+        return MarkerViewController(
+          reactor: reactor,
+          markerViewAddCellDependency: markerViewAddCellDependency
+        )
       })
 
     let presentMainScreen = {
@@ -131,8 +142,8 @@ final class CompositionRoot {
     UINavigationBar.appearance().tintColor = .black
 
     UILabel.appearance().textColor = .black
-    UIButton.appearance().tintColor = .black
 
+    UIButton.appearance().tintColor = .black
     UIButton.appearance().setTitleColor(.black, for: .normal)
   }
 }

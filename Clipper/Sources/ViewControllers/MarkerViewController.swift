@@ -36,9 +36,12 @@ class MarkerViewController: BaseViewController, View {
 
   // MARK: Initialize
 
-  init(reactor: Reactor) {
+  init(
+    reactor: Reactor,
+    markerViewAddCellDependency: MarkerViewAddCell.Dependency
+  ) {
     defer { self.reactor = reactor }
-    self.dataSource = type(of: self).dataSourceFactory()
+    self.dataSource = type(of: self).dataSourceFactory(markerViewAddCellDependency: markerViewAddCellDependency)
     super.init()
   }
 
@@ -46,13 +49,16 @@ class MarkerViewController: BaseViewController, View {
     fatalError("init(coder:) has not been implemented")
   }
 
-  private static func dataSourceFactory() -> RxTableViewSectionedReloadDataSource<MarkerViewSection> {
+  private static func dataSourceFactory(
+    markerViewAddCellDependency: MarkerViewAddCell.Dependency
+  ) -> RxTableViewSectionedReloadDataSource<MarkerViewSection> {
     return .init(
       configureCell: { dataSource, tableView, indexPath, sectionItem in
         let cell: UITableViewCell
         switch sectionItem {
         case .action:
           let actionCell = tableView.dequeue(Reusable.addActionCell, for: indexPath)
+          actionCell.dependency = markerViewAddCellDependency
           cell = actionCell
         case .location(let reactor):
           let locationCell = tableView.dequeue(Reusable.locationCell, for: indexPath)

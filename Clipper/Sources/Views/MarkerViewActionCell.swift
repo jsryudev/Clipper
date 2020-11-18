@@ -11,7 +11,15 @@ import SnapKit
 
 final class MarkerViewAddCell: BaseTableViewCell {
 
-  fileprivate let actionButton: UIButton = {
+  struct Dependency {
+    let navigator: Navigator
+    let marker: Marker
+    let addClipViewControllerFactory: (Marker) -> AddClipViewController
+  }
+
+  var dependency: Dependency?
+
+  let actionButton: UIButton = {
     let button = UIButton()
     button.backgroundColor = .clear
     button.setImage(UIImage(systemName: "plus.square"), for: .normal)
@@ -22,6 +30,14 @@ final class MarkerViewAddCell: BaseTableViewCell {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
     self.contentView.addSubview(actionButton)
     self.backgroundColor = .clear
+
+    actionButton.rx.tap.subscribe(
+      onNext: { [weak self] in
+        guard let dependency = self?.dependency else { return }
+        let vc = dependency.addClipViewControllerFactory(dependency.marker)
+        dependency.navigator.present(vc)
+      })
+      .disposed(by: disposeBag)
   }
 
   override func layoutSubviews() {
