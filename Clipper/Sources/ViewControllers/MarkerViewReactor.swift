@@ -51,7 +51,7 @@ final class MarkerViewReactor: Reactor {
       let marker = self.currentState.marker
 
       let locationItems = self.markerViewLocationSectionItems(with: "\(marker.location.latitude), \(marker.location.longitude)")
-      var sections: [MarkerViewSection] = [.location("위치", locationItems)]
+      var sections: [MarkerViewSection] = [.location("현재 위치", locationItems)]
 
       if let clips = currentState.marker.clips, !clips.isEmpty {
         let clipItems = self.markerViewClipsSectionItems(with: clips)
