@@ -15,6 +15,7 @@ final class MarkerViewItemCell: BaseTableViewCell, View {
 
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
+    self.backgroundColor = .clear
   }
 
   func bind(reactor: MarkerViewItemCellReactor) {

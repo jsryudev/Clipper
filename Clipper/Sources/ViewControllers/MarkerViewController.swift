@@ -9,16 +9,18 @@ import UIKit
 
 import ReactorKit
 import ReusableKit
+import RxCocoa
 import RxDataSources
 
 class MarkerViewController: BaseViewController, View {
   typealias Reactor = MarkerViewReactor
 
+  private let addClipViewControllerFactory: (Marker) -> AddClipViewController
+
   fileprivate struct Reusable {
-    static let addActionCell = ReusableCell<MarkerViewAddCell>()
+    static let actionCell = ReusableCell<MarkerViewActionCell>()
     static let locationCell = ReusableCell<MarkerViewLocationCell>()
     static let itemCell = ReusableCell<MarkerViewItemCell>()
-    static let moreActionCell = ReusableCell<MarkerViewMoreCell>()
   }
 
   fileprivate let dataSource: RxTableViewSectionedReloadDataSource<MarkerViewSection>
@@ -27,10 +29,9 @@ class MarkerViewController: BaseViewController, View {
     let view = UITableView(frame: .zero, style: .grouped)
     view.backgroundColor = .clear
     view.separatorStyle = .none
-    view.register(Reusable.addActionCell)
+    view.register(Reusable.actionCell)
     view.register(Reusable.locationCell)
     view.register(Reusable.itemCell)
-    view.register(Reusable.moreActionCell)
     return view
   }()
 
@@ -38,10 +39,11 @@ class MarkerViewController: BaseViewController, View {
 
   init(
     reactor: Reactor,
-    markerViewAddCellDependency: MarkerViewAddCell.Dependency
+    addClipViewControllerFactory: @escaping (Marker) -> AddClipViewController
   ) {
     defer { self.reactor = reactor }
-    self.dataSource = type(of: self).dataSourceFactory(markerViewAddCellDependency: markerViewAddCellDependency)
+    self.addClipViewControllerFactory = addClipViewControllerFactory
+    self.dataSource = type(of: self).dataSourceFactory()
     super.init()
   }
 
@@ -49,16 +51,14 @@ class MarkerViewController: BaseViewController, View {
     fatalError("init(coder:) has not been implemented")
   }
 
-  private static func dataSourceFactory(
-    markerViewAddCellDependency: MarkerViewAddCell.Dependency
-  ) -> RxTableViewSectionedReloadDataSource<MarkerViewSection> {
+  private static func dataSourceFactory() -> RxTableViewSectionedReloadDataSource<MarkerViewSection> {
     return .init(
       configureCell: { dataSource, tableView, indexPath, sectionItem in
         let cell: UITableViewCell
         switch sectionItem {
-        case .action:
-          let actionCell = tableView.dequeue(Reusable.addActionCell, for: indexPath)
-          actionCell.dependency = markerViewAddCellDependency
+        case .add:
+          let actionCell = tableView.dequeue(Reusable.actionCell, for: indexPath)
+          actionCell.titleLabel.text = "추가하기"
           cell = actionCell
         case .location(let reactor):
           let locationCell = tableView.dequeue(Reusable.locationCell, for: indexPath)
@@ -69,7 +69,8 @@ class MarkerViewController: BaseViewController, View {
           itemCell.reactor = reactor
           cell = itemCell
         case .more:
-          let actionCell = tableView.dequeue(Reusable.moreActionCell, for: indexPath)
+          let actionCell = tableView.dequeue(Reusable.actionCell, for: indexPath)
+          actionCell.titleLabel.text = "더 보기"
           cell = actionCell
         }
         return cell
@@ -100,6 +101,30 @@ class MarkerViewController: BaseViewController, View {
       .map { Reactor.Action.configure }
       .bind(to: reactor.action)
       .disposed(by: disposeBag)
+
+    self.tableView.rx.itemSelected(dataSource: self.dataSource)
+      .subscribe(
+        onNext: { [weak self] sectionItem in
+          guard let self = self else { return }
+          switch sectionItem {
+          case .add:
+            let vc = self.addClipViewControllerFactory(reactor.currentState.marker)
+            self.present(vc, animated: true)
+          case .clip(let reactor):
+            ()
+          case .more:
+            ()
+          default: return
+          }
+        })
+      .disposed(by: disposeBag)
+
+    self.tableView.rx.itemSelected
+      .subscribe(
+        onNext: { [weak tableView] indexPath in
+          tableView?.deselectRow(at: indexPath, animated: false)
+        })
+      .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.sections }
       .bind(to: self.tableView.rx.items(dataSource: self.dataSource))

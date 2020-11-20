@@ -55,17 +55,12 @@ final class CompositionRoot {
           markerViewLocaionCellReactorFactory: MarkerViewLocationCellReactor.init,
           markerViewItemCellReactorFactory: MarkerViewItemCellReactor.init
         )
-        let markerViewAddCellDependency = MarkerViewAddCell.Dependency(
-          navigator: navigator,
-          marker: marker,
+        return MarkerViewController(
+          reactor: reactor,
           addClipViewControllerFactory: { marker in
             let reactor = AddClipViewReactor(marker: marker)
             return AddClipViewController(reactor: reactor)
           }
-        )
-        return MarkerViewController(
-          reactor: reactor,
-          markerViewAddCellDependency: markerViewAddCellDependency
         )
       })
 

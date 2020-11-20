@@ -41,8 +41,7 @@ final class MarkerViewReactor: Reactor {
     self.clipService = clipService
     self.markerViewLocaionCellReactorFactory = markerViewLocaionCellReactorFactory
     self.markerViewItemCellReactorFactory = markerViewItemCellReactorFactory
-    let defalutSection = MarkerViewSection.action("기능", [.action])
-    self.initialState = State(marker: marker, sections: [defalutSection])
+    self.initialState = State(marker: marker, sections: [])
   }
 
   func mutate(action: Action) -> Observable<Mutation> {
@@ -50,8 +49,9 @@ final class MarkerViewReactor: Reactor {
     case .configure:
       let marker = self.currentState.marker
 
+      let addSection = MarkerViewSection.action("기능", [.add])
       let locationItems = self.markerViewLocationSectionItems(with: "\(marker.location.latitude), \(marker.location.longitude)")
-      var sections: [MarkerViewSection] = [.location("현재 위치", locationItems)]
+      var sections: [MarkerViewSection] = [addSection, .location("현재 위치", locationItems)]
 
       if let clips = currentState.marker.clips, !clips.isEmpty {
         let clipItems = self.markerViewClipsSectionItems(with: clips)
