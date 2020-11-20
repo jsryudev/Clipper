@@ -70,6 +70,7 @@
 		3F68F76E254840E20064C59A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F68F76C254840E20064C59A /* LaunchScreen.storyboard */; };
 		3F7D2C622565655F00270714 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7D2C612565655F00270714 /* Navigator.swift */; };
 		3F7D2C652568373200270714 /* MoyaSugar in Frameworks */ = {isa = PBXBuildFile; productRef = 3F7D2C642568373200270714 /* MoyaSugar */; };
+		3F7D2C672568428B00270714 /* UITableView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7D2C662568428B00270714 /* UITableView+Rx.swift */; };
 		3FB849E9254F397400C40CF6 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 3FB849E8254F397400C40CF6 /* FloatingPanel */; };
 		3FB849EC254F39E300C40CF6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB849EB254F39E300C40CF6 /* MainViewController.swift */; };
 		3FB849F4254F3F3E00C40CF6 /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 3FB849F3254F3F3E00C40CF6 /* NMapsMap */; };
@@ -139,6 +140,7 @@
 		3F68F76D254840E20064C59A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F68F76F254840E20064C59A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F7D2C612565655F00270714 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
+		3F7D2C662568428B00270714 /* UITableView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Rx.swift"; sourceTree = "<group>"; };
 		3FB849EB254F39E300C40CF6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3FB849F6254F46EC00C40CF6 /* MainViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewReactor.swift; sourceTree = "<group>"; };
 		3FB849F9254F48F700C40CF6 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 			isa = PBXGroup;
 			children = (
 				3F3D382A254F5460005F35BC /* ReactorKit+Extension.swift */,
+				3F7D2C662568428B00270714 /* UITableView+Rx.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -532,6 +535,7 @@
 				3F68F762254840DF0064C59A /* AppDelegate.swift in Sources */,
 				3F6480D9255BAAA100B5BF6A /* MarkerViewSection.swift in Sources */,
 				3F3D382F254F5CAA005F35BC /* BaseNavigationController.swift in Sources */,
+				3F7D2C672568428B00270714 /* UITableView+Rx.swift in Sources */,
 				3F6480C4255A40EF00B5BF6A /* AddClipViewController.swift in Sources */,
 				3F2986DF254B3A45003F112F /* User.swift in Sources */,
 				3F2986CC254B0849003F112F /* SignInViewReactor.swift in Sources */,
