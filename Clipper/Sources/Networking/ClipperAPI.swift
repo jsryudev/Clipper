@@ -7,6 +7,7 @@
 import Foundation
 
 import Moya
+import MoyaSugar
 
 enum ClipperAPI {
   case signUp(String, String, UserType)
@@ -15,76 +16,76 @@ enum ClipperAPI {
 
   case fetchNearMarkers(Double, Double)
   case fetchClips(String, Int, Int)
+
+  case createClipOfMarker(String, Double, Double, String, String)
 }
 
-extension ClipperAPI: TargetType {
+extension ClipperAPI: SugarTargetType {
   var baseURL: URL {
     return URL(string: "http://localhost:3000/api")!
   }
 
-  var path: String {
+  var route: Route {
     switch self {
-    case .signUp, .fetchMe:
-      return "/user"
+    case .fetchMe:
+      return .get("/user")
+    case .signUp:
+      return .post("/user")
     case .authenticate:
-      return "/user/google-login"
+      return .get("/user/google-login")
     case .fetchNearMarkers:
-      return "/markers/near"
+      return .get("/markers/near")
     case .fetchClips(let id, _, _):
-      return "/markers/\(id)/clips"
+      return .get("markers/\(id)/clips")
+    case .createClipOfMarker(let id, _, _, _, _):
+      return .post("markers/\(id)/clips")
     }
   }
 
-  var method: Moya.Method {
-    switch self {
-    case .signUp, .authenticate:
-      return .post
-    case .fetchMe, .fetchNearMarkers, .fetchClips:
-      return .get
-    }
-  }
-
-  var sampleData: Data {
-    return Data()
-  }
-
-  var task: Task {
+  var parameters: Parameters? {
     switch self {
     case .signUp(let token, let name, let type):
-      return .requestJSONEncodable(
-        [
-          "type": type.rawValue,
-          "token": token,
-          "name": name
-        ]
-      )
+      return JSONEncoding() => [
+        "type": type.rawValue,
+        "token": token,
+        "name": name
+      ]
+
     case .authenticate(let token):
-      return .requestJSONEncodable(
-        ["token": token]
-      )
-    case .fetchMe:
-      return .requestPlain
-    case .fetchNearMarkers(let lat, let lng):
-      return .requestParameters(
-        parameters: [
-          "lng": lng,
-          "lat": lat,
-          "offset": 1000
-        ],
-        encoding: URLEncoding.queryString
-      )
+      return JSONEncoding() => [
+        "token": token
+      ]
+
+    case .fetchNearMarkers(let latitude, let longitude):
+      return URLEncoding.queryString => [
+        "lng": longitude,
+        "lat": latitude,
+        "offset": 1000
+      ]
+
     case .fetchClips(_, let page, let limit):
-      return .requestParameters(
-        parameters: [
-          "page": page,
-          "limit": limit
-        ],
-        encoding: URLEncoding.queryString
-      )
+      return URLEncoding.queryString => [
+        "page": page,
+        "limit": limit
+      ]
+
+    case .createClipOfMarker(_, let latitude, let longitude, let title, let content):
+      return JSONEncoding() => [
+        "latitude": latitude,
+        "longitude": longitude,
+        "title": title,
+        "content": content
+      ]
+
+    default: return nil
     }
   }
 
   var headers: [String : String]? {
-    return [:]
+    return ["Accept": "application/json"]
+  }
+
+  var sampleData: Data {
+    return Data()
   }
 }
