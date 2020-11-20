@@ -20,9 +20,9 @@ struct TrackedValue<T: Equatable>: Equatable {
 
 extension ObservableType {
   func mapChangedTrackedValue<T> (_ transform: @escaping (Element) throws -> TrackedValue<T>) -> Observable<T> {
-        return self
-            .map(transform)
-            .distinctUntilChanged { $0.tracker == $1.tracker }
-            .map { $0.value }
-    }
+    return self
+      .map(transform)
+      .distinctUntilChanged { $0.tracker == $1.tracker }
+      .map { $0.value }
+  }
 }
