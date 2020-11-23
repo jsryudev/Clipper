@@ -45,9 +45,32 @@ class AddClipViewController: BaseViewController, View {
   }
 
   override func addSubViews() {
+    self.view.addSubview(self.titleLabel)
+    self.view.addSubview(self.titleTextField)
+    self.view.addSubview(self.contentLabel)
+    self.view.addSubview(self.contentTextView)
   }
 
   override func setupConstraints() {
+    self.titleLabel.snp.makeConstraints { make in
+      make.top.equalToSuperview().offset(15)
+      make.left.right.equalToSuperview().offset(15)
+    }
+
+    self.titleTextField.snp.makeConstraints { make in
+      make.top.equalTo(titleLabel.snp.bottom).offset(15)
+      make.left.right.equalToSuperview()
+    }
+
+    self.contentLabel.snp.makeConstraints { make in
+      make.top.equalTo(titleTextField.snp.bottom).offset(15)
+      make.left.right.equalToSuperview()
+    }
+
+    self.contentTextView.snp.makeConstraints { make in
+      make.top.equalTo(contentLabel.snp.bottom).offset(15)
+      make.left.right.bottom.equalToSuperview()
+    }
   }
 
   // MARK: Initialize
