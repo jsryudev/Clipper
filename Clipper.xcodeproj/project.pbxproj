@@ -71,6 +71,7 @@
 		3F7D2C622565655F00270714 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7D2C612565655F00270714 /* Navigator.swift */; };
 		3F7D2C652568373200270714 /* MoyaSugar in Frameworks */ = {isa = PBXBuildFile; productRef = 3F7D2C642568373200270714 /* MoyaSugar */; };
 		3F7D2C672568428B00270714 /* UITableView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7D2C662568428B00270714 /* UITableView+Rx.swift */; };
+		3F7D2C6A256DC3EB00270714 /* TrackedValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7D2C69256DC3EB00270714 /* TrackedValue.swift */; };
 		3FB849E9254F397400C40CF6 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 3FB849E8254F397400C40CF6 /* FloatingPanel */; };
 		3FB849EC254F39E300C40CF6 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FB849EB254F39E300C40CF6 /* MainViewController.swift */; };
 		3FB849F4254F3F3E00C40CF6 /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 3FB849F3254F3F3E00C40CF6 /* NMapsMap */; };
@@ -141,6 +142,7 @@
 		3F68F76F254840E20064C59A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F7D2C612565655F00270714 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		3F7D2C662568428B00270714 /* UITableView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Rx.swift"; sourceTree = "<group>"; };
+		3F7D2C69256DC3EB00270714 /* TrackedValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedValue.swift; sourceTree = "<group>"; };
 		3FB849EB254F39E300C40CF6 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3FB849F6254F46EC00C40CF6 /* MainViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewReactor.swift; sourceTree = "<group>"; };
 		3FB849F9254F48F700C40CF6 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 		3F68F77B254842970064C59A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				3F7D2C68256DC3D300270714 /* Utils */,
 				3F3D3829254F544B005F35BC /* Extensions */,
 				3F2986DD254B3A3B003F112F /* Models */,
 				3F2986D6254B1C16003F112F /* Services */,
@@ -368,6 +371,14 @@
 				3F68F76F254840E20064C59A /* Info.plist */,
 			);
 			path = Supports;
+			sourceTree = "<group>";
+		};
+		3F7D2C68256DC3D300270714 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3F7D2C69256DC3EB00270714 /* TrackedValue.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -506,6 +517,7 @@
 				3F6480E7255C165000B5BF6A /* MarkerViewItemCell.swift in Sources */,
 				3F3D3835254F7216005F35BC /* AuthPlugin.swift in Sources */,
 				3F2986D8254B1C27003F112F /* UserService.swift in Sources */,
+				3F7D2C6A256DC3EB00270714 /* TrackedValue.swift in Sources */,
 				3FB849EC254F39E300C40CF6 /* MainViewController.swift in Sources */,
 				3F2986B2254AE5F0003F112F /* SignInViewController.swift in Sources */,
 				3F3D384A2552CA80005F35BC /* LocationService.swift in Sources */,
