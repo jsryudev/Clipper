@@ -87,5 +87,10 @@ class NewClipViewController: BaseViewController, View {
         self?.dismiss(animated: true)
       })
       .disposed(by: disposeBag)
+
+    self.doneButton.rx.tap
+      .map { Reactor.Action.create }
+      .bind(to: reactor.action)
+      .disposed(by: disposeBag)
   }
 }

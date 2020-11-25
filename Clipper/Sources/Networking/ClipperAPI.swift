@@ -17,7 +17,7 @@ enum ClipperAPI {
   case fetchNearMarkers(Double, Double)
   case fetchClips(String, Int, Int)
 
-  case createClipOfMarker(String, Double, Double, String, String)
+  case createClipOfMarker(String, String, String)
 }
 
 extension ClipperAPI: SugarTargetType {
@@ -37,7 +37,7 @@ extension ClipperAPI: SugarTargetType {
       return .get("/markers/near")
     case .fetchClips(let id, _, _):
       return .get("markers/\(id)/clips")
-    case .createClipOfMarker(let id, _, _, _, _):
+    case .createClipOfMarker(let id, _, _):
       return .post("markers/\(id)/clips")
     }
   }
@@ -69,10 +69,8 @@ extension ClipperAPI: SugarTargetType {
         "limit": limit
       ]
 
-    case .createClipOfMarker(_, let latitude, let longitude, let title, let content):
+    case .createClipOfMarker(_, let title, let content):
       return JSONEncoding() => [
-        "latitude": latitude,
-        "longitude": longitude,
         "title": title,
         "content": content
       ]
