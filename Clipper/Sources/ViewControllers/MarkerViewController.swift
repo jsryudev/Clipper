@@ -109,7 +109,8 @@ class MarkerViewController: BaseViewController, View {
           switch sectionItem {
           case .add:
             let vc = self.addClipViewControllerFactory(reactor.currentState.marker)
-            self.present(vc, animated: true)
+            let navigationContoller = UINavigationController(rootViewController: vc)
+            self.present(navigationContoller, animated: true)
           case .clip(let clipReactor):
             ()
           case .more:
