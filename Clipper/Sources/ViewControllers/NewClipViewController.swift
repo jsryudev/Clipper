@@ -83,14 +83,34 @@ class NewClipViewController: BaseViewController, View {
 
   func bind(reactor: NewClipViewReactor) {
     self.cancelButton.rx.tap
-      .subscribe(onNext: { [weak self] in
-        self?.dismiss(animated: true)
-      })
+      .map { Reactor.Action.dismiss }
+      .bind(to: reactor.action)
       .disposed(by: disposeBag)
 
     self.doneButton.rx.tap
-      .map { Reactor.Action.create }
+      .map { Reactor.Action.done }
       .bind(to: reactor.action)
+      .disposed(by: disposeBag)
+
+    self.titleTextField.rx.text
+      .distinctUntilChanged()
+      .compactMap { $0 }
+      .map { Reactor.Action.title($0) }
+      .bind(to: reactor.action)
+      .disposed(by: disposeBag)
+
+    self.contentTextView.rx.text
+      .distinctUntilChanged()
+      .compactMap { $0 }
+      .map { Reactor.Action.content($0) }
+      .bind(to: reactor.action)
+      .disposed(by: disposeBag)
+
+    reactor.state.map { $0.isDismissed }
+      .filter { $0 == true }
+      .subscribe(onNext: { [weak self] _ in
+        self?.dismiss(animated: true)
+      })
       .disposed(by: disposeBag)
   }
 }
