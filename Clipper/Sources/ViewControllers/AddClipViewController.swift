@@ -17,6 +17,15 @@ import RxViewController
 class AddClipViewController: BaseViewController, View {
   typealias Reactor = AddClipViewReactor
 
+  fileprivate let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
+  fileprivate let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
+
+  fileprivate let stackView: UIStackView = {
+    let view = UIStackView()
+    view.axis = .vertical
+    return view
+  }()
+
   fileprivate let titleLabel: UILabel = {
     let label = UILabel()
     label.text = "제목"
@@ -35,41 +44,29 @@ class AddClipViewController: BaseViewController, View {
     return label
   }()
 
-  fileprivate let contentTextView: UITextView = {
-    let view = UITextView()
-    return view
-  }()
+  fileprivate let contentTextView = UITextView()
 
   override func viewDidLoad() {
     super.viewDidLoad()
   }
 
   override func addSubViews() {
-    self.view.addSubview(self.titleLabel)
-    self.view.addSubview(self.titleTextField)
-    self.view.addSubview(self.contentLabel)
-    self.view.addSubview(self.contentTextView)
+    self.navigationItem.leftBarButtonItem = self.cancelButton
+    self.navigationItem.rightBarButtonItem = self.doneButton
+
+    self.stackView.addArrangedSubview(self.titleLabel)
+    self.stackView.addArrangedSubview(self.titleTextField)
+    self.stackView.addArrangedSubview(self.contentLabel)
+    self.stackView.addArrangedSubview(self.contentTextView)
+
+    self.view.addSubview(self.stackView)
   }
 
   override func setupConstraints() {
-    self.titleLabel.snp.makeConstraints { make in
-      make.top.equalToSuperview().offset(15)
-      make.left.right.equalToSuperview().offset(15)
-    }
-
-    self.titleTextField.snp.makeConstraints { make in
-      make.top.equalTo(titleLabel.snp.bottom).offset(15)
-      make.left.right.equalToSuperview()
-    }
-
-    self.contentLabel.snp.makeConstraints { make in
-      make.top.equalTo(titleTextField.snp.bottom).offset(15)
-      make.left.right.equalToSuperview()
-    }
-
-    self.contentTextView.snp.makeConstraints { make in
-      make.top.equalTo(contentLabel.snp.bottom).offset(15)
-      make.left.right.bottom.equalToSuperview()
+    self.stackView.snp.makeConstraints { make in
+      make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+      make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
+      make.left.right.equalToSuperview().inset(15)
     }
   }
 
@@ -85,6 +82,10 @@ class AddClipViewController: BaseViewController, View {
   }
 
   func bind(reactor: AddClipViewReactor) {
-
+    self.cancelButton.rx.tap
+      .subscribe(onNext: { [weak self] in
+        self?.dismiss(animated: true)
+      })
+      .disposed(by: disposeBag)
   }
 }
