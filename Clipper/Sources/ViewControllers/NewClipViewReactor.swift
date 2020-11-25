@@ -1,5 +1,5 @@
 //
-//  AddClipViewReactor.swift
+//  NewClipViewReactor.swift
 //  Clipper
 //
 //  Created by JunSang Ryu on 2020/11/10.
@@ -7,7 +7,7 @@
 
 import ReactorKit
 
-final class AddClipViewReactor: Reactor {
+final class NewClipViewReactor: Reactor {
 
   enum Action {
     case create

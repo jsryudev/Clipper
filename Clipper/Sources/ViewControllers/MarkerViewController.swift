@@ -15,7 +15,7 @@ import RxDataSources
 class MarkerViewController: BaseViewController, View {
   typealias Reactor = MarkerViewReactor
 
-  private let addClipViewControllerFactory: (Marker) -> AddClipViewController
+  private let newClipViewControllerFactory: (Marker) -> NewClipViewController
 
   fileprivate struct Reusable {
     static let actionCell = ReusableCell<MarkerViewActionCell>()
@@ -39,10 +39,10 @@ class MarkerViewController: BaseViewController, View {
 
   init(
     reactor: Reactor,
-    addClipViewControllerFactory: @escaping (Marker) -> AddClipViewController
+    newClipViewControllerFactory: @escaping (Marker) -> NewClipViewController
   ) {
     defer { self.reactor = reactor }
-    self.addClipViewControllerFactory = addClipViewControllerFactory
+    self.newClipViewControllerFactory = newClipViewControllerFactory
     self.dataSource = type(of: self).dataSourceFactory()
     super.init()
   }
@@ -108,7 +108,7 @@ class MarkerViewController: BaseViewController, View {
           guard let self = self else { return }
           switch sectionItem {
           case .add:
-            let vc = self.addClipViewControllerFactory(reactor.currentState.marker)
+            let vc = self.newClipViewControllerFactory(reactor.currentState.marker)
             let navigationContoller = UINavigationController(rootViewController: vc)
             self.present(navigationContoller, animated: true)
           case .clip(let clipReactor):

@@ -1,5 +1,5 @@
 //
-//  AddClipViewController.swift
+//  NewClipViewController.swift
 //  Clipper
 //
 //  Created by JunSang Ryu on 2020/11/10.
@@ -14,8 +14,8 @@ import RxSwift
 import RxCocoa
 import RxViewController
 
-class AddClipViewController: BaseViewController, View {
-  typealias Reactor = AddClipViewReactor
+class NewClipViewController: BaseViewController, View {
+  typealias Reactor = NewClipViewReactor
 
   fileprivate let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: nil, action: nil)
   fileprivate let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
@@ -81,7 +81,7 @@ class AddClipViewController: BaseViewController, View {
     fatalError("init(coder:) has not been implemented")
   }
 
-  func bind(reactor: AddClipViewReactor) {
+  func bind(reactor: NewClipViewReactor) {
     self.cancelButton.rx.tap
       .subscribe(onNext: { [weak self] in
         self?.dismiss(animated: true)
