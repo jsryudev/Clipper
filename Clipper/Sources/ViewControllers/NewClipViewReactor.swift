@@ -50,6 +50,8 @@ final class NewClipViewReactor: Reactor {
         )
       }
 
+      // id 없는 경우 처리
+
       return create
         .asObservable()
         .map { .setDismissed($0) }
