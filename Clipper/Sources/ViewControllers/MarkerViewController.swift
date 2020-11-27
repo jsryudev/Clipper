@@ -112,9 +112,11 @@ class MarkerViewController: BaseViewController, View {
             let navigationContoller = UINavigationController(rootViewController: vc)
             self.present(navigationContoller, animated: true)
           case .clip(let clipReactor):
-            ()
+            // Present Clip Detail
+            return
           case .more:
-            ()
+            // Present Clip List
+            return
           default: return
           }
         })
