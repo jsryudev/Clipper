@@ -30,9 +30,15 @@ final class NewClipViewReactor: Reactor {
   }
 
   let initialState: State
+  let clipService: ClipServiceType
   let markerService: MarkerServiceType
 
-  init(marker: Marker, markerService: MarkerServiceType) {
+  init(
+    marker: Marker,
+    clipService: ClipServiceType,
+    markerService: MarkerServiceType
+  ) {
+    self.clipService = clipService
     self.markerService = markerService
     self.initialState = State(marker: marker, title: "", content: "", isDismissed: false)
   }
@@ -40,19 +46,24 @@ final class NewClipViewReactor: Reactor {
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .done:
-      let create: Single<Bool>
+      let created: Single<Bool>
 
       if let id = currentState.marker.id {
-       create = self.markerService.createClip(
+        created = self.markerService.createClip(
           marker: id,
+          title: currentState.title,
+          content: currentState.content
+        )
+      } else {
+        created = self.clipService.createClip(
+          latitude: currentState.marker.location.latitude,
+          longitude: currentState.marker.location.longitude,
           title: currentState.title,
           content: currentState.content
         )
       }
 
-      // id 없는 경우 처리
-
-      return create
+      return created
         .asObservable()
         .map { .setDismissed($0) }
 

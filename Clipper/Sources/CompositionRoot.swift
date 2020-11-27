@@ -58,7 +58,11 @@ final class CompositionRoot {
         return MarkerViewController(
           reactor: reactor,
           newClipViewControllerFactory: { marker in
-            let reactor = NewClipViewReactor(marker: marker, markerService: markerService)
+            let reactor = NewClipViewReactor(
+              marker: marker,
+              clipService: clipService,
+              markerService: markerService
+            )
             return NewClipViewController(reactor: reactor)
           }
         )
