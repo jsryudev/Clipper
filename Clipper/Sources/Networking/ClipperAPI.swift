@@ -36,9 +36,9 @@ extension ClipperAPI: SugarTargetType {
     case .fetchNearMarkers:
       return .get("/markers/near")
     case .fetchClips(let id, _, _):
-      return .get("markers/\(id)/clips")
+      return .get("/markers/\(id)/clips")
     case .createClipOfMarker(let id, _, _):
-      return .post("markers/\(id)/clips")
+      return .post("/markers/\(id)/clips")
     }
   }
 
