@@ -13,6 +13,7 @@ import RxSwift
 
 protocol ClipServiceType {
   func fetchClips(marker id: String, page: Int, limit: Int) -> Single<Clip>
+  func createClip(latitude: Double, longitude: Double, title: String, content: String) -> Single<Bool>
 }
 
 final class ClipService: ClipServiceType {
@@ -26,5 +27,12 @@ final class ClipService: ClipServiceType {
     return self.provider.rx
       .request(.fetchClips(id, page, limit))
       .map(Clip.self)
+  }
+
+  func createClip(latitude: Double, longitude: Double, title: String, content: String) -> Single<Bool> {
+    return self.provider.rx
+      .request(.createClip(latitude, longitude, title, content))
+      .map { _ in true }
+      .catchErrorJustReturn(false)
   }
 }
