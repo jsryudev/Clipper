@@ -50,6 +50,9 @@
 		3F3D388E255428C3005F35BC /* ClipService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3D388D255428C3005F35BC /* ClipService.swift */; };
 		3F43822B25720F52008F9805 /* ClipListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43822A25720F52008F9805 /* ClipListViewController.swift */; };
 		3F43822D257210C7008F9805 /* ClipListViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43822C257210C7008F9805 /* ClipListViewReactor.swift */; };
+		3F43822F257225B3008F9805 /* ClipListViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43822E257225B3008F9805 /* ClipListViewSection.swift */; };
+		3F438231257226B8008F9805 /* ClipCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F438230257226B8008F9805 /* ClipCell.swift */; };
+		3F438233257226DE008F9805 /* ClipCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F438232257226DE008F9805 /* ClipCellReactor.swift */; };
 		3F6480C4255A40EF00B5BF6A /* NewClipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480C3255A40EF00B5BF6A /* NewClipViewController.swift */; };
 		3F6480C6255A40FD00B5BF6A /* NewClipViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480C5255A40FD00B5BF6A /* NewClipViewReactor.swift */; };
 		3F6480CA255BA4A300B5BF6A /* MarkerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480C9255BA4A300B5BF6A /* MarkerViewController.swift */; };
@@ -126,6 +129,9 @@
 		3F3D388D255428C3005F35BC /* ClipService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipService.swift; sourceTree = "<group>"; };
 		3F43822A25720F52008F9805 /* ClipListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipListViewController.swift; sourceTree = "<group>"; };
 		3F43822C257210C7008F9805 /* ClipListViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipListViewReactor.swift; sourceTree = "<group>"; };
+		3F43822E257225B3008F9805 /* ClipListViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipListViewSection.swift; sourceTree = "<group>"; };
+		3F438230257226B8008F9805 /* ClipCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipCell.swift; sourceTree = "<group>"; };
+		3F438232257226DE008F9805 /* ClipCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipCellReactor.swift; sourceTree = "<group>"; };
 		3F6480C3255A40EF00B5BF6A /* NewClipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClipViewController.swift; sourceTree = "<group>"; };
 		3F6480C5255A40FD00B5BF6A /* NewClipViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClipViewReactor.swift; sourceTree = "<group>"; };
 		3F6480C9255BA4A300B5BF6A /* MarkerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerViewController.swift; sourceTree = "<group>"; };
@@ -303,6 +309,8 @@
 				3F6480E2255BCD0D00B5BF6A /* MarkerViewLoactionCellReactor.swift */,
 				3F6480E6255C165000B5BF6A /* MarkerViewItemCell.swift */,
 				3F6480E8255C167000B5BF6A /* MarkerViewItemCellReactor.swift */,
+				3F438230257226B8008F9805 /* ClipCell.swift */,
+				3F438232257226DE008F9805 /* ClipCellReactor.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -311,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				3F6480D8255BAAA100B5BF6A /* MarkerViewSection.swift */,
+				3F43822E257225B3008F9805 /* ClipListViewSection.swift */,
 			);
 			path = Sections;
 			sourceTree = "<group>";
@@ -537,10 +546,13 @@
 				3F2986D4254B13CC003F112F /* ClipperAPI.swift in Sources */,
 				3F6480CC255BA59300B5BF6A /* MarkerViewReactor.swift in Sources */,
 				3F6480E3255BCD0D00B5BF6A /* MarkerViewLoactionCellReactor.swift in Sources */,
+				3F438231257226B8008F9805 /* ClipCell.swift in Sources */,
 				3F3D383C254F77F5005F35BC /* GreetingViewReactor.swift in Sources */,
+				3F43822F257225B3008F9805 /* ClipListViewSection.swift in Sources */,
 				3F3D388C2554261D005F35BC /* Clip.swift in Sources */,
 				3F7D2C622565655F00270714 /* Navigator.swift in Sources */,
 				3F6480CA255BA4A300B5BF6A /* MarkerViewController.swift in Sources */,
+				3F438233257226DE008F9805 /* ClipCellReactor.swift in Sources */,
 				3F6480DD255BAE6900B5BF6A /* BaseTableViewCell.swift in Sources */,
 				3F3D385625530467005F35BC /* LocationAuthorizationView.swift in Sources */,
 				3FB849FA254F48F700C40CF6 /* SignUpViewController.swift in Sources */,
