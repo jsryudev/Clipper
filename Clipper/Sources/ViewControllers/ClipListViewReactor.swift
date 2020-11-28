@@ -24,13 +24,13 @@ final class ClipListViewReactor: Reactor {
   }
 
   let initialState: State
-  let markerService: MarkerServiceType
+  let clipService: ClipServiceType
 
   init(
     marker id: String,
-    markerService: MarkerServiceType
+    clipService: ClipServiceType
   ) {
-    self.markerService = markerService
+    self.clipService = clipService
     self.initialState = State(markerID: id)
   }
 }
