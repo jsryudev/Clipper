@@ -64,6 +64,14 @@ final class CompositionRoot {
               markerService: markerService
             )
             return NewClipViewController(reactor: reactor)
+          },
+          clipListViewContollerFactory: { markerID in
+            let reactor = ClipListViewReactor(
+              marker: markerID,
+              clipService: clipService,
+              clipCellReactorFactory: ClipCellReactor.init
+            )
+            return ClipListViewController(reactor: reactor)
           }
         )
       })

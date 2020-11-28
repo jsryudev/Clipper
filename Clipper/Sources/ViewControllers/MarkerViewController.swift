@@ -16,6 +16,7 @@ class MarkerViewController: BaseViewController, View {
   typealias Reactor = MarkerViewReactor
 
   private let newClipViewControllerFactory: (Marker) -> NewClipViewController
+  private let clipListViewContollerFactory: (String) -> ClipListViewController
 
   fileprivate struct Reusable {
     static let actionCell = ReusableCell<MarkerViewActionCell>()
@@ -39,10 +40,12 @@ class MarkerViewController: BaseViewController, View {
 
   init(
     reactor: Reactor,
-    newClipViewControllerFactory: @escaping (Marker) -> NewClipViewController
+    newClipViewControllerFactory: @escaping (Marker) -> NewClipViewController,
+    clipListViewContollerFactory: @escaping (String) -> ClipListViewController
   ) {
     defer { self.reactor = reactor }
     self.newClipViewControllerFactory = newClipViewControllerFactory
+    self.clipListViewContollerFactory = clipListViewContollerFactory
     self.dataSource = type(of: self).dataSourceFactory()
     super.init()
   }
@@ -103,23 +106,24 @@ class MarkerViewController: BaseViewController, View {
       .disposed(by: disposeBag)
 
     self.tableView.rx.itemSelected(dataSource: self.dataSource)
-      .subscribe(
-        onNext: { [weak self] sectionItem in
-          guard let self = self else { return }
-          switch sectionItem {
-          case .add:
-            let vc = self.newClipViewControllerFactory(reactor.currentState.marker)
-            let navigationContoller = UINavigationController(rootViewController: vc)
-            self.present(navigationContoller, animated: true)
-          case .clip(let clipReactor):
-            // Present Clip Detail
-            return
-          case .more:
-            // Present Clip List
-            return
-          default: return
-          }
-        })
+      .subscribe(onNext: { [weak self] sectionItem in
+        guard let self = self else { return }
+        let destination: UIViewController
+        switch sectionItem {
+        case .add:
+          destination = self.newClipViewControllerFactory(reactor.currentState.marker)
+        case .clip:
+          // Present Clip Detail
+          return
+        case .more:
+          guard let id = reactor.currentState.marker.id else { return }
+          destination = self.clipListViewContollerFactory(id)
+        default: return
+        }
+
+        let navigationContoller = UINavigationController(rootViewController: destination)
+        self.present(navigationContoller, animated: true)
+      })
       .disposed(by: disposeBag)
 
     self.tableView.rx.itemSelected
