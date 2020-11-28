@@ -12,7 +12,7 @@ import RxMoya
 import RxSwift
 
 protocol ClipServiceType {
-  func fetchClips(marker id: String, page: Int, limit: Int) -> Single<Clip>
+  func fetchClips(marker id: String, page: Int, limit: Int) -> Single<[Clip]>
   func createClip(latitude: Double, longitude: Double, title: String, content: String) -> Single<Bool>
 }
 
@@ -23,10 +23,10 @@ final class ClipService: ClipServiceType {
     self.provider = provider
   }
 
-  func fetchClips(marker id: String, page: Int, limit: Int) -> Single<Clip> {
+  func fetchClips(marker id: String, page: Int, limit: Int) -> Single<[Clip]> {
     return self.provider.rx
       .request(.fetchClips(id, page, limit))
-      .map(Clip.self)
+      .map([Clip].self)
   }
 
   func createClip(latitude: Double, longitude: Double, title: String, content: String) -> Single<Bool> {
