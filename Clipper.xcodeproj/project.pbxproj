@@ -53,6 +53,8 @@
 		3F43822F257225B3008F9805 /* ClipListViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F43822E257225B3008F9805 /* ClipListViewSection.swift */; };
 		3F438231257226B8008F9805 /* ClipCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F438230257226B8008F9805 /* ClipCell.swift */; };
 		3F438233257226DE008F9805 /* ClipCellReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F438232257226DE008F9805 /* ClipCellReactor.swift */; };
+		3F4382352573BB4E008F9805 /* ClipDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4382342573BB4E008F9805 /* ClipDetailViewController.swift */; };
+		3F4382372573BB60008F9805 /* ClipDetailViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F4382362573BB60008F9805 /* ClipDetailViewReactor.swift */; };
 		3F6480C4255A40EF00B5BF6A /* NewClipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480C3255A40EF00B5BF6A /* NewClipViewController.swift */; };
 		3F6480C6255A40FD00B5BF6A /* NewClipViewReactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480C5255A40FD00B5BF6A /* NewClipViewReactor.swift */; };
 		3F6480CA255BA4A300B5BF6A /* MarkerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6480C9255BA4A300B5BF6A /* MarkerViewController.swift */; };
@@ -132,6 +134,8 @@
 		3F43822E257225B3008F9805 /* ClipListViewSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipListViewSection.swift; sourceTree = "<group>"; };
 		3F438230257226B8008F9805 /* ClipCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipCell.swift; sourceTree = "<group>"; };
 		3F438232257226DE008F9805 /* ClipCellReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipCellReactor.swift; sourceTree = "<group>"; };
+		3F4382342573BB4E008F9805 /* ClipDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipDetailViewController.swift; sourceTree = "<group>"; };
+		3F4382362573BB60008F9805 /* ClipDetailViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipDetailViewReactor.swift; sourceTree = "<group>"; };
 		3F6480C3255A40EF00B5BF6A /* NewClipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClipViewController.swift; sourceTree = "<group>"; };
 		3F6480C5255A40FD00B5BF6A /* NewClipViewReactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewClipViewReactor.swift; sourceTree = "<group>"; };
 		3F6480C9255BA4A300B5BF6A /* MarkerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkerViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +220,8 @@
 				3F6480C5255A40FD00B5BF6A /* NewClipViewReactor.swift */,
 				3F43822A25720F52008F9805 /* ClipListViewController.swift */,
 				3F43822C257210C7008F9805 /* ClipListViewReactor.swift */,
+				3F4382342573BB4E008F9805 /* ClipDetailViewController.swift */,
+				3F4382362573BB60008F9805 /* ClipDetailViewReactor.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -545,6 +551,7 @@
 				3F2986E7254B3C58003F112F /* AuthService.swift in Sources */,
 				3F2986D4254B13CC003F112F /* ClipperAPI.swift in Sources */,
 				3F6480CC255BA59300B5BF6A /* MarkerViewReactor.swift in Sources */,
+				3F4382352573BB4E008F9805 /* ClipDetailViewController.swift in Sources */,
 				3F6480E3255BCD0D00B5BF6A /* MarkerViewLoactionCellReactor.swift in Sources */,
 				3F438231257226B8008F9805 /* ClipCell.swift in Sources */,
 				3F3D383C254F77F5005F35BC /* GreetingViewReactor.swift in Sources */,
@@ -573,6 +580,7 @@
 				3F2986CC254B0849003F112F /* SignInViewReactor.swift in Sources */,
 				3F3D3839254F77E9005F35BC /* GreetingViewController.swift in Sources */,
 				3F6480E5255C0F2400B5BF6A /* Marker.swift in Sources */,
+				3F4382372573BB60008F9805 /* ClipDetailViewReactor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
