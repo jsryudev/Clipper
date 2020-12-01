@@ -5,9 +5,8 @@
 //  Created by JunSang Ryu on 2020/11/10.
 //
 
-import Foundation
-
 import UIKit
+
 import SnapKit
 import ReactorKit
 import RxSwift

@@ -5,8 +5,6 @@
 //  Created by JunSang Ryu on 2020/11/28.
 //
 
-import Foundation
-
 import ReactorKit
 
 final class ClipListViewReactor: Reactor {

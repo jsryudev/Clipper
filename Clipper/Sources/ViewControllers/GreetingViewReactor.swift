@@ -5,8 +5,9 @@
 //  Created by JunSang Ryu on 2020/11/02.
 //
 
-import ReactorKit
 import CoreLocation
+
+import ReactorKit
 
 final class GreetingViewReactor: Reactor {
   enum Action {
