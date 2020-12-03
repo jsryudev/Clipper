@@ -20,6 +20,21 @@ class MainViewController: BaseViewController, View {
   
   private let greetingViewControllerFactory: (User) -> GreetingViewController
   private let markerViewControllerFactory: (Marker) -> MarkerViewController
+
+  fileprivate var currentMarkers: [NMFMarker]? {
+    didSet {
+      oldValue?.forEach { marker in
+        marker.mapView = nil
+      }
+    }
+  }
+
+  fileprivate var selectMarker: NMFMarker? {
+    didSet {
+      oldValue?.mapView = nil
+    }
+  }
+
   
   fileprivate let mapView: NMFMapView = {
     let view = NMFMapView()
@@ -142,8 +157,8 @@ class MainViewController: BaseViewController, View {
     
     reactor.state.map { $0.markers }
       .distinctUntilChanged()
-      .map { markers in
-        markers.map { marker -> NMFMarker in
+      .map { [weak self] markers -> [NMFMarker] in
+        let mapMarkers = markers.map { marker -> NMFMarker in
           let mapMarker = NMFMarker(
             position: .init(
               lat: marker.location.latitude,
@@ -151,6 +166,7 @@ class MainViewController: BaseViewController, View {
             )
           )
           mapMarker.touchHandler = { [weak self] _ -> Bool in
+            self?.selectMarker = nil
             let vc = self?.markerViewControllerFactory(marker)
             self?.floatingPanel.set(contentViewController: vc)
             self?.floatingPanel.track(scrollView: vc!.tableView)
@@ -159,6 +175,8 @@ class MainViewController: BaseViewController, View {
           }
           return mapMarker
         }
+        self?.currentMarkers = mapMarkers
+        return mapMarkers
       }
       .subscribeOn(MainScheduler.instance)
       .subscribe(onNext: { [weak self] markers in
@@ -170,8 +188,9 @@ class MainViewController: BaseViewController, View {
   }
 }
 
-extension MainViewController: NMFMapViewCameraDelegate {
+extension MainViewController: NMFMapViewTouchDelegate, NMFMapViewCameraDelegate {
   func initalizeNMapsMap() {
+    self.mapView.touchDelegate = self
     self.mapView.addCameraDelegate(delegate: self)
   }
   
@@ -186,5 +205,24 @@ extension MainViewController: NMFMapViewCameraDelegate {
         mapView.longitude
       )
     )
+  }
+
+  func mapView(
+    _ mapView: NMFMapView,
+    didTapMap latlng: NMGLatLng,
+    point: CGPoint
+  ) {
+    let mapMarker = NMFMarker(position: latlng)
+    let location = Location(coordinates: [latlng.lng, latlng.lat])
+    let marker = Marker(id: nil, location: location, clips: [])
+
+    mapMarker.mapView = mapView
+    mapMarker.iconTintColor = .red
+    self.selectMarker = mapMarker
+
+    let vc = self.markerViewControllerFactory(marker)
+    self.floatingPanel.set(contentViewController: vc)
+    self.floatingPanel.track(scrollView: vc.tableView)
+    self.floatingPanel.move(to: .half, animated: true)
   }
 }
