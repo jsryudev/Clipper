@@ -15,19 +15,19 @@ import FloatingPanel
 
 class MarkerViewController: BaseViewController, View {
   typealias Reactor = MarkerViewReactor
-
+  
   private let newClipViewControllerFactory: (Marker) -> NewClipViewController
   private let clipDetailViewControllerFactory: (Clip) -> ClipDetailViewController
   private let clipListViewContollerFactory: (String) -> ClipListViewController
-
+  
   fileprivate struct Reusable {
     static let actionCell = ReusableCell<MarkerViewActionCell>()
     static let locationCell = ReusableCell<MarkerViewLocationCell>()
     static let itemCell = ReusableCell<MarkerViewItemCell>()
   }
-
+  
   fileprivate let dataSource: RxTableViewSectionedReloadDataSource<MarkerViewSection>
-
+  
   let tableView: UITableView = {
     let view = UITableView(frame: .zero, style: .grouped)
     view.backgroundColor = .clear
@@ -37,9 +37,9 @@ class MarkerViewController: BaseViewController, View {
     view.register(Reusable.itemCell)
     return view
   }()
-
+  
   // MARK: Initialize
-
+  
   init(
     reactor: Reactor,
     newClipViewControllerFactory: @escaping (Marker) -> NewClipViewController,
@@ -53,11 +53,11 @@ class MarkerViewController: BaseViewController, View {
     self.dataSource = type(of: self).dataSourceFactory()
     super.init()
   }
-
+  
   required convenience init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-
+  
   private static func dataSourceFactory() -> RxTableViewSectionedReloadDataSource<MarkerViewSection> {
     return .init(
       configureCell: { dataSource, tableView, indexPath, sectionItem in
@@ -87,28 +87,28 @@ class MarkerViewController: BaseViewController, View {
       }
     )
   }
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.view.backgroundColor = .clear
   }
-
+  
   override func addSubViews() {
     self.view.addSubview(tableView)
   }
-
+  
   override func setupConstraints() {
     self.tableView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
   }
-
+  
   func bind(reactor: MarkerViewReactor) {
     self.rx.viewDidLoad
       .map { Reactor.Action.configure }
       .bind(to: reactor.action)
       .disposed(by: disposeBag)
-
+    
     self.tableView.rx.itemSelected(dataSource: self.dataSource)
       .subscribe(onNext: { [weak self] sectionItem in
         guard let self = self else { return }
@@ -123,18 +123,18 @@ class MarkerViewController: BaseViewController, View {
           destination = self.clipListViewContollerFactory(id)
         default: return
         }
-
+        
         let navigationContoller = UINavigationController(rootViewController: destination)
         self.present(navigationContoller, animated: true)
       })
       .disposed(by: disposeBag)
-
+    
     self.tableView.rx.itemSelected
       .subscribe(onNext: { [weak tableView] indexPath in
         tableView?.deselectRow(at: indexPath, animated: false)
       })
       .disposed(by: self.disposeBag)
-
+    
     reactor.state.map { $0.sections }
       .bind(to: self.tableView.rx.items(dataSource: self.dataSource))
       .disposed(by: self.disposeBag)

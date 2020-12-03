@@ -11,12 +11,12 @@ import ReactorKit
 
 final class ClipCell: BaseTableViewCell, View {
   typealias Reactor = ClipCellReactor
-
+  
   override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
     super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
     self.backgroundColor = .clear
   }
-
+  
   func bind(reactor: ClipCellReactor) {
     self.textLabel?.text = reactor.currentState.title
     self.detailTextLabel?.text  = reactor.currentState.content

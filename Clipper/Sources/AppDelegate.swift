@@ -11,11 +11,11 @@ import GoogleSignIn
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+  
   var dependency: AppDependency!
-
+  
   var window: UIWindow?
-
+  
   func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window = self.dependency.window
     return true
   }
-
+  
   func application(
     _ app: UIApplication,
     open url: URL,

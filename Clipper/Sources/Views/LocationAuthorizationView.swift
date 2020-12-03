@@ -12,7 +12,7 @@ import RxCocoa
 
 class LocationAuthorizationView: UIView {
   fileprivate var type: AuthorizationType = .notDetermined
-
+  
   struct Text {
     static let title = "Clipper"
     static let authorized = "이제 Clipper를 이용할 수 있습니다."
@@ -21,7 +21,7 @@ class LocationAuthorizationView: UIView {
     static let deniedAction = "설정으로 이동"
     static let notDeterminedAction = "권한 부여"
   }
-
+  
   fileprivate let titleLabel: UILabel = {
     let label = UILabel()
     label.text = Text.title
@@ -29,7 +29,7 @@ class LocationAuthorizationView: UIView {
     label.font = .systemFont(ofSize: 30, weight: .bold)
     return label
   }()
-
+  
   fileprivate let descriptionLabel: UILabel = {
     let label = UILabel()
     label.text = Text.notDetermined
@@ -37,13 +37,13 @@ class LocationAuthorizationView: UIView {
     label.textAlignment = .center
     return label
   }()
-
+  
   fileprivate let actionButton: UIButton = {
     let button = UIButton()
     button.setTitle(Text.notDeterminedAction, for: .normal)
     return button
   }()
-
+  
   override init(frame: CGRect) {
     super.init(frame: frame)
     self.addSubview(self.titleLabel)
@@ -51,30 +51,30 @@ class LocationAuthorizationView: UIView {
     self.addSubview(self.actionButton)
     self.setupConstraints()
   }
-
+  
   required init?(coder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-
+  
   func setupConstraints() {
     titleLabel.snp.makeConstraints { make in
       make.top.equalToSuperview().offset(50)
       make.centerX.equalToSuperview()
     }
-
+    
     descriptionLabel.snp.makeConstraints { make in
       make.top.equalTo(titleLabel.snp.bottom).offset(15)
       make.leading.equalToSuperview()
       make.trailing.equalToSuperview()
     }
-
+    
     actionButton.snp.makeConstraints { make in
       make.top.equalTo(descriptionLabel.snp.bottom).offset(15)
       make.leading.equalToSuperview()
       make.trailing.equalToSuperview()
     }
   }
-
+  
   func set(authorization: AuthorizationType) {
     self.type = authorization
     switch authorization {

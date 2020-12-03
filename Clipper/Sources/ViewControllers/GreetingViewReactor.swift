@@ -14,19 +14,19 @@ final class GreetingViewReactor: Reactor {
     case checkCurrentAuthorization
     case authorizationAction(AuthorizationType)
   }
-
+  
   enum Mutation {
     case setAuthorization(AuthorizationType)
   }
-
+  
   struct State {
     let user: User
     var authorization: AuthorizationType?
   }
-
+  
   let initialState: State
   let locationService: LocationServiceType
-
+  
   init(
     user: User,
     locationService: LocationServiceType
@@ -34,14 +34,14 @@ final class GreetingViewReactor: Reactor {
     self.initialState = State(user: user)
     self.locationService = locationService
   }
-
+  
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .checkCurrentAuthorization:
       return self.locationService
         .currentAuthorization()
         .map { Mutation.setAuthorization($0) }
-
+      
     case .authorizationAction(let type):
       if case .notDetermined = type {
         self.locationService.requestAuthorization()
@@ -53,7 +53,7 @@ final class GreetingViewReactor: Reactor {
       }
     }
   }
-
+  
   func reduce(state: State, mutation: Mutation) -> State {
     var newState = state
     switch mutation {

@@ -9,9 +9,9 @@ import ReactorKit
 
 final class MarkerViewLocationCellReactor: Reactor {
   typealias Action = NoAction
-
+  
   let initialState: String
-
+  
   init(title: String) {
     self.initialState = title
   }

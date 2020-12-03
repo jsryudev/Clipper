@@ -9,9 +9,9 @@ import ReactorKit
 
 class ClipDetailViewReactor: Reactor {
   typealias Action = NoAction
-
+  
   let initialState: Clip
-
+  
   init(clip: Clip) {
     self.initialState = clip
   }

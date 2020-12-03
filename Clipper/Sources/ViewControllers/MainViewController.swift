@@ -17,17 +17,17 @@ import SnapKit
 
 class MainViewController: BaseViewController, View {
   typealias Reactor = MainViewReactor
-
+  
   private let greetingViewControllerFactory: (User) -> GreetingViewController
   private let markerViewControllerFactory: (Marker) -> MarkerViewController
-
+  
   fileprivate let mapView: NMFMapView = {
     let view = NMFMapView()
     view.positionMode = .compass
     view.logoAlign = .leftTop
     return view
   }()
-
+  
   fileprivate let mapAccessoriesView: MapAccessoriesView = {
     let view = MapAccessoriesView()
     view.backgroundColor = UIColor(
@@ -40,7 +40,7 @@ class MainViewController: BaseViewController, View {
     )
     return view
   }()
-
+  
   fileprivate let floatingPanel: FloatingPanelController = {
     let controller = FloatingPanelController()
     let appearance = SurfaceAppearance()
@@ -62,33 +62,33 @@ class MainViewController: BaseViewController, View {
     controller.surfaceView.appearance = appearance
     return controller
   }()
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.floatingPanel.move(to: .tip, animated: false)
     self.initalizeNMapsMap()
   }
-
+  
   override func addSubViews() {
     self.view.addSubview(mapView)
     self.view.addSubview(mapAccessoriesView)
     floatingPanel.addPanel(toParent: self)
   }
-
+  
   override func setupConstraints() {
     self.mapView.snp.makeConstraints { make in
       make.edges.equalToSuperview()
     }
-
+    
     self.mapAccessoriesView.snp.makeConstraints { make in
       make.width.height.equalTo(40)
       make.top.equalToSuperview().offset(40)
       make.trailing.equalToSuperview().offset(-15)
     }
   }
-
+  
   // MARK: Initialize
-
+  
   init(
     reactor: Reactor,
     greetingViewControllerFactory: @escaping (User) -> GreetingViewController,
@@ -99,24 +99,24 @@ class MainViewController: BaseViewController, View {
     self.markerViewControllerFactory = markerViewControllerFactory
     super.init()
   }
-
+  
   required convenience init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-
+  
   func bind(reactor: MainViewReactor) {
     self.rx.viewDidLoad
       .map { Reactor.Action.fetchMe }
       .bind(to: reactor.action)
       .disposed(by: disposeBag)
-
+    
     self.mapAccessoriesView.rx
       .currentLocationButtonTap
       .subscribe(onNext: { [weak self] in
         self?.setCurrentPosition()
       })
       .disposed(by: disposeBag)
-
+    
     reactor.state.compactMap { $0.hasAuthorized }
       .distinctUntilChanged()
       .subscribe(onNext: { [weak self] hasAuthorized in
@@ -127,7 +127,7 @@ class MainViewController: BaseViewController, View {
         }
       })
       .disposed(by: disposeBag)
-
+    
     reactor.state.map { $0.user }
       .distinctUntilChanged()
       .subscribe(onNext: { [weak self] user in
@@ -139,7 +139,7 @@ class MainViewController: BaseViewController, View {
         }
       })
       .disposed(by: disposeBag)
-
+    
     reactor.state.map { $0.markers }
       .distinctUntilChanged()
       .map { markers in
@@ -174,11 +174,11 @@ extension MainViewController: NMFMapViewCameraDelegate {
   func initalizeNMapsMap() {
     self.mapView.addCameraDelegate(delegate: self)
   }
-
+  
   func setCurrentPosition() {
     self.mapView.positionMode = .compass
   }
-
+  
   func mapViewCameraIdle(_ mapView: NMFMapView) {
     reactor?.action.onNext(
       .fetchNearbyClips(

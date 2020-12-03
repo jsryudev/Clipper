@@ -9,9 +9,9 @@ import ReactorKit
 
 final class MarkerViewItemCellReactor: Reactor {
   typealias Action = NoAction
-
+  
   let initialState: Clip
-
+  
   init(clip: Clip) {
     self.initialState = clip
   }

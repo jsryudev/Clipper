@@ -14,32 +14,32 @@ final class SignUpViewReactor: Reactor {
     case signUp
     case typeName(String)
   }
-
+  
   enum Mutation {
     case setSuccess(Bool)
     case setName(String)
   }
-
+  
   struct State {
     let token: String
     var isSuccess: TrackedValue<Bool>?
     var name: String?
   }
-
+  
   let initialState: State
   let userService: UserServiceType
   let authService: AuthServiceType
-
+  
   init(
+    token: String,
     userService: UserServiceType,
-    authService: AuthServiceType,
-    token: String
+    authService: AuthServiceType
   ) {
-    self.initialState = State(token: token)
     self.userService = userService
     self.authService = authService
+    self.initialState = State(token: token)
   }
-
+  
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .typeName(let name):
@@ -63,7 +63,7 @@ final class SignUpViewReactor: Reactor {
       .map { .setSuccess($0) }
     }
   }
-
+  
   func reduce(state: State, mutation: Mutation) -> State {
     var newState = state
     switch mutation {

@@ -10,9 +10,9 @@ import UIKit
 import Hero
 
 final class BaseNavigationController: UINavigationController {
-
+  
   fileprivate let heroTransition = HeroTransition()
-
+  
   override func viewDidLoad() {
     self.delegate = self
     self.hero.navigationAnimationType = .selectBy(
@@ -30,7 +30,7 @@ extension BaseNavigationController: UINavigationControllerDelegate {
   ) -> UIViewControllerInteractiveTransitioning? {
     return heroTransition.navigationController(navigationController, interactionControllerFor: animationController)
   }
-
+  
   func navigationController(
     _ navigationController: UINavigationController,
     animationControllerFor operation: UINavigationController.Operation,

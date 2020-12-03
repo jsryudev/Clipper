@@ -16,10 +16,10 @@ import RxViewController
 
 class SignInViewController: BaseViewController, View {
   typealias Reactor = SignInViewReactor
-
+  
   private let presentMainScreen: () -> Void
   private let signUpViewControllerFactory: (String) -> SignUpViewController
-
+  
   fileprivate let nameLabel: UILabel = {
     let label = UILabel()
     label.text = "Clipper"
@@ -27,22 +27,22 @@ class SignInViewController: BaseViewController, View {
     label.font = .systemFont(ofSize: 30, weight: .bold)
     return label
   }()
-
+  
   fileprivate let googleAccountButton: GIDSignInButton = {
     let button = GIDSignInButton()
     button.style = .wide
     return button
   }()
-
+  
   override func viewDidLoad() {
     super.viewDidLoad()
   }
-
+  
   override func addSubViews() {
     self.view.addSubview(nameLabel)
     self.view.addSubview(googleAccountButton)
   }
-
+  
   override func setupConstraints() {
     self.nameLabel.snp.makeConstraints { make in
       make.centerX.equalToSuperview()
@@ -50,15 +50,15 @@ class SignInViewController: BaseViewController, View {
       make.leading.equalToSuperview().offset(15)
       make.trailing.equalToSuperview().offset(-15)
     }
-
+    
     googleAccountButton.snp.makeConstraints { make in
       make.centerX.equalToSuperview()
       make.top.equalTo(nameLabel.snp.bottom).offset(30)
     }
   }
-
+  
   // MARK: Initialize
-
+  
   init(
     reactor: Reactor,
     presentMainScreen: @escaping () -> Void,
@@ -69,18 +69,18 @@ class SignInViewController: BaseViewController, View {
     self.signUpViewControllerFactory = signUpViewControllerFactory
     super.init()
   }
-
+  
   required convenience init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-
+  
   func bind(reactor: SignInViewReactor) {
     self.rx.viewDidLoad
       .subscribe(onNext: { [weak self] in
         self?.initalizeGoogleSignIn()
       })
       .disposed(by: disposeBag)
-
+    
     reactor.state.compactMap { $0.isSuccess }
       .distinctUntilChanged()
       .subscribe(onNext: { [weak self] isSuccess in
@@ -105,7 +105,7 @@ extension SignInViewController: GIDSignInDelegate {
     GIDSignIn.sharedInstance().delegate = self
     GIDSignIn.sharedInstance().presentingViewController = self
   }
-
+  
   func sign(_ signIn: GIDSignIn?, didSignInFor user: GIDGoogleUser?, withError error: Error?) {
     guard let authentication = user?.authentication else {
       return

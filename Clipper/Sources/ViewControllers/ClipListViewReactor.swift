@@ -8,24 +8,24 @@
 import ReactorKit
 
 final class ClipListViewReactor: Reactor {
-
+  
   enum Action {
     case refresh
   }
-
+  
   enum Mutation {
     case setClips([Clip])
   }
-
+  
   struct State {
     let markerID: String
     var sections: [ClipListViewSection]
   }
-
+  
   let initialState: State
   let clipService: ClipServiceType
   let clipCellReactorFactory: (Clip) -> ClipCellReactor
-
+  
   init(
     marker id: String,
     clipService: ClipServiceType,
@@ -35,7 +35,7 @@ final class ClipListViewReactor: Reactor {
     self.clipCellReactorFactory = clipCellReactorFactory
     self.initialState = State(markerID: id, sections: [])
   }
-
+  
   func mutate(action: Action) -> Observable<Mutation> {
     switch action {
     case .refresh:
@@ -49,7 +49,7 @@ final class ClipListViewReactor: Reactor {
         .map { .setClips($0) }
     }
   }
-
+  
   func reduce(state: State, mutation: Mutation) -> State {
     var newState = state
     switch mutation {
@@ -59,7 +59,7 @@ final class ClipListViewReactor: Reactor {
     }
     return newState
   }
-
+  
   private func clipSectionItems(with clips: [Clip]) -> [ClipListViewSectionItem] {
     return clips
       .map(self.clipCellReactorFactory)
