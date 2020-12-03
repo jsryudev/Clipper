@@ -81,14 +81,13 @@ class SplashViewController: BaseViewController, View {
 
     reactor.state.compactMap { $0.isAuthenticated }
       .distinctUntilChanged()
-      .subscribe(
-        onNext: { [weak self] isAuthenticated in
-          if isAuthenticated {
-            self?.presentMainScreen()
-          } else {
-            self?.presentLoginScreen()
-          }
-        })
+      .subscribe(onNext: { [weak self] isAuthenticated in
+        if isAuthenticated {
+          self?.presentMainScreen()
+        } else {
+          self?.presentLoginScreen()
+        }
+      })
       .disposed(by: disposeBag)
   }
 }

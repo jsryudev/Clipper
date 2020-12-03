@@ -76,28 +76,26 @@ class SignInViewController: BaseViewController, View {
 
   func bind(reactor: SignInViewReactor) {
     self.rx.viewDidLoad
-      .subscribe(
-        onNext: { [weak self] in
-          self?.initalizeGoogleSignIn()
-        })
+      .subscribe(onNext: { [weak self] in
+        self?.initalizeGoogleSignIn()
+      })
       .disposed(by: disposeBag)
 
     reactor.state.compactMap { $0.isSuccess }
       .distinctUntilChanged()
-      .subscribe(
-        onNext: { [weak self] isSuccess in
-          if isSuccess.value {
-            self?.presentMainScreen()
-          } else {
-            guard let idToken = reactor.currentState.idToken,
-                  let viewController = self?.signUpViewControllerFactory(idToken)
-            else {
-              // handle error
-              return
-            }
-            self?.navigationController?.pushViewController(viewController, animated: true)
+      .subscribe(onNext: { [weak self] isSuccess in
+        if isSuccess.value {
+          self?.presentMainScreen()
+        } else {
+          guard let idToken = reactor.currentState.idToken,
+                let viewController = self?.signUpViewControllerFactory(idToken)
+          else {
+            // handle error
+            return
           }
-        })
+          self?.navigationController?.pushViewController(viewController, animated: true)
+        }
+      })
       .disposed(by: disposeBag)
   }
 }

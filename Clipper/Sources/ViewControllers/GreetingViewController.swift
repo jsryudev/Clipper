@@ -88,10 +88,9 @@ class GreetingViewController: BaseViewController, View {
 
     reactor.state.compactMap { $0.authorization }
       .distinctUntilChanged()
-      .subscribe(
-        onNext: { [weak self] authorization in
-          self?.locationAuthorizationView.set(authorization: authorization)
-        })
+      .subscribe(onNext: { [weak self] authorization in
+        self?.locationAuthorizationView.set(authorization: authorization)
+      })
       .disposed(by: disposeBag)
   }
 }

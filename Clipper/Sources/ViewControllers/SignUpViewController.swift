@@ -96,14 +96,13 @@ class SignUpViewController: BaseViewController, View {
 
     reactor.state.compactMap { $0.isSuccess }
       .distinctUntilChanged()
-      .subscribe(
-        onNext: { [weak self] isSuccess in
-          if isSuccess.value {
-            self?.presentMainScreen()
-          } else {
-            // handle error
-          }
-        })
+      .subscribe(onNext: { [weak self] isSuccess in
+        if isSuccess.value {
+          self?.presentMainScreen()
+        } else {
+          // handle error
+        }
+      })
       .disposed(by: disposeBag)
   }
 }

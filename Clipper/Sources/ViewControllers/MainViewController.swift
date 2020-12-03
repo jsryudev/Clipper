@@ -112,35 +112,32 @@ class MainViewController: BaseViewController, View {
 
     self.mapAccessoriesView.rx
       .currentLocationButtonTap
-      .subscribe(
-        onNext: { [weak self] in
-          self?.setCurrentPosition()
-        })
+      .subscribe(onNext: { [weak self] in
+        self?.setCurrentPosition()
+      })
       .disposed(by: disposeBag)
 
     reactor.state.compactMap { $0.hasAuthorized }
       .distinctUntilChanged()
-      .subscribe(
-        onNext: { [weak self] hasAuthorized in
-          if hasAuthorized {
-            self?.setCurrentPosition()
-          } else {
-            self?.floatingPanel.move(to: .half, animated: false)
-          }
-        })
+      .subscribe(onNext: { [weak self] hasAuthorized in
+        if hasAuthorized {
+          self?.setCurrentPosition()
+        } else {
+          self?.floatingPanel.move(to: .half, animated: false)
+        }
+      })
       .disposed(by: disposeBag)
 
     reactor.state.map { $0.user }
       .distinctUntilChanged()
-      .subscribe(
-        onNext: { [weak self] user in
-          if let user = user {
-            let viewController = self?.greetingViewControllerFactory(user)
-            self?.floatingPanel.set(contentViewController: viewController)
-          } else {
-            // handle error
-          }
-        })
+      .subscribe(onNext: { [weak self] user in
+        if let user = user {
+          let viewController = self?.greetingViewControllerFactory(user)
+          self?.floatingPanel.set(contentViewController: viewController)
+        } else {
+          // handle error
+        }
+      })
       .disposed(by: disposeBag)
 
     reactor.state.map { $0.markers }
@@ -164,12 +161,11 @@ class MainViewController: BaseViewController, View {
         }
       }
       .subscribeOn(MainScheduler.instance)
-      .subscribe(
-        onNext: { [weak self] markers in
-          markers.forEach { marker in
-            marker.mapView = self?.mapView
-          }
-        })
+      .subscribe(onNext: { [weak self] markers in
+        markers.forEach { marker in
+          marker.mapView = self?.mapView
+        }
+      })
       .disposed(by: disposeBag)
   }
 }

@@ -127,10 +127,9 @@ class MarkerViewController: BaseViewController, View {
       .disposed(by: disposeBag)
 
     self.tableView.rx.itemSelected
-      .subscribe(
-        onNext: { [weak tableView] indexPath in
-          tableView?.deselectRow(at: indexPath, animated: false)
-        })
+      .subscribe(onNext: { [weak tableView] indexPath in
+        tableView?.deselectRow(at: indexPath, animated: false)
+      })
       .disposed(by: self.disposeBag)
 
     reactor.state.map { $0.sections }
