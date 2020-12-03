@@ -82,8 +82,13 @@ class GreetingViewController: BaseViewController, View {
 
     self.locationAuthorizationView.rx
       .actionButtonTap
-      .map { Reactor.Action.authorizationAction($0) }
-      .bind(to: reactor.action)
+      .subscribe(onNext: { type in
+        reactor.action.onNext(.authorizationAction(type))
+
+        if case .denied = type {
+          UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+        }
+      })
       .disposed(by: disposeBag)
 
     reactor.state.compactMap { $0.authorization }

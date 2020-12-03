@@ -41,6 +41,7 @@ final class GreetingViewReactor: Reactor {
       return self.locationService
         .currentAuthorization()
         .map { Mutation.setAuthorization($0) }
+
     case .authorizationAction(let type):
       if case .notDetermined = type {
         self.locationService.requestAuthorization()
