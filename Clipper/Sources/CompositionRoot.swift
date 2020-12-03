@@ -39,6 +39,12 @@ final class CompositionRoot {
       locationService: locationService,
       markerService: markerService
     )
+
+    let clipDetailViewControllerFactory = { (clip: Clip) -> ClipDetailViewController in
+      let reactor = ClipDetailViewReactor(clip: clip)
+      return ClipDetailViewController(reactor: reactor)
+    }
+
     let mainViewController = MainViewController(
       reactor: mainViewReactor,
       greetingViewControllerFactory: { user in
@@ -65,13 +71,17 @@ final class CompositionRoot {
             )
             return NewClipViewController(reactor: reactor)
           },
+          clipDetailViewControllerFactory: clipDetailViewControllerFactory,
           clipListViewContollerFactory: { markerID in
             let reactor = ClipListViewReactor(
               marker: markerID,
               clipService: clipService,
               clipCellReactorFactory: ClipCellReactor.init
             )
-            return ClipListViewController(reactor: reactor)
+            return ClipListViewController(
+              reactor: reactor,
+              clipDetailViewControllerFactory: clipDetailViewControllerFactory
+            )
           }
         )
       })

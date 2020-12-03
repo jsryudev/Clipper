@@ -14,6 +14,8 @@ import RxDataSources
 class ClipListViewController: BaseViewController, View {
   typealias Reactor = ClipListViewReactor
 
+  private let clipDetailViewControllerFactory: (Clip) -> ClipDetailViewController
+
   struct Reusable {
     static let clipCell = ReusableCell<ClipCell>()
   }
@@ -28,8 +30,12 @@ class ClipListViewController: BaseViewController, View {
     return view
   }()
 
-  init(reactor: Reactor) {
+  init(
+    reactor: Reactor,
+    clipDetailViewControllerFactory: @escaping (Clip) -> ClipDetailViewController
+    ) {
     defer { self.reactor = reactor }
+    self.clipDetailViewControllerFactory = clipDetailViewControllerFactory
     self.dataSource = type(of: self).dataSourceFactory()
     super.init()
   }
@@ -75,6 +81,16 @@ class ClipListViewController: BaseViewController, View {
     self.rx.viewDidLoad
       .map { Reactor.Action.refresh }
       .bind(to: reactor.action)
+      .disposed(by: disposeBag)
+
+    self.tableView.rx.itemSelected(dataSource: self.dataSource)
+      .subscribe(onNext: { [weak self] sectionItem in
+        switch sectionItem {
+        case .clip(let clipReactor):
+          guard let vc = self?.clipDetailViewControllerFactory(clipReactor.currentState) else { return }
+          self?.navigationController?.pushViewController(vc, animated: true)
+        }
+      })
       .disposed(by: disposeBag)
 
     self.tableView.rx.itemSelected

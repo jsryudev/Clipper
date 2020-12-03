@@ -11,11 +11,13 @@ import ReactorKit
 import ReusableKit
 import RxCocoa
 import RxDataSources
+import FloatingPanel
 
 class MarkerViewController: BaseViewController, View {
   typealias Reactor = MarkerViewReactor
 
   private let newClipViewControllerFactory: (Marker) -> NewClipViewController
+  private let clipDetailViewControllerFactory: (Clip) -> ClipDetailViewController
   private let clipListViewContollerFactory: (String) -> ClipListViewController
 
   fileprivate struct Reusable {
@@ -41,10 +43,12 @@ class MarkerViewController: BaseViewController, View {
   init(
     reactor: Reactor,
     newClipViewControllerFactory: @escaping (Marker) -> NewClipViewController,
+    clipDetailViewControllerFactory: @escaping (Clip) -> ClipDetailViewController,
     clipListViewContollerFactory: @escaping (String) -> ClipListViewController
   ) {
     defer { self.reactor = reactor }
     self.newClipViewControllerFactory = newClipViewControllerFactory
+    self.clipDetailViewControllerFactory = clipDetailViewControllerFactory
     self.clipListViewContollerFactory = clipListViewContollerFactory
     self.dataSource = type(of: self).dataSourceFactory()
     super.init()
@@ -112,9 +116,8 @@ class MarkerViewController: BaseViewController, View {
         switch sectionItem {
         case .add:
           destination = self.newClipViewControllerFactory(reactor.currentState.marker)
-        case .clip:
-          // Present Clip Detail
-          return
+        case .clip(let itemReactor):
+          destination = self.clipDetailViewControllerFactory(itemReactor.currentState)
         case .more:
           guard let id = reactor.currentState.marker.id else { return }
           destination = self.clipListViewContollerFactory(id)
