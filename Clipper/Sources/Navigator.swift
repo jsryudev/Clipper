@@ -24,12 +24,19 @@ final class Navigator {
     self.window.rootViewController = viewController
   }
   
-  func present(_ viewController: UIViewController, animated: Bool = true, completion: NavigatorCompletionBlock? = nil) {
+  func present(
+    _ viewController: UIViewController,
+    animated: Bool = true,
+    completion: NavigatorCompletionBlock? = nil
+  ) {
     guard let root = self.window.rootViewController else { return }
     root.present(viewController, animated: animated, completion: completion)
   }
   
-  func show(_ viewController: UIViewController, sender: Any? = nil) {
+  func show(
+    _ viewController: UIViewController,
+    sender: Any? = nil
+  ) {
     guard let root = self.window.rootViewController else { return }
     root.show(viewController, sender: sender)
   }
