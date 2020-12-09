@@ -8,6 +8,7 @@
 import UIKit
 
 final class Navigator {
+  
   typealias NavigatorCompletionBlock = (() -> Void)
   fileprivate let window: UIWindow
   
